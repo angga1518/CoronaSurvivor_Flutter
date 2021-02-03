@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623256896625",
+    "project_id": "corona-survivor",
+    "storage_bucket": "corona-survivor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623256896625:android:12ee85f2efa34908ce07d0",
+        "android_client_info": {
+          "package_name": "com.example.corona_survivor_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623256896625-t0g9atm3bgjtma0dofiqm1896gmqbsdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1dV0KmHHUOhYB58pxlLBRFDQ75XoKL6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623256896625-t0g9atm3bgjtma0dofiqm1896gmqbsdm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
