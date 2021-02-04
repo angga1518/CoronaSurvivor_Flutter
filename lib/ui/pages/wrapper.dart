@@ -10,17 +10,18 @@ class _WrapperState extends State<Wrapper> {
   String notificationAlert = "alert";
 
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  String token;
+  String token = "";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // hit api cek access token yang lama
-    setToken();
-    // bandingin
-    // kalo beda hit beda api ke backend
+    _checkNewToken().then((_) {
+      setState(() {});
+    });
+    firebaseMessagingConfiguration();
+  }
 
+  void firebaseMessagingConfiguration() {
     _firebaseMessaging.configure(
       onMessage: (message) async {
         print("onMessage: $message");
@@ -47,8 +48,12 @@ class _WrapperState extends State<Wrapper> {
     );
   }
 
-  void setToken() async {
+  Future<void> _checkNewToken() async {
+    // hit api cek access token yang lama
+    // bandingin
+    // kalo beda hit beda api ke backend
     token = await _firebaseMessaging.getToken();
+    print("token nih: " + token);
   }
 
   @override
