@@ -13,6 +13,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   Stream<PageState> mapEventToState(
     PageEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    if (event is GoToSplashPage) {
+      yield OnSplashPage();
+    } else if (event is GoToMainPage) {
+      yield OnMainPage();
+    }
   }
 }
