@@ -58,25 +58,43 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("test"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              token,
-            ),
-            Text(
-              messageTitle,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+    User user = Provider.of<User>(context);
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    if (user == null) {
+      pageBloc.add(GoToSplashPage());
+    } else {
+      userBloc.add(LoadUser(user.uid));
+      pageBloc.add(GoToMainPage());
+    }
+    return BlocBuilder<PageBloc, PageState>(
+      builder: (context, state) {
+        if (state is OnSplashPage) {
+          return SplashPage();
+        } else {
+          return MainPage();
+        }
+      },
     );
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text("test"),
+    //   ),
+    //   body: Center(
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: <Widget>[
+    //         Text(
+    //           token,
+    //         ),
+    //         Text(
+    //           messageTitle,
+    //           style: Theme.of(context).textTheme.headline4,
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
 

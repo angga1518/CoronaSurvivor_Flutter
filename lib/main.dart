@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
               BlocProvider<ThemeBloc>(
                 create: (context) => ThemeBloc(),
               ),
+              BlocProvider<UserBloc>(
+                create: (context) => UserBloc(),
+              ),
             ],
             child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
