@@ -11,23 +11,26 @@ class _SplashPageState extends State<SplashPage> {
     // test
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RaisedButton(
-              child: Text("SignUp"),
-              onPressed: () async {
-                await AuthServices.signUp("erlanggamuhammad01@gmail.com", "corona", "Angga");
-              },
-            ),
-            RaisedButton(
-              child: Text("SignIn"),
-              onPressed: () async {
-                await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
-              },
-            ),
-          ],
+      body: Container(
+        height: UIHelper.responsive.setWidth(150),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(
+                child: Text("SignUp", style: UIHelper.testFont.copyWith(fontSize: 15)),
+                onPressed: () async {
+                  await AuthServices.signUp("erlanggamuhammad01@gmail.com", "corona", "Angga");
+                },
+              ),
+              RaisedButton(
+                child: Text("SignIn", style: UIHelper.testFont.copyWith(fontSize: 15),),
+                onPressed: () async {
+                  await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

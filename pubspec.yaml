@@ -31,6 +31,7 @@ dependencies:
   firebase_messaging: ^7.0.3
   firebase_storage: ^4.0.0
   flutter_bloc: ^6.1.1
+  flutter_screenutil: ^0.5.2
   google_fonts: ^1.1.2
   http: ^0.12.2
   image_picker: ^0.6.7+17
