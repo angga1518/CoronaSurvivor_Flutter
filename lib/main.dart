@@ -1,7 +1,9 @@
 import 'package:corona_survivor_flutter/services/services.dart';
+import 'package:corona_survivor_flutter/ui/shared/shared_ui.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'bloc/blocs.dart';
@@ -16,6 +18,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    UIHelper(context);
     return StreamProvider.value(
         value: AuthServices.userStream,
         child: MultiBlocProvider(
