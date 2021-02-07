@@ -16,6 +16,8 @@ class UIHelper {
 
   // to use this use UIHelper.testfont.copyWith(your desired custom)
   static TextStyle testFont = GoogleFonts.dmSans().copyWith(color: Colors.black, fontSize: responsive.setSp(20)); 
+
+  static Color color1 = Color(0xFFE4E4E4);
 }
 
 
