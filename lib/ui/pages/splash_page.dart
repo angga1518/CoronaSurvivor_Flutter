@@ -12,7 +12,8 @@ class _SplashPageState extends State<SplashPage> {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     return Scaffold(
       body: Container(
-        height: UIHelper.responsive.setWidth(150),
+        color: UIHelper.color1,
+        height: UIHelper.responsive.setHeight(160.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -23,12 +24,9 @@ class _SplashPageState extends State<SplashPage> {
                   await AuthServices.signUp("erlanggamuhammad01@gmail.com", "corona", "Angga");
                 },
               ),
-              RaisedButton(
-                child: Text("SignIn", style: UIHelper.testFont.copyWith(fontSize: 15),),
-                onPressed: () async {
-                  await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
-                },
-              ),
+              ButtonUniversal(50, ()async{
+                await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
+              })
             ],
           ),
         ),
