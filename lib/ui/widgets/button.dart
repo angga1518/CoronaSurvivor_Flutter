@@ -12,7 +12,9 @@ class PinkButton extends StatelessWidget {
           color: UIHelper.kColorButtonPink,
           child: InkWell(
             splashColor: Color(0xFFEECACA),
-            onTap: () {},
+            onTap: () {
+              onTap();
+            },
             child: Center(
               child: Text(
                 text,
@@ -33,6 +35,5 @@ class PinkButton extends StatelessWidget {
           border: Border.all(color: UIHelper.kColorButtonBorder),
           borderRadius: BorderRadius.circular(10),
         ));
-
   }
 }

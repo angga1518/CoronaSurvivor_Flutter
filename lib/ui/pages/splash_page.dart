@@ -9,6 +9,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -29,7 +30,9 @@ class _SplashPageState extends State<SplashPage> {
                 SizedBox(
                   height: 450,
                 ),
-                Logo()
+                PinkButton("Login", () {
+                  pageBloc.add(GotoLoginPage());
+                })
               ],
             ),
             Container(
