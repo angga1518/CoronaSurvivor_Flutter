@@ -1,26 +1,43 @@
 part of 'widgets.dart';
 
 class Logo extends StatelessWidget {
+  double logoSize;
+  double fontLawan;
+  double fontCovid;
+  double containerWidth;
+  Logo(this.logoSize, this.fontLawan, this.fontCovid, this.containerWidth);
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Container(
+      width: UIHelper.responsive.setWidth(containerWidth),
+        child: Row(
       children: [
-        Positioned(
-          left: 30,
-          child: Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/Logo.png"), fit: BoxFit.fill)),
+        Container(
+          height: UIHelper.responsive.setHeight(logoSize),
+          width: UIHelper.responsive.setWidth(logoSize),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/Logo.png"), fit: BoxFit.fill)),
+        ),
+        RichText(
+          text: TextSpan(
+            text: 'Lawan',
+            style: UIHelper.redFont.copyWith(
+                fontSize: UIHelper.responsive.setSp(fontLawan),
+                fontWeight: FontWeight.w400),
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'Covid',
+                  style: UIHelper.redFont.copyWith(
+                      fontSize: UIHelper.responsive.setSp(fontCovid),
+                      fontWeight: FontWeight.w700)),
+            ],
           ),
         ),
-        Container(
-          height: 70,
-          width: MediaQuery.of(context).size.width,
-          child: Text("Haloo"),
-        ),
       ],
-    );
+    )
+        //
+        );
   }
 }
