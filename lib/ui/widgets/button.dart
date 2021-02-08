@@ -1,23 +1,38 @@
 part of 'widgets.dart';
 
-class ButtonUniversal extends StatelessWidget {
-
-  final int height;
+class PinkButton extends StatelessWidget {
+  final String text;
   final Function onTap;
-  ButtonUniversal(this.height, this.onTap);
+  PinkButton(this.text, this.onTap);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: RaisedButton(
-        child: Text(
-          "SignIn",
-          style: UIHelper.testFont.copyWith(fontSize: 15),
+        child: Material(
+          color: UIHelper.kColorButtonPink,
+          child: InkWell(
+            splashColor: Color(0xFFEECACA),
+            onTap: () {},
+            child: Center(
+              child: Text(
+                text,
+                style: UIHelper.testFont.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: UIHelper.responsive.setSp(17),
+                    color: UIHelper.kColorButtonText),
+              ),
+            ),
+          ),
         ),
-        onPressed: (){
-          onTap();
-        },
-      ),
-    );
+        height: UIHelper.responsive.setHeight(50),
+        width: UIHelper.responsive.setWidth(252),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(color: Colors.white.withOpacity(0.05)),
+          ],
+          border: Border.all(color: UIHelper.kColorButtonBorder),
+          borderRadius: BorderRadius.circular(10),
+        ));
+
   }
 }
