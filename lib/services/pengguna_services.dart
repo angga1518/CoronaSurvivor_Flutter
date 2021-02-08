@@ -18,19 +18,9 @@ class PenggunaServices {
 
   static Future<Pengguna> getPengguna(String userId) async {
     String url = base_url + "pengguna/get?id=" + userId;
-    try {
-      http.Response response = await http.Client().get(url);
-      // if (response.statusCode != 200) {
-      //   // AuthServices.signOut();
-      //   return null;
-      // }
-      var data = json.decode(response.body);
-      Pengguna pengguna =
-          Pengguna(data['id'], data['email'], name: data['name']);
-      return pengguna;
-    } catch (e) {
-      print(e);
-    }
-    return null;
+    http.Response response = await http.Client().get(url);
+    var data = json.decode(response.body);
+    Pengguna pengguna = Pengguna(data['id'], data['email'], name: data['name']);
+    return pengguna;
   }
 }

@@ -12,7 +12,6 @@ import 'ui/pages/pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // await AuthServices.signOut();
   runApp(MyApp());
 }
 
