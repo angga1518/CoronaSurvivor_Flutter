@@ -18,7 +18,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UIHelper(context);
     return StreamProvider.value(
         value: AuthServices.userStream,
         child: MultiBlocProvider(
