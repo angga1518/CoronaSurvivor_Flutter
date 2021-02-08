@@ -9,5 +9,5 @@ extension FirebaseExtension on User {
           );
 
   Future<Pengguna> fromFirebase() async =>
-      await PenggunaServices.getUser(this.uid);
+      await PenggunaServices.getPengguna(this.uid);
 }

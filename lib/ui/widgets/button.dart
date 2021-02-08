@@ -33,5 +33,6 @@ class PinkButton extends StatelessWidget {
           border: Border.all(color: UIHelper.kColorButtonBorder),
           borderRadius: BorderRadius.circular(10),
         ));
+
   }
 }

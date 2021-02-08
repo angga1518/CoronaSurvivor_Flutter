@@ -9,7 +9,7 @@ class AuthServices {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       Pengguna pengguna = userCredential.user.convertToPengguna(name: name);
-      await PenggunaServices.saveUser(pengguna);
+      await PenggunaServices.savePengguna(pengguna);
       return SignInSignUpResult(pengguna, null);
     } catch (e) {
       return SignInSignUpResult(null, e.toString());
