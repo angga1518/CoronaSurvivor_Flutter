@@ -8,18 +8,23 @@ class PinkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Material(
-          color: UIHelper.kColorButtonPink,
-          child: InkWell(
-            splashColor: Color(0xFFEECACA),
-            onTap: () {},
-            child: Center(
-              child: Text(
-                text,
-                style: UIHelper.testFont.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: UIHelper.responsive.setSp(17),
-                    color: UIHelper.kColorButtonText),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Material(
+            color: UIHelper.colorPink,
+            child: InkWell(
+              splashColor: UIHelper.colorPinkLight,
+              onTap: () {
+                onTap();
+              },
+              child: Center(
+                child: Text(
+                  text,
+                  style: UIHelper.redFont.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: UIHelper.responsive.setSp(17),
+                      color: UIHelper.colorMainRed),
+                ),
               ),
             ),
           ),
@@ -30,9 +35,8 @@ class PinkButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(color: Colors.white.withOpacity(0.05)),
           ],
-          border: Border.all(color: UIHelper.kColorButtonBorder),
+          border: Border.all(color: UIHelper.colorMainLightRed),
           borderRadius: BorderRadius.circular(10),
         ));
-
   }
 }
