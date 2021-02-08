@@ -15,9 +15,10 @@ class UIHelper {
   static ScreenUtil get responsive => ScreenUtil.instance;
 
   // to use this use UIHelper.testfont.copyWith(your desired custom)
-  static TextStyle testFont = GoogleFonts.dmSans().copyWith(color: Colors.black, fontSize: responsive.setSp(20)); 
+  static TextStyle testFont = GoogleFonts.dmSans()
+      .copyWith(color: Colors.black, fontSize: responsive.setSp(20));
 
-  static Color color1 = Color(0xFFE4E4E4);
+  static Color kColorButtonPink = Color(0xFFFFE0E0);
+  static Color kColorButtonText = Color(0xFFFC312F);
+  static Color kColorButtonBorder = Color(0xFFFFCFCF);
 }
-
-

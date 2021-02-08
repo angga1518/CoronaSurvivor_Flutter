@@ -8,29 +8,47 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    // test
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     return Scaffold(
       body: Container(
-        color: UIHelper.color1,
-        height: UIHelper.responsive.setHeight(160.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                child: Text("SignUp", style: UIHelper.testFont.copyWith(fontSize: 15)),
-                onPressed: () async {
-                  await AuthServices.signUp("erlanggamuhammad01@gmail.com", "corona", "Angga");
-                },
-              ),
-              ButtonUniversal(50, ()async{
-                await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
-              })
-            ],
-          ),
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Container(
+              height: UIHelper.responsive.setHeight(350),
+              color: Color(0xFFEB3549),
+            ),
+            Column(
+              children: [
+                Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/background_splashscreen.png"),
+                            fit: BoxFit.fill))),
+                SizedBox(
+                  height: 450,
+                ),
+                Logo()
+              ],
+            ),
+            Container(
+              margin:
+                  EdgeInsets.symmetric(vertical: UIHelper.responsive.setSp(50)),
+              width: MediaQuery.of(context).size.width,
+              height: UIHelper.responsive.setHeight(350),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/il_splashscreen.png"),
+                      fit: BoxFit.fill)),
+            ),
+          ],
         ),
       ),
+      // PinkButton("Login", () async {
+      //   await AuthServices.signIn(
+      //       "erlanggamuhammad01@gmail.com", "corona");
+      // })
     );
   }
 }
