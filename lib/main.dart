@@ -12,13 +12,13 @@ import 'ui/pages/pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // await AuthServices.signOut();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UIHelper(context);
     return StreamProvider.value(
         value: AuthServices.userStream,
         child: MultiBlocProvider(

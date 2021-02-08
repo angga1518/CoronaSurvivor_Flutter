@@ -14,7 +14,8 @@ class ButtonUniversal extends StatelessWidget {
           "SignIn",
           style: UIHelper.testFont.copyWith(fontSize: 15),
         ),
-        onPressed: () async {
+        onPressed: (){
+          onTap();
         },
       ),
     );

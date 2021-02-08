@@ -19,14 +19,26 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RaisedButton(
-                child: Text("SignUp", style: UIHelper.testFont.copyWith(fontSize: 15)),
+                child: Text("SignUp",
+                    style: UIHelper.testFont.copyWith(fontSize: 15)),
                 onPressed: () async {
-                  await AuthServices.signUp("erlanggamuhammad01@gmail.com", "corona", "Angga");
+                  await AuthServices.signUp(
+                      "erlanggamuhammad01@gmail.com", "corona", "Angga");
                 },
               ),
-              ButtonUniversal(50, ()async{
-                await AuthServices.signIn("erlanggamuhammad01@gmail.com", "corona");
-              })
+              RaisedButton(
+                  child: Text(
+                    "SignIn",
+                    style: UIHelper.testFont.copyWith(fontSize: 15),
+                  ),
+                  onPressed: () async {
+                    await AuthServices.signIn(
+                        "erlanggamuhammad01@gmail.com", "corona");
+                  }),
+              // ButtonUniversal(50, () async {
+              //   await AuthServices.signIn(
+              //       "erlanggamuhammad01@gmail.com", "corona");
+              // })
             ],
           ),
         ),

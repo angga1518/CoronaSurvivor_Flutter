@@ -3,7 +3,7 @@ part of 'services.dart';
 class PushNotifServices {
   static void updateAccessToken(String userId, String token,
       {http.Client client}) async {
-    String url = local_backend_base_url + "update-token";
+    String url = base_url + "update-token";
     client ?? http.Client();
     final http.Response response = await client.post(
       url,
