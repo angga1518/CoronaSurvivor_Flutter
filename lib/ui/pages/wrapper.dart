@@ -72,7 +72,8 @@ class _WrapperState extends State<Wrapper> {
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
-          return SplashPage();
+          // return SplashPage();
+          return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
