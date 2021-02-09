@@ -74,8 +74,12 @@ class _WrapperState extends State<Wrapper> {
           return SplashPage();
         } else if (state is OnHomePage) {
           return HomePage();
-        } else {
+        } else if (state is OnMainPage) {
           return MainPage();
+        } else if (state is OnLoginPage) {
+          return LoginPage();
+        } else {
+          return Container();
         }
       },
     );

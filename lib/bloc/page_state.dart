@@ -9,4 +9,6 @@ class OnSplashPage extends PageState {}
 
 class OnMainPage extends PageState {}
 
+class OnLoginPage extends PageState{}
+
 class OnHomePage extends PageState {}

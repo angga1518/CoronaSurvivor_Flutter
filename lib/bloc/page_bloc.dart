@@ -20,6 +20,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnMainPage();
     } else if (event is GoToHomePage) {
       yield OnHomePage();
+    } else if (event is GoToLoginPage) {
+      yield OnLoginPage();
     }
   }
 }
