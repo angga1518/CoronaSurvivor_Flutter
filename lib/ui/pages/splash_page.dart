@@ -69,7 +69,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                     UIHelper.vertSpace(20),
                     PinkButton("Lanjut", () {
-                      pageBloc.add(GoToLoginPage());
+                      pageBloc.add(GoToHomePage());
                     })
                   ],
                 ),

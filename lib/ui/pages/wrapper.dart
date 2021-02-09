@@ -71,7 +71,9 @@ class _WrapperState extends State<Wrapper> {
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
-          return LoginPage();
+          return SplashPage();
+        } else if (state is OnHomePage) {
+          return HomePage();
         } else if (state is OnMainPage) {
           return MainPage();
         } else if (state is OnLoginPage) {
@@ -79,28 +81,8 @@ class _WrapperState extends State<Wrapper> {
         } else {
           return Container();
         }
-
       },
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("test"),
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: <Widget>[
-    //         Text(
-    //           token,
-    //         ),
-    //         Text(
-    //           messageTitle,
-    //           style: Theme.of(context).textTheme.headline4,
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
 

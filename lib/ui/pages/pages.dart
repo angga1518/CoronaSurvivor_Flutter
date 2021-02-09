@@ -12,3 +12,4 @@ part 'wrapper.dart';
 part 'main_page.dart';
 part 'splash_page.dart';
 part 'login_page.dart';
+part 'home_page.dart';
