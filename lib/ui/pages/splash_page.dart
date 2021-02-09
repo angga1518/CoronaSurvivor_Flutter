@@ -68,7 +68,9 @@ class _SplashPageState extends State<SplashPage> {
                       textAlign: TextAlign.center,
                     ),
                     UIHelper.vertSpace(20),
-                    PinkButton("Lanjut", () {})
+                    PinkButton("Lanjut", () {
+                      pageBloc.add(GoToLoginPage());
+                    })
                   ],
                 ),
               ),

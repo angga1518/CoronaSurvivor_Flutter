@@ -26,6 +26,12 @@ class UIHelper {
       color: colorGreyLight,
       fontSize: responsive.setSp(13),
       fontWeight: FontWeight.w400);
+  static TextStyle whiteFont = GoogleFonts.dmSans()
+      .copyWith(color: Colors.white, fontSize: responsive.setSp(17));
+
+  static Color kColorButtonPink = Color(0xFFFFE0E0);
+  static Color kColorButtonText = Color(0xFFFC312F);
+  static Color kColorButtonBorder = Color(0xFFFFCFCF);
 
   static Color colorMainRed = Color(0xFFFC312F);
   static Color colorMainLightRed = Color(0xFFFFCFCF);
