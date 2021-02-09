@@ -83,25 +83,6 @@ class _WrapperState extends State<Wrapper> {
         }
       },
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("test"),
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: <Widget>[
-    //         Text(
-    //           token,
-    //         ),
-    //         Text(
-    //           messageTitle,
-    //           style: Theme.of(context).textTheme.headline4,
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
 

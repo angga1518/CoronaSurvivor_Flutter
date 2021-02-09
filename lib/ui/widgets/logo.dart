@@ -18,7 +18,7 @@ class Logo extends StatelessWidget {
           width: UIHelper.responsive.setWidth(logoSize),
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/Logo.png"), fit: BoxFit.fill)),
+                  image: AssetImage("assets/logo.png"), fit: BoxFit.contain)),
         ),
         RichText(
           text: TextSpan(
