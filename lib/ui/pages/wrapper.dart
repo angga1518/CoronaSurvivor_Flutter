@@ -79,6 +79,8 @@ class _WrapperState extends State<Wrapper> {
           return LoginPage();
         } else if (state is OnOnboardPage) {
           return OnboardPage();
+        } else if (state is OnProfilePage) {
+          return ProfilePage();
         } else {
           return Container();
         }

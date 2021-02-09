@@ -12,3 +12,5 @@ class OnLoginPage extends PageState{}
 class OnHomePage extends PageState {}
 
 class OnOnboardPage extends PageState {}
+
+class OnProfilePage extends PageState {}

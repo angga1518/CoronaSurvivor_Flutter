@@ -18,3 +18,4 @@ part 'onboard_page1.dart';
 part 'onboard_page2.dart';
 part 'onboard_page3.dart';
 part 'onboard_page4.dart';
+part 'profile_page.dart';
