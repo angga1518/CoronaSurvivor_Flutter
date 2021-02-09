@@ -22,8 +22,12 @@ class UIHelper {
 
   static TextStyle redFont = GoogleFonts.dmSans()
       .copyWith(color: colorMainRed, fontSize: responsive.setSp(20));
-  static TextStyle greyFont = GoogleFonts.dmSans().copyWith(
+  static TextStyle greyLightFont = GoogleFonts.dmSans().copyWith(
       color: colorGreyLight,
+      fontSize: responsive.setSp(13),
+      fontWeight: FontWeight.w400);
+  static TextStyle greyFont = GoogleFonts.dmSans().copyWith(
+      color: colorGrey,
       fontSize: responsive.setSp(13),
       fontWeight: FontWeight.w400);
   static TextStyle whiteFont = GoogleFonts.dmSans()
@@ -38,6 +42,34 @@ class UIHelper {
   static Color colorPink = Color(0xFFFFE0E0);
   static Color colorPinkLight = Color(0xFFEECACA);
   static Color colorSoftPink = Color(0xFFF9F3F3);
+  static Color colorGrey = Color(0xFF40576B);
   static Color colorGreyLight = Color(0xFF52708A);
+  static Color colorGreySuperLight = Color(0xFF8DA2B6);
   static Color colorDarkWhite = Color(0xFFF2F4F5);
+
+  static Widget fourBubble(int index) {
+    List<Widget> listBubble = [];
+    for (var i = 0; i < 4; i++) {
+      if (i != 0) {
+        listBubble.add(UIHelper.horzSpace(13));
+      }
+      if (i + 1 == index) {
+        listBubble.add(Container(
+          height: UIHelper.responsive.setHeight(7),
+          width: UIHelper.responsive.setWidth(7),
+          decoration: BoxDecoration(
+              color: UIHelper.colorMainRed, shape: BoxShape.circle),
+        ));
+        continue;
+      }
+      listBubble.add(Container(
+        height: UIHelper.responsive.setHeight(7),
+        width: UIHelper.responsive.setWidth(7),
+        decoration: BoxDecoration(
+            color: UIHelper.colorGreySuperLight, shape: BoxShape.circle),
+      ));
+    }
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center, children: listBubble);
+  }
 }

@@ -16,12 +16,12 @@ class PageBloc extends Bloc<PageEvent, PageState> {
   ) async* {
     if (event is GoToSplashPage) {
       yield OnSplashPage();
-    } else if (event is GoToMainPage) {
-      yield OnMainPage();
     } else if (event is GoToHomePage) {
       yield OnHomePage();
     } else if (event is GoToLoginPage) {
       yield OnLoginPage();
+    } else if (event is GoToOnboardPage) {
+      yield OnOnboardPage();
     }
   }
 }
