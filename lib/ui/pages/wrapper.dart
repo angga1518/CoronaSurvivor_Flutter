@@ -72,6 +72,8 @@ class _WrapperState extends State<Wrapper> {
       builder: (context, state) {
         if (state is OnSplashPage) {
           return SplashPage();
+        } else if (state is OnHomePage) {
+          return HomePage();
         } else {
           return MainPage();
         }

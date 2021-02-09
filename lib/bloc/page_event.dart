@@ -7,3 +7,5 @@ abstract class PageEvent {}
 class GoToSplashPage extends PageEvent {}
 
 class GoToMainPage extends PageEvent {}
+
+class GoToHomePage extends PageEvent {}

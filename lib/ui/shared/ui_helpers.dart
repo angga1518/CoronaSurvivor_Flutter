@@ -32,4 +32,5 @@ class UIHelper {
   static Color colorPink = Color(0xFFFFE0E0);
   static Color colorPinkLight = Color(0xFFEECACA);
   static Color colorGreyLight = Color(0xFF52708A);
+  static Color colorDarkWhite = Color(0xFFF2F4F5);
 }
