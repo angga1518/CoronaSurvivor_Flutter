@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
 part 'wrapper.dart';
 part 'main_page.dart';
@@ -18,3 +19,4 @@ part 'onboard_page1.dart';
 part 'onboard_page2.dart';
 part 'onboard_page3.dart';
 part 'onboard_page4.dart';
+part 'signup_page.dart';
