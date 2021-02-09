@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Text(
                         "Selamat Datang di aplikasi \n Lawan Covid Indonesia",
-                        style: UIHelper.greyFont,
+                        style: UIHelper.greyLightFont,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Belum Punya Akun?",
-                              style: UIHelper.greyFont),
+                              style: UIHelper.greyLightFont),
                           GestureDetector(
                             onTap: () {},
                             child: Text(

@@ -64,7 +64,7 @@ class _SplashPageState extends State<SplashPage> {
                     UIHelper.horzSpace(UIHelper.width),
                     Text(
                       "LawanCovid adalah aplikasi yang bermanfaat\nsebagai tindakan preventif dan represif\nterhadap pandemi covid-19",
-                      style: UIHelper.greyFont,
+                      style: UIHelper.greyLightFont,
                       textAlign: TextAlign.center,
                     ),
                     UIHelper.vertSpace(20),
