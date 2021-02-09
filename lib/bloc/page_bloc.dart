@@ -23,6 +23,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnOnboardPage();
     } else if (event is GoToProfilePage) {
       yield OnProfilePage();
+    } else if (event is GotoSignupPage) {
+      yield OnLoginPage();
     }
   }
 }

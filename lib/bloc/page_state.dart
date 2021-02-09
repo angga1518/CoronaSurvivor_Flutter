@@ -7,7 +7,9 @@ class PageInitial extends PageState {}
 
 class OnSplashPage extends PageState {}
 
-class OnLoginPage extends PageState{}
+class OnLoginPage extends PageState {}
+
+class OnSignupPage extends PageState {}
 
 class OnHomePage extends PageState {}
 
