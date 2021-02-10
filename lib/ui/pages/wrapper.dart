@@ -63,7 +63,8 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToOnboardPage());
+      pageBloc.add(GoToProfilePage());
+      // pageBloc.add(GoToOnboardPage());
       // pageBloc.add(GoToSplashPage());
     } else {
       userBloc.add(LoadUser(user.uid));

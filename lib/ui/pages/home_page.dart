@@ -30,14 +30,27 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     UIHelper.horzSpace(23),
-                    Container(
-                      height: UIHelper.responsive.setHeight(32),
-                      width: UIHelper.responsive.setWidth(32),
-                      decoration: BoxDecoration(
+                    GestureDetector(
+                      onTap: () {
+                        pageBloc.add(GoToProfilePage());
+                      },
+                      child: Container(
+                        height: UIHelper.responsive.setHeight(32),
+                        width: UIHelper.responsive.setWidth(32),
+                        decoration: BoxDecoration(
                           color: UIHelper.colorSoftPink,
                           borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                              image: AssetImage("assets/user.png"))),
+                        ),
+                        child: Center(
+                          child: SizedBox(
+                            child: Image(
+                              image: AssetImage("assets/user.png"),
+                              height: UIHelper.responsive.setHeight(20),
+                              width: UIHelper.responsive.setWidth(20),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     UIHelper.horzSpace(56),
                     Logo(39, 15, 18, 148)

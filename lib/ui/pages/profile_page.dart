@@ -11,7 +11,7 @@ class _ProfilePageState extends State<ProfilePage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToOnboardPage());
+        pageBloc.add(GoToHomePage());
         return false;
       },
       child: Scaffold(
@@ -24,7 +24,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ListView(
                 children: [],
               ),
-              TopBar("Profil Saya")
+              TopBar("Profil Saya", (){
+                pageBloc.add(GoToHomePage());
+              })
             ],
           ),
         ),
