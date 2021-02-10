@@ -245,37 +245,30 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           UIHelper.vertSpace(10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Lihat lokasi lainnya",
-                                style: UIHelper.blueFont.copyWith(
-                                    fontSize: UIHelper.responsive.setSp(12),
-                                    fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.underline),
-                              ),
-                              UIHelper.horzSpace(5),
-                              Container(
-                                height: UIHelper.responsive.setHeight(15),
-                                width: UIHelper.responsive.setWidth(15),
-                                decoration: BoxDecoration(
-                                    color: UIHelper.colorPinkSuperLight,
-                                    shape: BoxShape.circle),
-                                child: Center(
-                                  child: SizedBox(
-                                    child: Image(
-                                      image: AssetImage("assets/forward.png"),
-                                      height: UIHelper.responsive.setHeight(10),
-                                      width: UIHelper.responsive.setWidth(10),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
+                          BlueNavigation("Lihat lokasi lainnya"),
                         ],
-                      ))
+                      )),
+                  UIHelper.vertSpace(18),
+                  LogoCardContainer(
+                    "Status Covid-19 Daerah Anda",
+                    "assets/pin_gps.png",
+                    "Aktifkan GPS Anda untuk melihat status Covid-19 di daerah Anda",
+                    "Aktifkan",
+                    29,
+                    62,
+                    nextMessage: "Lihat lokasi lainnya",
+                  ),
+                  UIHelper.vertSpace(18),
+                  LogoCardContainer(
+                      "MyCalendar",
+                      "assets/mask_myCalendar.png",
+                      "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
+                      "Buat MyCalendar",
+                      29,
+                      104),
+                  UIHelper.vertSpace(18),
+                  CardContainer("MyCalendar", null),
+                  UIHelper.vertSpace(20),
                 ],
               ),
               Container(

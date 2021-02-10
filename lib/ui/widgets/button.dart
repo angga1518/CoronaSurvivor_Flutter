@@ -3,7 +3,11 @@ part of 'widgets.dart';
 class PinkButton extends StatelessWidget {
   final String text;
   final Function onTap;
-  PinkButton(this.text, this.onTap);
+  final double fontSize;
+  final double height;
+  final double width;
+  PinkButton(this.text, this.onTap,
+      {this.fontSize = 17, this.height = 50, this.width = 252});
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +26,16 @@ class PinkButton extends StatelessWidget {
                   text,
                   style: UIHelper.redFont.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontSize: UIHelper.responsive.setSp(17),
+                      fontSize: UIHelper.responsive.setSp(fontSize),
                       color: UIHelper.colorMainRed),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
           ),
         ),
-        height: UIHelper.responsive.setHeight(50),
-        width: UIHelper.responsive.setWidth(252),
+        height: UIHelper.responsive.setHeight(height),
+        width: UIHelper.responsive.setWidth(width),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(color: Colors.white.withOpacity(0.05)),
