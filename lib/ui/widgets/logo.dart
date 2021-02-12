@@ -10,12 +10,12 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: UIHelper.responsive.setWidth(containerWidth),
+      width: UIHelper.setResWidth(containerWidth),
         child: Row(
       children: [
         Container(
-          height: UIHelper.responsive.setHeight(logoSize),
-          width: UIHelper.responsive.setWidth(logoSize),
+          height: UIHelper.setResHeight(logoSize),
+          width: UIHelper.setResWidth(logoSize),
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/logo.png"), fit: BoxFit.contain)),
@@ -24,13 +24,13 @@ class Logo extends StatelessWidget {
           text: TextSpan(
             text: 'Lawan',
             style: UIHelper.redFont.copyWith(
-                fontSize: UIHelper.responsive.setSp(fontLawan),
+                fontSize: UIHelper.setResFontSize(fontLawan),
                 fontWeight: FontWeight.w400),
             children: <TextSpan>[
               TextSpan(
                   text: 'Covid',
                   style: UIHelper.redFont.copyWith(
-                      fontSize: UIHelper.responsive.setSp(fontCovid),
+                      fontSize: UIHelper.setResFontSize(fontCovid),
                       fontWeight: FontWeight.w700)),
             ],
           ),

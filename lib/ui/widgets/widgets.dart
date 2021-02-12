@@ -8,3 +8,4 @@ part 'top_bar.dart';
 part 'card_container.dart';
 part 'logo_card_container.dart';
 part 'blue_navigation.dart';
+part 'warning_box.dart';

@@ -22,7 +22,7 @@ class _SignupPageState extends State<SignupPage> {
             child: ListView(
               children: [
                 SizedBox(
-                  height: UIHelper.responsive.setHeight(45),
+                  height: UIHelper.setResHeight(45),
                 ),
                 // CardContainer(Padding(
                 //   padding: const EdgeInsets.only(right: 25, left: 25),
@@ -30,12 +30,12 @@ class _SignupPageState extends State<SignupPage> {
                 //     crossAxisAlignment: CrossAxisAlignment.start,
                 //     children: [
                 //       SizedBox(
-                //         height: UIHelper.responsive.setHeight(30),
+                //         height: UIHelper.setResHeight(30),
                 //       ),
                 //       Text(
                 //         "Daftar",
                 //         style: UIHelper.greyFont.copyWith(
-                //             fontSize: UIHelper.responsive.setSp(25),
+                //             fontSize: UIHelper.setResFontSize(25),
                 //             fontWeight: FontWeight.bold),
                 //         textAlign: TextAlign.right,
                 //       ),
@@ -44,10 +44,10 @@ class _SignupPageState extends State<SignupPage> {
                 //         style: UIHelper.greyFont,
                 //       ),
                 //       SizedBox(
-                //         height: UIHelper.responsive.setHeight(30),
+                //         height: UIHelper.setResHeight(30),
                 //       ),
                 //       Wrap(
-                //         runSpacing: UIHelper.responsive.setSp(20),
+                //         runSpacing: UIHelper.setResFontSize(20),
                 //         children: [
                 //           TextFieldWidget(
                 //               "Nama Lengkap", "Nama Lengkap", null, false),

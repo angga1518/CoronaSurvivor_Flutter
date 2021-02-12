@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Container(
-            height: UIHelper.responsive.setHeight(360),
+            height: UIHelper.setResHeight(360),
             width: UIHelper.width,
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -38,11 +38,11 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: UIHelper.responsive.setHeight(70),
+                  height: UIHelper.setResHeight(70),
                 ),
                 Container(
-                  height: UIHelper.responsive.setHeight(120),
-                  width: UIHelper.responsive.setWidth(270),
+                  height: UIHelper.setResHeight(120),
+                  width: UIHelper.setResWidth(270),
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/login_logo_covid.png"),
@@ -53,10 +53,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: UIHelper.whiteFont,
                 ),
                 SizedBox(
-                  height: UIHelper.responsive.setHeight(40),
+                  height: UIHelper.setResHeight(40),
                 ),
                 Container(
-                  height: UIHelper.responsive.setHeight(386),
+                  height: UIHelper.setResHeight(386),
                   width: UIHelper.width,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: UIHelper.responsive.setHeight(75),
+                        height: UIHelper.setResHeight(75),
                       ),
                       Text(
                         "Selamat Datang di aplikasi \n Lawan Covid Indonesia",
@@ -74,15 +74,15 @@ class _LoginPageState extends State<LoginPage> {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: UIHelper.responsive.setHeight(20),
+                        height: UIHelper.setResHeight(20),
                       ),
                       TextFieldWidget("Email Address", "Email", null, false),
                       SizedBox(
-                        height: UIHelper.responsive.setHeight(25),
+                        height: UIHelper.setResHeight(25),
                       ),
                       TextFieldWidget("Password", "Password", null, false),
                       SizedBox(
-                        height: UIHelper.responsive.setHeight(20),
+                        height: UIHelper.setResHeight(20),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -94,14 +94,14 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               " DAFTAR",
                               style: UIHelper.redFont.copyWith(
-                                  fontSize: UIHelper.responsive.setSp(13),
+                                  fontSize: UIHelper.setResFontSize(13),
                                   fontWeight: FontWeight.w700),
                             ),
                           )
                         ],
                       ),
                       SizedBox(
-                        height: UIHelper.responsive.setHeight(30),
+                        height: UIHelper.setResHeight(30),
                       ),
                       PinkButton("Masuk", () {})
                     ],
@@ -120,11 +120,11 @@ class _LoginPageState extends State<LoginPage> {
 //           text: TextSpan(
 //             text: 'Lawan',
 //             style: UIHelper.redFont.copyWith(
-//                 fontSize: UIHelper.responsive.setSp(fontLawan),
+//                 fontSize: UIHelper.setResFontSize(fontLawan),
 //                 fontWeight: FontWeight.w400),
 //             children: <TextSpan>[
 //               TextSpan(
 //                   text: 'Covid',
 //                   style: UIHelper.redFont.copyWith(
-//                       fontSize: UIHelper.responsive.setSp(fontCovid),
+//                       fontSize: UIHelper.setResFontSize(fontCovid),
 //                       fontWeight: FontWeight.w700))

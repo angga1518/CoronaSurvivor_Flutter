@@ -17,9 +17,9 @@ class CardContainer extends StatelessWidget {
               children: [
                 Container(
                   margin:
-                      EdgeInsets.only(right: UIHelper.responsive.setWidth(9)),
-                  height: UIHelper.responsive.setHeight(24),
-                  width: UIHelper.responsive.setWidth(24),
+                      EdgeInsets.only(right: UIHelper.setResWidth(9)),
+                  height: UIHelper.setResHeight(24),
+                  width: UIHelper.setResWidth(24),
                   decoration: BoxDecoration(
                     color: UIHelper.colorSoftPink,
                     borderRadius: BorderRadius.circular(8),
@@ -28,7 +28,7 @@ class CardContainer extends StatelessWidget {
                       child: Text(
                     "-",
                     style: UIHelper.redFont.copyWith(
-                        fontSize: UIHelper.responsive.setSp(15),
+                        fontSize: UIHelper.setResFontSize(15),
                         fontWeight: FontWeight.w700),
                   )),
                 ),
@@ -45,7 +45,7 @@ class CardContainer extends StatelessWidget {
           )
         ],
       ),
-      width: UIHelper.responsive.setWidth(322),
+      width: UIHelper.setResWidth(322),
       margin: EdgeInsets.only(left: 19, right: 19),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),

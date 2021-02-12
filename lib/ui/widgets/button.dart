@@ -26,7 +26,7 @@ class PinkButton extends StatelessWidget {
                   text,
                   style: UIHelper.redFont.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontSize: UIHelper.responsive.setSp(fontSize),
+                      fontSize: UIHelper.setResFontSize(fontSize),
                       color: UIHelper.colorMainRed),
                   textAlign: TextAlign.center,
                 ),
@@ -34,8 +34,8 @@ class PinkButton extends StatelessWidget {
             ),
           ),
         ),
-        height: UIHelper.responsive.setHeight(height),
-        width: UIHelper.responsive.setWidth(width),
+        height: UIHelper.setResHeight(height),
+        width: UIHelper.setResWidth(width),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(color: Colors.white.withOpacity(0.05)),

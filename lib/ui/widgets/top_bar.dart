@@ -7,12 +7,12 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: UIHelper.responsive.setHeight(68),
+      height: UIHelper.setResHeight(68),
       color: Colors.white,
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: UIHelper.responsive.setHeight(18)),
+            padding: EdgeInsets.only(top: UIHelper.setResHeight(18)),
             child: Row(
               children: [
                 UIHelper.horzSpace(23),
@@ -23,22 +23,22 @@ class TopBar extends StatelessWidget {
                   child: Stack(
                     children: [
                       Container(
-                        height: UIHelper.responsive.setHeight(32),
-                        width: UIHelper.responsive.setWidth(32),
+                        height: UIHelper.setResHeight(32),
+                        width: UIHelper.setResWidth(32),
                         decoration: BoxDecoration(
                           color: UIHelper.colorSoftPink,
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       Container(
-                        height: UIHelper.responsive.setHeight(32),
-                        width: UIHelper.responsive.setWidth(32),
+                        height: UIHelper.setResHeight(32),
+                        width: UIHelper.setResWidth(32),
                         child: Center(
                           child: SizedBox(
                             child: Image(
                               image: AssetImage("assets/back.png"),
-                              height: UIHelper.responsive.setHeight(15),
-                              width: UIHelper.responsive.setWidth(15),
+                              height: UIHelper.setResHeight(15),
+                              width: UIHelper.setResWidth(15),
                             ),
                           ),
                         ),
@@ -53,14 +53,14 @@ class TopBar extends StatelessWidget {
             child: Text(
               pageName,
               style: UIHelper.redFont
-                  .copyWith(fontSize: UIHelper.responsive.setSp(18)),
+                  .copyWith(fontSize: UIHelper.setResFontSize(18)),
             ),
           )
         ],
       ),
     );
     // return Container(
-    //   height: UIHelper.responsive.setHeight(68),
+    //   height: UIHelper.setResHeight(68),
     //   color: Colors.white,
     //   child: Stack(
     //     children: [
@@ -69,8 +69,8 @@ class TopBar extends StatelessWidget {
     //         children: [
     //           UIHelper.horzSpace(23),
     //           Container(
-    //             height: UIHelper.responsive.setHeight(32),
-    //             width: UIHelper.responsive.setWidth(32),
+    //             height: UIHelper.setResHeight(32),
+    //             width: UIHelper.setResWidth(32),
     //             decoration: BoxDecoration(
     //                 color: UIHelper.colorSoftPink,
     //                 borderRadius: BorderRadius.circular(8),
@@ -85,7 +85,7 @@ class TopBar extends StatelessWidget {
     //           Text(
     //             pageName,
     //             style: UIHelper.redFont
-    //                 .copyWith(fontSize: UIHelper.responsive.setSp(18)),
+    //                 .copyWith(fontSize: UIHelper.setResFontSize(18)),
     //           )
     //         ],
     //       ),

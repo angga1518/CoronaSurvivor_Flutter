@@ -13,8 +13,8 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: UIHelper.responsive.setWidth(270),
-        height: UIHelper.responsive.setHeight(40),
+        width: UIHelper.setResWidth(270),
+        height: UIHelper.setResHeight(40),
         child: TextField(
           keyboardType: isNumber ? TextInputType.phone: TextInputType.name,
           textAlignVertical: TextAlignVertical.bottom,

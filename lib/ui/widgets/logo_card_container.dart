@@ -20,8 +20,8 @@ class LogoCardContainer extends StatelessWidget {
             Row(
               children: [
                 SizedBox(
-                  width: UIHelper.responsive.setWidth(52),
-                  height: UIHelper.responsive.setHeight(51),
+                  width: UIHelper.setResWidth(52),
+                  height: UIHelper.setResHeight(51),
                   child: Image(image: AssetImage(assetName)),
                 ),
                 UIHelper.horzSpace(10),
@@ -35,11 +35,11 @@ class LogoCardContainer extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          width: UIHelper.responsive.setWidth(190),
+                          width: UIHelper.setResWidth(190),
                           child: Text(
                             message,
                             style: UIHelper.greyLightFont.copyWith(
-                                fontSize: UIHelper.responsive.setSp(12)),
+                                fontSize: UIHelper.setResFontSize(12)),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -47,9 +47,9 @@ class LogoCardContainer extends StatelessWidget {
                         PinkButton(
                           buttonMessage,
                           () {},
-                          fontSize: UIHelper.responsive.setSp(10),
-                          height: UIHelper.responsive.setHeight(buttonHeight),
-                          width: UIHelper.responsive.setWidth(buttonWidth),
+                          fontSize: UIHelper.setResFontSize(10),
+                          height: UIHelper.setResHeight(buttonHeight),
+                          width: UIHelper.setResWidth(buttonWidth),
                         )
                       ],
                     ),

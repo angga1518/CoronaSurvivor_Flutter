@@ -28,7 +28,7 @@ class _OnboardPage1State extends State<OnboardPage1> {
               ),
             ),
             Container(
-              height: UIHelper.responsive.setHeight(360),
+              height: UIHelper.setResHeight(360),
               width: UIHelper.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -38,7 +38,7 @@ class _OnboardPage1State extends State<OnboardPage1> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: UIHelper.responsive.setHeight(350),
+                height: UIHelper.setResHeight(350),
                 color: Colors.white,
                 child: Column(
                   children: [
@@ -47,11 +47,11 @@ class _OnboardPage1State extends State<OnboardPage1> {
                     UIHelper.vertSpace(32),
                     UIHelper.horzSpace(UIHelper.width),
                     SizedBox(
-                      height: UIHelper.responsive.setHeight(63),
+                      height: UIHelper.setResHeight(63),
                       child: Text(
                         "LawanCovid adalah aplikasi yang bermanfaat\nsebagai tindakan preventif dan represif\nterhadap pandemi covid-19",
                         style: UIHelper.greyFont
-                            .copyWith(fontSize: UIHelper.responsive.setSp(15)),
+                            .copyWith(fontSize: UIHelper.setResFontSize(15)),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -62,7 +62,7 @@ class _OnboardPage1State extends State<OnboardPage1> {
                       "swipe >>",
                       style: UIHelper.greyFont.copyWith(
                           color: UIHelper.colorGreySuperLight,
-                          fontSize: UIHelper.responsive.setSp(10)),
+                          fontSize: UIHelper.setResFontSize(10)),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -73,10 +73,10 @@ class _OnboardPage1State extends State<OnboardPage1> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: UIHelper.responsive.setHeight(150),
+                    height: UIHelper.setResHeight(150),
                   ),
                   Container(
-                      height: UIHelper.responsive.setHeight(202),
+                      height: UIHelper.setResHeight(202),
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image:

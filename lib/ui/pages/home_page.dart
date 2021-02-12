@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
                         runSpacing: 7,
                         children: [
                           Container(
-                            height: UIHelper.responsive.setHeight(75),
-                            width: UIHelper.responsive.setWidth(135),
+                            height: UIHelper.setResHeight(75),
+                            width: UIHelper.setResWidth(135),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -42,18 +42,18 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text("1,134,854",
                                     style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(25),
+                                        fontSize: UIHelper.setResFontSize(25),
                                         fontWeight: FontWeight.w700)),
                                 Text("Orang Positif",
                                     style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400)),
                               ],
                             ),
                           ),
                           Container(
-                            height: UIHelper.responsive.setHeight(75),
-                            width: UIHelper.responsive.setWidth(135),
+                            height: UIHelper.setResHeight(75),
+                            width: UIHelper.setResWidth(135),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -63,18 +63,18 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text("176,672",
                                     style: UIHelper.blueFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(25),
+                                        fontSize: UIHelper.setResFontSize(25),
                                         fontWeight: FontWeight.w700)),
                                 Text("Orang Dirawat",
                                     style: UIHelper.blueFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400)),
                               ],
                             ),
                           ),
                           Container(
-                            height: UIHelper.responsive.setHeight(75),
-                            width: UIHelper.responsive.setWidth(135),
+                            height: UIHelper.setResHeight(75),
+                            width: UIHelper.setResWidth(135),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -84,18 +84,18 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text("926,980",
                                     style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(25),
+                                        fontSize: UIHelper.setResFontSize(25),
                                         fontWeight: FontWeight.w700)),
                                 Text("Orang Positif",
                                     style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400)),
                               ],
                             ),
                           ),
                           Container(
-                            height: UIHelper.responsive.setHeight(75),
-                            width: UIHelper.responsive.setWidth(135),
+                            height: UIHelper.setResHeight(75),
+                            width: UIHelper.setResWidth(135),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -105,11 +105,11 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text("1,134,854",
                                     style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(25),
+                                        fontSize: UIHelper.setResFontSize(25),
                                         fontWeight: FontWeight.w700)),
                                 Text("Orang Positif",
                                     style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400)),
                               ],
                             ),
@@ -125,8 +125,8 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                width: UIHelper.responsive.setWidth(73),
-                                height: UIHelper.responsive.setHeight(32),
+                                width: UIHelper.setResWidth(73),
+                                height: UIHelper.setResHeight(32),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: UIHelper.colorMainLightRed),
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Text("High",
                                       style: UIHelper.redFont.copyWith(
                                           fontSize:
-                                              UIHelper.responsive.setSp(12),
+                                              UIHelper.setResFontSize(12),
                                           fontWeight: FontWeight.w700)),
                                 ),
                               ),
@@ -143,14 +143,14 @@ class _HomePageState extends State<HomePage> {
                                 text: TextSpan(
                                   text: 'Kelurahan Beji\n',
                                   style: UIHelper.greyFont.copyWith(
-                                      fontSize: UIHelper.responsive.setSp(13),
+                                      fontSize: UIHelper.setResFontSize(13),
                                       fontWeight: FontWeight.w700),
                                   children: <TextSpan>[
                                     TextSpan(
                                         text: 'Provinsi DKI Jakarta',
                                         style: UIHelper.greyFont.copyWith(
                                             fontSize:
-                                                UIHelper.responsive.setSp(13),
+                                                UIHelper.setResFontSize(13),
                                             fontWeight: FontWeight.w400)),
                                   ],
                                 ),
@@ -161,11 +161,11 @@ class _HomePageState extends State<HomePage> {
                           Text("Provinsi DKI Jakarta",
                               style: UIHelper.greyLightFont.copyWith(
                                   color: UIHelper.colorGreySuperLight,
-                                  fontSize: UIHelper.responsive.setSp(13),
+                                  fontSize: UIHelper.setResFontSize(13),
                                   fontWeight: FontWeight.w500)),
                           UIHelper.vertSpace(10),
                           Container(
-                            width: UIHelper.responsive.setWidth(239),
+                            width: UIHelper.setResWidth(239),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -175,24 +175,24 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(
-                                      left: UIHelper.responsive.setWidth(10)),
-                                  width: UIHelper.responsive.setWidth(140),
+                                      left: UIHelper.setResWidth(10)),
+                                  width: UIHelper.setResWidth(140),
                                   child: Text("289612",
                                       style: UIHelper.redFont.copyWith(
                                           fontSize:
-                                              UIHelper.responsive.setSp(25),
+                                              UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
                                     style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400))
                               ],
                             ),
                           ),
                           UIHelper.vertSpace(10),
                           Container(
-                            width: UIHelper.responsive.setWidth(239),
+                            width: UIHelper.setResWidth(239),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -202,24 +202,24 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(
-                                      left: UIHelper.responsive.setWidth(10)),
-                                  width: UIHelper.responsive.setWidth(140),
+                                      left: UIHelper.setResWidth(10)),
+                                  width: UIHelper.setResWidth(140),
                                   child: Text("260986",
                                       style: UIHelper.greenFont.copyWith(
                                           fontSize:
-                                              UIHelper.responsive.setSp(25),
+                                              UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
                                     style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400))
                               ],
                             ),
                           ),
                           UIHelper.vertSpace(10),
                           Container(
-                            width: UIHelper.responsive.setWidth(239),
+                            width: UIHelper.setResWidth(239),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
@@ -229,17 +229,17 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(
-                                      left: UIHelper.responsive.setWidth(10)),
-                                  width: UIHelper.responsive.setWidth(140),
+                                      left: UIHelper.setResWidth(10)),
+                                  width: UIHelper.setResWidth(140),
                                   child: Text("4529",
                                       style: UIHelper.yellowFont.copyWith(
                                           fontSize:
-                                              UIHelper.responsive.setSp(25),
+                                              UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
                                     style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.responsive.setSp(12),
+                                        fontSize: UIHelper.setResFontSize(12),
                                         fontWeight: FontWeight.w400))
                               ],
                             ),
@@ -272,7 +272,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Container(
-                height: UIHelper.responsive.setHeight(68),
+                height: UIHelper.setResHeight(68),
                 color: Colors.white,
                 child: Row(
                   children: [
@@ -282,8 +282,8 @@ class _HomePageState extends State<HomePage> {
                         pageBloc.add(GoToProfilePage());
                       },
                       child: Container(
-                        height: UIHelper.responsive.setHeight(32),
-                        width: UIHelper.responsive.setWidth(32),
+                        height: UIHelper.setResHeight(32),
+                        width: UIHelper.setResWidth(32),
                         decoration: BoxDecoration(
                           color: UIHelper.colorSoftPink,
                           borderRadius: BorderRadius.circular(8),
@@ -292,8 +292,8 @@ class _HomePageState extends State<HomePage> {
                           child: SizedBox(
                             child: Image(
                               image: AssetImage("assets/user.png"),
-                              height: UIHelper.responsive.setHeight(20),
-                              width: UIHelper.responsive.setWidth(20),
+                              height: UIHelper.setResHeight(20),
+                              width: UIHelper.setResWidth(20),
                             ),
                           ),
                         ),
