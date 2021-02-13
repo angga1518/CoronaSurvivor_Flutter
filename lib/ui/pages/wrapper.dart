@@ -63,7 +63,8 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToHomePage());
+      pageBloc.add(GoToInfoPage());
+      // pageBloc.add(GoToHomePage());
       // pageBloc.add(GoToProfilePage());
       // pageBloc.add(GoToOnboardPage());
       // pageBloc.add(GoToSplashPage());
@@ -88,6 +89,8 @@ class _WrapperState extends State<Wrapper> {
           return DonorGiverPage();
         } else if (state is OnDonorReceiverPage) {
           return DonorReceiverPage();
+        } else if (state is OnInfoPage) {
+          return InfoPage();
         } else {
           return Container();
         }

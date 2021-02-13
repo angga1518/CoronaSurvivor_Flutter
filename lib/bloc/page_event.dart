@@ -18,3 +18,5 @@ class GoToProfilePage extends PageEvent {}
 class GoToDonorGiverPage extends PageEvent {}
 
 class GoToDonorReceiverPage extends PageEvent {}
+
+class GoToInfoPage extends PageEvent {}

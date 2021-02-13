@@ -29,6 +29,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnDonorGiverPage();
     } else if (event is GoToDonorReceiverPage) {
       yield OnDonorReceiverPage();
+    } else if (event is GoToInfoPage) {
+      yield OnInfoPage();
     }
   }
 }

@@ -23,3 +23,4 @@ part 'profile_page.dart';
 part 'signup_page.dart';
 part 'donor_giver_page.dart';
 part 'donor_receiver_page.dart';
+part 'info_page.dart';

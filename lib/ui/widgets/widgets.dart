@@ -15,3 +15,4 @@ part 'calendar.dart';
 part 'information_container.dart';
 part 'list_navigation.dart';
 part 'bottom_bar.dart';
+part 'article_container.dart';
