@@ -1,11 +1,11 @@
 part of 'pages.dart';
 
-class ProfilePage extends StatefulWidget {
+class DonorGiverPage extends StatefulWidget {
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _DonorGiverPageState createState() => _DonorGiverPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _DonorGiverPageState extends State<DonorGiverPage> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
@@ -41,38 +41,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             ],
                           )),
                       UIHelper.vertSpace(18),
-                      CardContainer(
-                          "Data Pemberi Donor",
-                          Column(
-                            children: [
-                              ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {}),
-                              UIHelper.vertSpace(10),
-                              ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {}),
-                            ],
-                          )),
-                      UIHelper.vertSpace(18),
-                      CardContainer(
-                          "Data Penerima Donor",
-                          Column(
-                            children: [
-                              ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {}),
-                              UIHelper.vertSpace(10),
-                              ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {}),
-                            ],
-                          )),
-                      UIHelper.vertSpace(20),
                       PinkButton("Keluar", () {}),
                       UIHelper.vertSpace(20),
                     ],
                   )
                 ],
               ),
-              TopBar("Profil Saya", () {
-                pageBloc.add(GoToHomePage());
+              TopBar("Pemberi Donor", () {
+                pageBloc.add(GoToProfilePage());
               })
             ],
           ),

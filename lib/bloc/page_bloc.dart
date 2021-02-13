@@ -25,6 +25,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnProfilePage();
     } else if (event is GotoSignupPage) {
       yield OnLoginPage();
+    } else if (event is GoToDonorGiverPage) {
+      yield OnDonorGiverPage();
+    } else if (event is GoToDonorReceiverPage) {
+      yield OnDonorReceiverPage();
     }
   }
 }

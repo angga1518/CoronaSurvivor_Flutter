@@ -84,6 +84,10 @@ class _WrapperState extends State<Wrapper> {
           return OnboardPage();
         } else if (state is OnProfilePage) {
           return ProfilePage();
+        } else if (state is OnDonorGiverPage) {
+          return DonorGiverPage();
+        } else if (state is OnDonorReceiverPage) {
+          return DonorReceiverPage();
         } else {
           return Container();
         }

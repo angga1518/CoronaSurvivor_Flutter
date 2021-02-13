@@ -14,3 +14,7 @@ class GoToHomePage extends PageEvent {}
 class GoToOnboardPage extends PageEvent {}
 
 class GoToProfilePage extends PageEvent {}
+
+class GoToDonorGiverPage extends PageEvent {}
+
+class GoToDonorReceiverPage extends PageEvent {}

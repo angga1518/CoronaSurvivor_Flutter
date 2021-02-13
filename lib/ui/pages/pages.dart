@@ -21,3 +21,5 @@ part 'onboard_page3.dart';
 part 'onboard_page4.dart';
 part 'profile_page.dart';
 part 'signup_page.dart';
+part 'donor_giver_page.dart';
+part 'donor_receiver_page.dart';
