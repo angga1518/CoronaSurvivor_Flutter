@@ -276,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                           BlueNavigation("Lihat selengkapnya", () {}),
                         ],
                       )),
-                  UIHelper.vertSpace(20),
+                  UIHelper.vertSpace(75),
                 ],
               ),
               Container(
@@ -311,6 +311,10 @@ class _HomePageState extends State<HomePage> {
                     Logo(39, 15, 18, 148)
                   ],
                 ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomBar(1),
               )
             ],
           ),

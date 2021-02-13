@@ -74,12 +74,14 @@ class UIHelper {
   static Color colorPinkLight = Color(0xFFEECACA);
   static Color colorPinkSuperLight = Color(0xFFF6F1F1);
   static Color colorSoftPink = Color(0xFFF9F3F3);
-  static Color colorDarkGrey = Color(0xFF1B252E);
   static Color colorSoftBlue = Color(0xFF4193C0);
+  static Color colorDarkGrey = Color(0xFF1B252E);
+  static Color colorMediumDarkGrey = Color(0xFF254D71);
   static Color colorGrey = Color(0xFF40576B);
   static Color colorGreyLight = Color(0xFF52708A);
   static Color colorGreySuperLight = Color(0xFF8DA2B6);
   static Color colorDarkWhite = Color(0xFFF2F4F5);
+  static Color colorSoftWhite = Color(0xFFF6F7FB);
 
   static Widget fourBubble(int index) {
     List<Widget> listBubble = [];
