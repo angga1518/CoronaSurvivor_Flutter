@@ -8,7 +8,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return Scaffold(
       body: Container(
@@ -30,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
             Container(
-              height: UIHelper.responsive.setHeight(360),
+              height: UIHelper.setResHeight(360),
               width: UIHelper.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -41,10 +40,10 @@ class _SplashPageState extends State<SplashPage> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: UIHelper.responsive.setHeight(50),
+                    height: UIHelper.setResHeight(50),
                   ),
                   Container(
-                      height: UIHelper.responsive.setHeight(360),
+                      height: UIHelper.setResHeight(360),
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage("assets/ill_splashscreen.png"),
@@ -55,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: UIHelper.responsive.setHeight(231),
+                height: UIHelper.setResHeight(231),
                 color: Colors.white,
                 child: Column(
                   children: [

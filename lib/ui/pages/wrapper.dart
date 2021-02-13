@@ -63,7 +63,9 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToOnboardPage());
+      pageBloc.add(GoToHomePage());
+      // pageBloc.add(GoToProfilePage());
+      // pageBloc.add(GoToOnboardPage());
       // pageBloc.add(GoToSplashPage());
     } else {
       userBloc.add(LoadUser(user.uid));
@@ -80,6 +82,12 @@ class _WrapperState extends State<Wrapper> {
           return LoginPage();
         } else if (state is OnOnboardPage) {
           return OnboardPage();
+        } else if (state is OnProfilePage) {
+          return ProfilePage();
+        } else if (state is OnDonorGiverPage) {
+          return DonorGiverPage();
+        } else if (state is OnDonorReceiverPage) {
+          return DonorReceiverPage();
         } else {
           return Container();
         }

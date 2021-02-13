@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:corona_survivor_flutter/bloc/blocs.dart';
 import 'package:meta/meta.dart';
 
 part 'page_event.dart';
@@ -22,8 +21,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnLoginPage();
     } else if (event is GoToOnboardPage) {
       yield OnOnboardPage();
+    } else if (event is GoToProfilePage) {
+      yield OnProfilePage();
     } else if (event is GotoSignupPage) {
       yield OnLoginPage();
+    } else if (event is GoToDonorGiverPage) {
+      yield OnDonorGiverPage();
+    } else if (event is GoToDonorReceiverPage) {
+      yield OnDonorReceiverPage();
     }
   }
 }

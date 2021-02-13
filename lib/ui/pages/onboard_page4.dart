@@ -28,7 +28,7 @@ class _OnboardPage4State extends State<OnboardPage4> {
               ),
             ),
             Container(
-              height: UIHelper.responsive.setHeight(360),
+              height: UIHelper.setResHeight(360),
               width: UIHelper.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -38,7 +38,7 @@ class _OnboardPage4State extends State<OnboardPage4> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: UIHelper.responsive.setHeight(350),
+                height: UIHelper.setResHeight(350),
                 color: Colors.white,
                 child: Column(
                   children: [
@@ -49,7 +49,7 @@ class _OnboardPage4State extends State<OnboardPage4> {
                     Text(
                       "Gunakan MyCalendar untuk mencatat\nperkembangan Anda bila Anda terjangkit\nvirus covid-19. MyCalendar Anda juga\ndapat terhubung dengan puskesmas yang\nAnda kunjungi.",
                       style: UIHelper.greyFont
-                          .copyWith(fontSize: UIHelper.responsive.setSp(15)),
+                          .copyWith(fontSize: UIHelper.setResFontSize(15)),
                       textAlign: TextAlign.center,
                     ),
                     UIHelper.vertSpace(29),
@@ -66,8 +66,8 @@ class _OnboardPage4State extends State<OnboardPage4> {
                   UIHelper.vertSpace(136),
                   Container(
                       margin: EdgeInsets.only(
-                          left: UIHelper.responsive.setWidth(15)),
-                      height: UIHelper.responsive.setHeight(200),
+                          left: UIHelper.setResWidth(15)),
+                      height: UIHelper.setResHeight(200),
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image:

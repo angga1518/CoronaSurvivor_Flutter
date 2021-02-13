@@ -11,27 +11,56 @@ class UIHelper {
       allowFontScaling: true,
     )..init(context);
   }
-  static ScreenUtil get responsive => ScreenUtil.instance;
+  static double setResWidth(double width) {
+    return ScreenUtil.instance.setWidth(width);
+  }
+
+  static double setResHeight(double height) {
+    return ScreenUtil.instance.setWidth(height);
+  }
+
+  static double setResFontSize(double fontSize) {
+    return ScreenUtil.instance.setSp(fontSize);
+  }
+
   static double get height => ScreenUtil.screenHeightDp;
   static double get width => ScreenUtil.screenWidthDp;
 
   static SizedBox vertSpace(double space) =>
-      SizedBox(height: responsive.setHeight(space));
+      SizedBox(height: setResHeight(space));
   static SizedBox horzSpace(double space) =>
-      SizedBox(width: responsive.setWidth(space));
+      SizedBox(width: setResWidth(space));
 
   static TextStyle redFont = GoogleFonts.dmSans()
-      .copyWith(color: colorMainRed, fontSize: responsive.setSp(20));
+      .copyWith(color: colorMainRed, fontSize: setResFontSize(20));
+  static TextStyle darkGreyFont = GoogleFonts.dmSans().copyWith(
+      color: colorDarkGrey,
+      fontSize: setResFontSize(15),
+      fontWeight: FontWeight.w700);
   static TextStyle greyLightFont = GoogleFonts.dmSans().copyWith(
       color: colorGreyLight,
-      fontSize: responsive.setSp(13),
+      fontSize: setResFontSize(13),
       fontWeight: FontWeight.w400);
   static TextStyle greyFont = GoogleFonts.dmSans().copyWith(
       color: colorGrey,
-      fontSize: responsive.setSp(13),
+      fontSize: setResFontSize(13),
       fontWeight: FontWeight.w400);
-  static TextStyle whiteFont = GoogleFonts.dmSans()
-      .copyWith(color: Colors.white, fontSize: responsive.setSp(17));
+  static TextStyle whiteFont = GoogleFonts.dmSans().copyWith(
+      color: Colors.white,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle blueFont = GoogleFonts.dmSans().copyWith(
+      color: colorSoftBlue,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle greenFont = GoogleFonts.dmSans().copyWith(
+      color: colorMainGreen,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle yellowFont = GoogleFonts.dmSans().copyWith(
+      color: colorMainYellow,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
 
   static Color kColorButtonPink = Color(0xFFFFE0E0);
   static Color kColorButtonText = Color(0xFFFC312F);
@@ -39,9 +68,14 @@ class UIHelper {
 
   static Color colorMainRed = Color(0xFFFC312F);
   static Color colorMainLightRed = Color(0xFFFFCFCF);
+  static Color colorMainGreen = Color(0xFF45AB5D);
+  static Color colorMainYellow = Color(0xFFFB8D46);
   static Color colorPink = Color(0xFFFFE0E0);
   static Color colorPinkLight = Color(0xFFEECACA);
+  static Color colorPinkSuperLight = Color(0xFFF6F1F1);
   static Color colorSoftPink = Color(0xFFF9F3F3);
+  static Color colorDarkGrey = Color(0xFF1B252E);
+  static Color colorSoftBlue = Color(0xFF4193C0);
   static Color colorGrey = Color(0xFF40576B);
   static Color colorGreyLight = Color(0xFF52708A);
   static Color colorGreySuperLight = Color(0xFF8DA2B6);
@@ -55,16 +89,16 @@ class UIHelper {
       }
       if (i + 1 == index) {
         listBubble.add(Container(
-          height: UIHelper.responsive.setHeight(7),
-          width: UIHelper.responsive.setWidth(7),
+          height: UIHelper.setResHeight(7),
+          width: UIHelper.setResWidth(7),
           decoration: BoxDecoration(
               color: UIHelper.colorMainRed, shape: BoxShape.circle),
         ));
         continue;
       }
       listBubble.add(Container(
-        height: UIHelper.responsive.setHeight(7),
-        width: UIHelper.responsive.setWidth(7),
+        height: UIHelper.setResHeight(7),
+        width: UIHelper.setResWidth(7),
         decoration: BoxDecoration(
             color: UIHelper.colorGreySuperLight, shape: BoxShape.circle),
       ));

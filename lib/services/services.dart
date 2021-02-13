@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:corona_survivor_flutter/models/models.dart';
 import 'package:corona_survivor_flutter/shared/shared.dart';
 import 'package:corona_survivor_flutter/extensions/extensions.dart';

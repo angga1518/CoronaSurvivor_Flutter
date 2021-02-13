@@ -27,7 +27,7 @@ class _OnboardPage2State extends State<OnboardPage2> {
               ),
             ),
             Container(
-              height: UIHelper.responsive.setHeight(360),
+              height: UIHelper.setResHeight(360),
               width: UIHelper.width,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -37,7 +37,7 @@ class _OnboardPage2State extends State<OnboardPage2> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: UIHelper.responsive.setHeight(350),
+                height: UIHelper.setResHeight(350),
                 color: Colors.white,
                 child: Column(
                   children: [
@@ -46,11 +46,11 @@ class _OnboardPage2State extends State<OnboardPage2> {
                     UIHelper.vertSpace(32),
                     UIHelper.horzSpace(UIHelper.width),
                     SizedBox(
-                      height: UIHelper.responsive.setHeight(63),
+                      height: UIHelper.setResHeight(63),
                       child: Text(
                         "Ketahui keadaan lokasi tujuan terlebih\ndahulu sebelum anda bepergian",
                         style: UIHelper.greyFont
-                            .copyWith(fontSize: UIHelper.responsive.setSp(15)),
+                            .copyWith(fontSize: UIHelper.setResFontSize(15)),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -61,7 +61,7 @@ class _OnboardPage2State extends State<OnboardPage2> {
                       "swipe >>",
                       style: UIHelper.greyFont.copyWith(
                           color: UIHelper.colorGreySuperLight,
-                          fontSize: UIHelper.responsive.setSp(10)),
+                          fontSize: UIHelper.setResFontSize(10)),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -72,10 +72,10 @@ class _OnboardPage2State extends State<OnboardPage2> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: UIHelper.responsive.setHeight(80),
+                    height: UIHelper.setResHeight(80),
                   ),
                   Container(
-                      height: UIHelper.responsive.setHeight(281),
+                      height: UIHelper.setResHeight(281),
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image:
