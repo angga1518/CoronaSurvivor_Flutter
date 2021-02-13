@@ -1,6 +1,5 @@
 import 'package:corona_survivor_flutter/ui/shared/shared_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 part 'button.dart';
 part 'logo.dart';
@@ -11,3 +10,5 @@ part 'logo_card_container.dart';
 part 'blue_navigation.dart';
 part 'warning_box.dart';
 part 'calendar.dart';
+part 'information_container.dart';
+part 'list_navigation.dart';

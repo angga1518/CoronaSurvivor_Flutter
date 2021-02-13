@@ -22,9 +22,49 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: UIHelper.colorDarkWhite,
               ),
               ListView(
-                children: [],
+                children: [
+                  UIHelper.vertSpace(88),
+                  CardContainer(
+                      "Data Diri",
+                      Column(
+                        children: [
+                          InformationContainer(
+                              "Nama Lengkap", "Nur Fauziah Hasanah"),
+                          UIHelper.vertSpace(10),
+                          InformationContainer("Tanggal Lahir", "30/02/2000"),
+                          UIHelper.vertSpace(10),
+                          InformationContainer(
+                              "Email", "sigigibesar@gmail.com"),
+                        ],
+                      )),
+                  UIHelper.vertSpace(18),
+                  CardContainer(
+                      "Data Pemberi Donor",
+                      Column(
+                        children: [
+                          ListNavigationContainer(
+                              "Muhammad Erlangga", "O", "Jakarta", () {}),
+                          UIHelper.vertSpace(10),
+                          ListNavigationContainer(
+                              "Alfan Adhitia", "A", "Depok", () {}),
+                        ],
+                      )),
+                  UIHelper.vertSpace(18),
+                  CardContainer(
+                      "Data Penerima Donor",
+                      Column(
+                        children: [
+                          ListNavigationContainer(
+                              "Muhammad Erlangga", "O", "Jakarta", () {}),
+                          UIHelper.vertSpace(10),
+                          ListNavigationContainer(
+                              "Alfan Adhitia", "A", "Depok", () {}),
+                        ],
+                      )),
+                  UIHelper.vertSpace(20),
+                ],
               ),
-              TopBar("Profil Saya", (){
+              TopBar("Profil Saya", () {
                 pageBloc.add(GoToHomePage());
               })
             ],
