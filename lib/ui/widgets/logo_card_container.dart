@@ -8,9 +8,10 @@ class LogoCardContainer extends StatelessWidget {
   final String buttonMessage;
   final double buttonHeight;
   final double buttonWidth;
+  final Function onMessageTap;
   LogoCardContainer(this.title, this.assetName, this.message,
       this.buttonMessage, this.buttonHeight, this.buttonWidth,
-      {this.nextMessage});
+      {this.nextMessage, this.onMessageTap});
   @override
   Widget build(BuildContext context) {
     return CardContainer(
@@ -58,7 +59,9 @@ class LogoCardContainer extends StatelessWidget {
               ],
             ),
             UIHelper.vertSpace(10),
-            (nextMessage == null) ? SizedBox() : BlueNavigation(nextMessage)
+            (nextMessage == null)
+                ? SizedBox()
+                : BlueNavigation(nextMessage, onMessageTap)
           ],
         ));
   }

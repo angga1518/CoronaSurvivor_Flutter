@@ -45,14 +45,22 @@ class UIHelper {
       color: colorGrey,
       fontSize: setResFontSize(13),
       fontWeight: FontWeight.w400);
-  static TextStyle whiteFont = GoogleFonts.dmSans()
-      .copyWith(color: Colors.white, fontSize: setResFontSize(17));
-  static TextStyle blueFont = GoogleFonts.dmSans()
-      .copyWith(color: colorSoftBlue, fontSize: setResFontSize(17));
-  static TextStyle greenFont = GoogleFonts.dmSans()
-      .copyWith(color: colorMainGreen, fontSize: setResFontSize(17));
-  static TextStyle yellowFont = GoogleFonts.dmSans()
-      .copyWith(color: colorMainYellow, fontSize: setResFontSize(17));
+  static TextStyle whiteFont = GoogleFonts.dmSans().copyWith(
+      color: Colors.white,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle blueFont = GoogleFonts.dmSans().copyWith(
+      color: colorSoftBlue,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle greenFont = GoogleFonts.dmSans().copyWith(
+      color: colorMainGreen,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
+  static TextStyle yellowFont = GoogleFonts.dmSans().copyWith(
+      color: colorMainYellow,
+      fontSize: setResFontSize(17),
+      fontWeight: FontWeight.w400);
 
   static Color kColorButtonPink = Color(0xFFFFE0E0);
   static Color kColorButtonText = Color(0xFFFC312F);

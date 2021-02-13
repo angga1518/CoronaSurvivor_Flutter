@@ -133,8 +133,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Center(
                                   child: Text("High",
                                       style: UIHelper.redFont.copyWith(
-                                          fontSize:
-                                              UIHelper.setResFontSize(12),
+                                          fontSize: UIHelper.setResFontSize(12),
                                           fontWeight: FontWeight.w700)),
                                 ),
                               ),
@@ -179,8 +178,7 @@ class _HomePageState extends State<HomePage> {
                                   width: UIHelper.setResWidth(140),
                                   child: Text("289612",
                                       style: UIHelper.redFont.copyWith(
-                                          fontSize:
-                                              UIHelper.setResFontSize(25),
+                                          fontSize: UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
@@ -206,8 +204,7 @@ class _HomePageState extends State<HomePage> {
                                   width: UIHelper.setResWidth(140),
                                   child: Text("260986",
                                       style: UIHelper.greenFont.copyWith(
-                                          fontSize:
-                                              UIHelper.setResFontSize(25),
+                                          fontSize: UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
@@ -233,8 +230,7 @@ class _HomePageState extends State<HomePage> {
                                   width: UIHelper.setResWidth(140),
                                   child: Text("4529",
                                       style: UIHelper.yellowFont.copyWith(
-                                          fontSize:
-                                              UIHelper.setResFontSize(25),
+                                          fontSize: UIHelper.setResFontSize(25),
                                           fontWeight: FontWeight.w700)),
                                 ),
                                 Text("Orang Positif",
@@ -245,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           UIHelper.vertSpace(10),
-                          BlueNavigation("Lihat lokasi lainnya"),
+                          BlueNavigation("Lihat lokasi lainnya", () {}),
                         ],
                       )),
                   UIHelper.vertSpace(18),
@@ -257,6 +253,7 @@ class _HomePageState extends State<HomePage> {
                     29,
                     62,
                     nextMessage: "Lihat lokasi lainnya",
+                    onMessageTap: () {},
                   ),
                   UIHelper.vertSpace(18),
                   LogoCardContainer(
@@ -267,7 +264,18 @@ class _HomePageState extends State<HomePage> {
                       29,
                       104),
                   UIHelper.vertSpace(18),
-                  CardContainer("MyCalendar", null),
+                  CardContainer(
+                      "MyCalendar",
+                      Column(
+                        children: [
+                          WarningBox(286,
+                              "Anda belum mengisi perkembangan Anda hari ini"),
+                          UIHelper.vertSpace(14),
+                          Calendar(2, 11, 12, 14, 15),
+                          UIHelper.vertSpace(10),
+                          BlueNavigation("Lihat selengkapnya", () {}),
+                        ],
+                      )),
                   UIHelper.vertSpace(20),
                 ],
               ),
