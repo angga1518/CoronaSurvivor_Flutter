@@ -22,3 +22,5 @@ class OnDonorGiverPage extends PageState {}
 class OnDonorReceiverPage extends PageState {}
 
 class OnInfoPage extends PageState {}
+
+class OnDetailInfoPage extends PageState {}

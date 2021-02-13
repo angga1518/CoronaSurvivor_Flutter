@@ -20,3 +20,5 @@ class GoToDonorGiverPage extends PageEvent {}
 class GoToDonorReceiverPage extends PageEvent {}
 
 class GoToInfoPage extends PageEvent {}
+
+class GoToDetailInfoPage extends PageEvent {}

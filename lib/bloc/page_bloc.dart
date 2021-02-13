@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:corona_survivor_flutter/ui/pages/pages.dart';
 import 'package:meta/meta.dart';
 
 part 'page_event.dart';
@@ -31,6 +32,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnDonorReceiverPage();
     } else if (event is GoToInfoPage) {
       yield OnInfoPage();
+    } else if (event is GoToDetailInfoPage) {
+      yield OnDetailInfoPage();
     }
   }
 }
