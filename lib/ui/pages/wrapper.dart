@@ -63,7 +63,9 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToDetailInfoPage());
+      pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
+          "\"Tata Cara Mencuci Hidung yang Benar\"", true));
+      // pageBloc.add(GoToDetailInfoPage());
       // pageBloc.add(GoToInfoPage());
       // pageBloc.add(GoToHomePage());
       // pageBloc.add(GoToProfilePage());
@@ -94,6 +96,8 @@ class _WrapperState extends State<Wrapper> {
           return InfoPage();
         } else if (state is OnDetailInfoPage) {
           return DetailInfo();
+        } else if (state is OnAddCommentPage) {
+          return AddCommentPage(state.title, state.component, state.isReply);
         } else {
           return Container();
         }

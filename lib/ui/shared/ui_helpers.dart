@@ -16,7 +16,7 @@ class UIHelper {
   }
 
   static double setResHeight(double height) {
-    return ScreenUtil.instance.setWidth(height);
+    return ScreenUtil.instance.setHeight(height);
   }
 
   static double setResFontSize(double fontSize) {

@@ -24,3 +24,11 @@ class OnDonorReceiverPage extends PageState {}
 class OnInfoPage extends PageState {}
 
 class OnDetailInfoPage extends PageState {}
+
+class OnAddCommentPage extends PageState {
+  final String title;
+  final String component;
+  final bool isReply;
+
+  OnAddCommentPage(this.title, this.component, this.isReply);
+}

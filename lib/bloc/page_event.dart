@@ -22,3 +22,11 @@ class GoToDonorReceiverPage extends PageEvent {}
 class GoToInfoPage extends PageEvent {}
 
 class GoToDetailInfoPage extends PageEvent {}
+
+class GoToAddCommentPage extends PageEvent {
+  final String title;
+  final String component;
+  final bool isReply;
+
+  GoToAddCommentPage(this.title, this.component, this.isReply);
+}

@@ -6,9 +6,10 @@ class DetailInfo extends StatefulWidget {
 }
 
 class _DetailInfoState extends State<DetailInfo> {
+  PageBloc pageBloc;
   @override
   Widget build(BuildContext context) {
-    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
+    pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToHomePage());
@@ -175,9 +176,11 @@ class _DetailInfoState extends State<DetailInfo> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           generateActionContainer(
-                              "assets/comment", "Comment", false),
-                          generateActionContainer("assets/like", "Like", true),
-                          generateActionContainer("assets/like", "Save", true),
+                              "assets/comment", "Comment", false, true),
+                          generateActionContainer(
+                              "assets/like", "Like", true, true),
+                          generateActionContainer(
+                              "assets/like", "Save", true, true),
                         ],
                       ),
                       UIHelper.vertSpace(20),
@@ -197,43 +200,55 @@ class _DetailInfoState extends State<DetailInfo> {
     );
   }
 
-  Widget generateActionContainer(String asset, String title, bool active) {
+  Widget generateActionContainer(
+      String asset, String title, bool active, bool isCommentArticle) {
     String inputtedAsset = (active) ? asset + "_red.png" : asset + ".png";
     String inputtedTitle = (active) ? title + "d" : title;
     Color backgroundColor = (active) ? UIHelper.colorPink : Colors.white;
     Color borderColor =
         (active) ? UIHelper.colorMainLightRed : UIHelper.colorMediumLightGrey;
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: UIHelper.setResWidth(10),
-          vertical: UIHelper.setResHeight(5)),
-      margin: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(3)),
-      decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: borderColor)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-              height: UIHelper.setResHeight(13),
-              width: UIHelper.setResWidth(13),
-              child: Image(
-                image: AssetImage(inputtedAsset),
-              )),
-          UIHelper.horzSpace(5),
-          Text(
-            inputtedTitle,
-            style: (!active)
-                ? UIHelper.greyLightFont.copyWith(
-                    color: UIHelper.colorGreySuperLight,
-                    fontSize: UIHelper.setResFontSize(10),
-                    fontWeight: FontWeight.w400)
-                : UIHelper.redFont.copyWith(
-                    fontSize: UIHelper.setResFontSize(10),
-                    fontWeight: FontWeight.w400),
-          )
-        ],
+    return GestureDetector(
+      onTap: () {
+        if (isCommentArticle) {
+          pageBloc.add(GoToAddCommentPage(
+              "\"Tata Cara Mencuci Hidung yang Benar\"", "", false));
+        } else {
+          pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
+              "\"Tata Cara Mencuci Hidung yang Benar\"", true));
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: UIHelper.setResWidth(10),
+            vertical: UIHelper.setResHeight(5)),
+        margin: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(3)),
+        decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: borderColor)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+                height: UIHelper.setResHeight(13),
+                width: UIHelper.setResWidth(13),
+                child: Image(
+                  image: AssetImage(inputtedAsset),
+                )),
+            UIHelper.horzSpace(5),
+            Text(
+              inputtedTitle,
+              style: (!active)
+                  ? UIHelper.greyLightFont.copyWith(
+                      color: UIHelper.colorGreySuperLight,
+                      fontSize: UIHelper.setResFontSize(10),
+                      fontWeight: FontWeight.w400)
+                  : UIHelper.redFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(10),
+                      fontWeight: FontWeight.w400),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -328,10 +343,10 @@ class _DetailInfoState extends State<DetailInfo> {
                     children: [
                       (isParent)
                           ? generateActionContainer(
-                              "assets/comment", "Reply", false)
+                              "assets/comment", "Reply", false, false)
                           : Container(),
                       generateActionContainer(
-                          "assets/like", likeAmount.toString(), false),
+                          "assets/like", likeAmount.toString(), false, false),
                     ],
                   ),
                 ),

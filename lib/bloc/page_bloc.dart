@@ -34,6 +34,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnInfoPage();
     } else if (event is GoToDetailInfoPage) {
       yield OnDetailInfoPage();
+    } else if (event is GoToAddCommentPage) {
+      yield OnAddCommentPage(event.title, event.component, event.isReply);
     }
   }
 }
