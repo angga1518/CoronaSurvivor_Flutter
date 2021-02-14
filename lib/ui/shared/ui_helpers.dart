@@ -78,6 +78,7 @@ class UIHelper {
   static Color colorDarkGrey = Color(0xFF1B252E);
   static Color colorMediumDarkGrey = Color(0xFF254D71);
   static Color colorGrey = Color(0xFF40576B);
+  static Color colorMediumLightGrey = Color(0xFFE1E6ED);
   static Color colorGreyLight = Color(0xFF52708A);
   static Color colorGreySuperLight = Color(0xFF8DA2B6);
   static Color colorDarkWhite = Color(0xFFF2F4F5);

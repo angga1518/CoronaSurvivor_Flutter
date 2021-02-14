@@ -64,7 +64,7 @@ class _InfoPageState extends State<InfoPage> {
                         color: UIHelper.colorDarkWhite,
                         border: Border.symmetric(
                             vertical: BorderSide(
-                                color: Color(0xFFE1E6ED), width: 1))),
+                                color: UIHelper.colorMediumLightGrey, width: 1))),
                     child: Row(
                       children: [
                         Expanded(
