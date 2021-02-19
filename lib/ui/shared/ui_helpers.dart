@@ -81,6 +81,7 @@ class UIHelper {
   static const Color colorMediumLightGrey = Color(0xFFE1E6ED);
   static const Color colorGreyLight = Color(0xFF52708A);
   static const Color colorGreySuperLight = Color(0xFF8DA2B6);
+  static const Color colorGreySuperLight2 = Color(0xFFE8ECF0);
   static const Color colorDarkWhite = Color(0xFFF2F4F5);
   static const Color colorSoftWhite = Color(0xFFF6F7FB);
 

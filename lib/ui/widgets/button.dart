@@ -6,8 +6,12 @@ class PinkButton extends StatelessWidget {
   final double fontSize;
   final double height;
   final double width;
+  final bool isEnabled;
   PinkButton(this.text, this.onTap,
-      {this.fontSize = 17, this.height = 50, this.width = 252});
+      {this.fontSize = 17,
+      this.height = 50,
+      this.width = 252,
+      this.isEnabled = true});
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +19,25 @@ class PinkButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Material(
-            color: UIHelper.colorPink,
+            color: (isEnabled)
+                ? UIHelper.colorPink
+                : UIHelper.colorGreySuperLight2,
             child: InkWell(
-              splashColor: UIHelper.colorPinkLight,
-              onTap: () {
-                onTap();
-              },
+              splashColor: (isEnabled) ? UIHelper.colorPinkLight : null,
+              onTap: (isEnabled)
+                  ? () {
+                      onTap();
+                    }
+                  : null,
               child: Center(
                 child: Text(
                   text,
                   style: UIHelper.redFont.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: UIHelper.setResFontSize(fontSize),
-                      color: UIHelper.colorMainRed),
+                      color: (isEnabled)
+                          ? UIHelper.colorMainRed
+                          : UIHelper.colorGreySuperLight),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -40,7 +50,10 @@ class PinkButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(color: Colors.white.withOpacity(0.05)),
           ],
-          border: Border.all(color: UIHelper.colorMainLightRed),
+          border: Border.all(
+              color: (isEnabled)
+                  ? UIHelper.colorMainLightRed
+                  : UIHelper.colorGreySuperLight),
           borderRadius: BorderRadius.circular(10),
         ));
   }

@@ -1,11 +1,11 @@
 part of 'pages.dart';
 
-class SignupPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignUpPageState extends State<SignUpPage> {
   String dropdownKelamin = "Laki-Laki";
 
   var _kelaminSelectedValue = "";

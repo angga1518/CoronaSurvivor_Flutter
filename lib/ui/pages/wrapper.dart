@@ -63,29 +63,44 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToCalendarSignUpPage1());
-      // pageBloc.add(GoToCalendarOnboardPage());
-      // pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
-      //     "\"Tata Cara Mencuci Hidung yang Benar\"", true));
-      // pageBloc.add(GoToDetailInfoPage());
-      // pageBloc.add(GoToInfoPage());
-      // pageBloc.add(GoToHomePage());
-      // pageBloc.add(GoToProfilePage());
-      // pageBloc.add(GoToOnboardPage());
-      // pageBloc.add(GoToSplashPage());
+      if (!(prevPageEvent is GoToSplashPage)) {
+        prevPageEvent = GoToSplashPage();
+        pageBloc.add(prevPageEvent);
+      }
     } else {
-      userBloc.add(LoadUser(user.uid));
-      pageBloc.add(GoToHomePage());
+      if (!(prevPageEvent is GoToHomePage)) {
+        prevPageEvent = GoToHomePage();
+        pageBloc.add(prevPageEvent);
+        userBloc.add(LoadUser(user.uid));
+      }
     }
+    // if (user == null) {
+    //   pageBloc.add(GoToLoginPage());
+    // pageBloc.add(GoToCalendarSignUpPage1());
+    // pageBloc.add(GoToCalendarOnboardPage());
+    // pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
+    //     "\"Tata Cara Mencuci Hidung yang Benar\"", true));
+    // pageBloc.add(GoToDetailInfoPage());
+    // pageBloc.add(GoToInfoPage());
+    // pageBloc.add(GoToHomePage());
+    // pageBloc.add(GoToProfilePage());
+    // pageBloc.add(GoToOnboardPage());
+    // pageBloc.add(GoToSplashPage());
+    // } else {
+    //   userBloc.add(LoadUser(user.uid));
+    //   pageBloc.add(GoToHomePage());
+    // }
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
-          // return SplashPage();
-          return SignupPage();
+          return SplashPage();
+          // return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
           return LoginPage();
+        } else if (state is OnSignupPage) {
+          return SignUpPage();
         } else if (state is OnOnboardPage) {
           return OnboardPage();
         } else if (state is OnProfilePage) {
