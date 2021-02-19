@@ -63,7 +63,8 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToCalendarOnboardPage());
+      pageBloc.add(GoToCalendarSignUpPage1());
+      // pageBloc.add(GoToCalendarOnboardPage());
       // pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
       //     "\"Tata Cara Mencuci Hidung yang Benar\"", true));
       // pageBloc.add(GoToDetailInfoPage());
@@ -101,6 +102,8 @@ class _WrapperState extends State<Wrapper> {
           return AddCommentPage(state.title, state.component, state.isReply);
         } else if (state is OnCalendarOnboardPage) {
           return CalendarOnboardPage();
+        } else if (state is OnCalendarSignUpPage1) {
+          return CalendarSignUpPage1();
         } else {
           return Container();
         }

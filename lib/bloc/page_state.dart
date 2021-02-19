@@ -34,3 +34,13 @@ class OnAddCommentPage extends PageState {
 }
 
 class OnCalendarOnboardPage extends PageState {}
+
+class OnCalendarSignUpPage1 extends PageState {}
+
+class OnCalendarSignUpPage2 extends PageState {}
+
+class OnCalendarSignUpPage3 extends PageState {}
+
+class OnCalendarSignUpPage4 extends PageState {}
+
+class OnCalendarSignUpPage5 extends PageState {}

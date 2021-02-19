@@ -32,3 +32,13 @@ class GoToAddCommentPage extends PageEvent {
 }
 
 class GoToCalendarOnboardPage extends PageEvent {}
+
+class GoToCalendarSignUpPage1 extends PageEvent {}
+
+class GoToCalendarSignUpPage2 extends PageEvent {}
+
+class GoToCalendarSignUpPage3 extends PageEvent {}
+
+class GoToCalendarSignUpPage4 extends PageEvent {}
+
+class GoToCalendarSignUpPage5 extends PageEvent {}

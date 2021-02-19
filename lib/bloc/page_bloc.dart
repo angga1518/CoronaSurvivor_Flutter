@@ -39,6 +39,16 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnAddCommentPage(event.title, event.component, event.isReply);
     } else if (event is GoToCalendarOnboardPage) {
       yield OnCalendarOnboardPage();
+    } else if (event is GoToCalendarSignUpPage1) {
+      yield OnCalendarSignUpPage1();
+    } else if (event is GoToCalendarSignUpPage2) {
+      yield OnCalendarSignUpPage2();
+    } else if (event is GoToCalendarSignUpPage3) {
+      yield OnCalendarSignUpPage3();
+    } else if (event is GoToCalendarSignUpPage4) {
+      yield OnCalendarSignUpPage4();
+    } else if (event is GoToCalendarSignUpPage5) {
+      yield OnCalendarSignUpPage5();
     }
   }
 }

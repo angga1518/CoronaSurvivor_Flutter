@@ -28,3 +28,8 @@ part 'info_page.dart';
 part 'detail_info.dart';
 part 'add_comment_page.dart';
 part 'Calendar/calendar_onboard_page.dart';
+part 'Calendar/calendar_signup_page1.dart';
+part 'Calendar/calendar_signup_page2.dart';
+part 'Calendar/calendar_signup_page3.dart';
+part 'Calendar/calendar_signup_page4.dart';
+part 'Calendar/calendar_signup_page5.dart';

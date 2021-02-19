@@ -134,7 +134,11 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                                                   ),
                                                 ),
                                                 UIHelper.vertSpace(20),
-                                                PinkButton("Lanjut", () {},
+                                                PinkButton("Lanjut", () {
+                                                  Navigator.pop(context);
+                                                  pageBloc.add(
+                                                      GoToCalendarSignUpPage1());
+                                                },
                                                     fontSize: 12,
                                                     height: 36,
                                                     width: 58)
