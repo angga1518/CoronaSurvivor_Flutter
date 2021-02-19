@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:corona_survivor_flutter/bloc/blocs.dart';
 import 'package:corona_survivor_flutter/ui/pages/pages.dart';
 import 'package:meta/meta.dart';
 
@@ -36,6 +37,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnDetailInfoPage();
     } else if (event is GoToAddCommentPage) {
       yield OnAddCommentPage(event.title, event.component, event.isReply);
+    } else if (event is GoToCalendarOnboardPage) {
+      yield OnCalendarOnboardPage();
     }
   }
 }

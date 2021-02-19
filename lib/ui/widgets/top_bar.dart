@@ -3,7 +3,9 @@ part of 'widgets.dart';
 class TopBar extends StatelessWidget {
   Function onTap;
   String pageName;
-  TopBar(this.pageName, this.onTap);
+  bool helpButton;
+  Function onTapHelp;
+  TopBar(this.pageName, this.onTap, {this.helpButton = false, this.onTapHelp});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,38 +16,83 @@ class TopBar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: UIHelper.setResHeight(18)),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                UIHelper.horzSpace(23),
                 GestureDetector(
                   onTap: () {
                     onTap();
                   },
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: UIHelper.setResHeight(32),
-                        width: UIHelper.setResWidth(32),
-                        decoration: BoxDecoration(
-                          color: UIHelper.colorSoftPink,
-                          borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    margin: EdgeInsets.only(left: UIHelper.setResWidth(23)),
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: UIHelper.setResHeight(32),
+                          width: UIHelper.setResWidth(32),
+                          decoration: BoxDecoration(
+                            color: UIHelper.colorSoftPink,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                      ),
-                      Container(
-                        height: UIHelper.setResHeight(32),
-                        width: UIHelper.setResWidth(32),
-                        child: Center(
-                          child: SizedBox(
-                            child: Image(
-                              image: AssetImage("assets/back.png"),
-                              height: UIHelper.setResHeight(15),
-                              width: UIHelper.setResWidth(15),
+                        Container(
+                          height: UIHelper.setResHeight(32),
+                          width: UIHelper.setResWidth(32),
+                          child: Center(
+                            child: SizedBox(
+                              child: Image(
+                                image: AssetImage("assets/back.png"),
+                                height: UIHelper.setResHeight(15),
+                                width: UIHelper.setResWidth(15),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
+                (helpButton)
+                    ? GestureDetector(
+                        onTap: () {
+                          onTapHelp();
+                        },
+                        child: Container(
+                          margin:
+                              EdgeInsets.only(right: UIHelper.setResWidth(23)),
+                          child: Stack(
+                            children: [
+                              Container(
+                                height: UIHelper.setResHeight(32),
+                                width: UIHelper.setResWidth(32),
+                                decoration: BoxDecoration(
+                                  color: UIHelper.colorSoftPink,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              Container(
+                                height: UIHelper.setResHeight(32),
+                                width: UIHelper.setResWidth(32),
+                                child: Center(
+                                  child: SizedBox(
+                                    child: Image(
+                                      image: AssetImage(
+                                          "assets/question_mark.png"),
+                                      height: UIHelper.setResHeight(15),
+                                      width: UIHelper.setResWidth(15),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Container(
+                        width: UIHelper.setResWidth(32),
+                        height: UIHelper.setResHeight(32),
+                        margin:
+                            EdgeInsets.only(right: UIHelper.setResWidth(23)),
+                      ),
               ],
             ),
           ),

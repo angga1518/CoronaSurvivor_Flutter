@@ -27,3 +27,4 @@ part 'donor_receiver_page.dart';
 part 'info_page.dart';
 part 'detail_info.dart';
 part 'add_comment_page.dart';
+part 'Calendar/calendar_onboard_page.dart';

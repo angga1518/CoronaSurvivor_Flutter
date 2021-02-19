@@ -30,3 +30,5 @@ class GoToAddCommentPage extends PageEvent {
 
   GoToAddCommentPage(this.title, this.component, this.isReply);
 }
+
+class GoToCalendarOnboardPage extends PageEvent {}

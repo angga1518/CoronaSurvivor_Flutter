@@ -32,3 +32,5 @@ class OnAddCommentPage extends PageState {
 
   OnAddCommentPage(this.title, this.component, this.isReply);
 }
+
+class OnCalendarOnboardPage extends PageState {}
