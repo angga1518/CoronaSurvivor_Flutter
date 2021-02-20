@@ -20,7 +20,6 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isEmailValid = true;
   bool isPassValid = true;
   bool isTanggalValid = true;
-  int filled = 0;
 
   String selectedGender;
   List<String> listGender = ["Laki-Laki", "Perempuan"];
@@ -80,7 +79,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       isAlreadyOpen = true;
                                     },
                                     false,
-                                    isValid: true,
                                   ),
                                   UIHelper.vertSpace(5),
                                   TextFieldWidget("yyyy/MM/dd", "Tanggal Lahir",
@@ -116,7 +114,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       domisiliController.text = value;
                                     },
                                     false,
-                                    isValid: true,
                                   ),
                                   UIHelper.vertSpace(5),
                                   TextFieldWidget(
@@ -127,7 +124,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       noTeleponController.text = value;
                                     },
                                     false,
-                                    isValid: true,
                                     prefixText: "+62 ",
                                     isNumber: true,
                                   ),

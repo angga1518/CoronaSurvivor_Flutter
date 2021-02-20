@@ -11,10 +11,9 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
   TextEditingController tanggalGejalaController = TextEditingController();
 
   bool isAlreadyOpen = false;
-  bool isEmailValid = true;
-  bool isPassValid = true;
-  bool isTanggalValid = true;
-  int filled = 0;
+  bool isBeratBadanFieldOpen = false;
+  bool isTanggalPositifValid = true;
+  bool isTanggalMunculGejalaValid = true;
 
   String selectedGender;
 
@@ -68,31 +67,54 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
                                   UIHelper.vertSpace(30),
                                   TextFieldWidget(
                                     "yyyy/MM/dd",
-                                    "Tanggal Lahir",
+                                    "Tanggal Positif",
                                     (value) {
                                       setState(() {
-                                        // isAlreadyOpen = true;
-                                        // tanggalLahirController.text = value;
-                                        // isTanggalValid = tanggalValidation(value);
+                                        isAlreadyOpen = true;
+                                        tanggalPositifController.text = value;
+                                        isTanggalPositifValid =
+                                            tanggalValidation(value);
                                       });
                                     },
                                     false,
-                                    isValid: isTanggalValid,
+                                    isValid: isTanggalPositifValid,
                                     errorText: "Format tidak sesuai",
                                     isDate: true,
-                                    editable: false,
-                                    controller: tanggalGejalaController,
+                                    editable: true,
+                                    suffixIcon: Icon(Icons.calendar_today),
+                                  ),
+                                  UIHelper.vertSpace(5),
+                                  TextFieldWidget(
+                                    "yyyy/MM/dd",
+                                    "Tanggal Muncul Gejala",
+                                    (value) {
+                                      setState(() {
+                                        isAlreadyOpen = true;
+                                        tanggalGejalaController.text = value;
+                                        isTanggalMunculGejalaValid =
+                                            tanggalValidation(value);
+                                      });
+                                    },
+                                    false,
+                                    isValid: isTanggalMunculGejalaValid,
+                                    errorText: "Format tidak sesuai",
+                                    isDate: true,
+                                    editable: true,
+                                    suffixIcon: Icon(Icons.calendar_today),
                                   ),
                                   UIHelper.vertSpace(5),
                                   TextFieldWidget(
                                     "Berat Badan",
                                     "Berat Badan",
                                     (value) {
-                                      isAlreadyOpen = true;
+                                      isBeratBadanFieldOpen = true;
                                       beratBadanController.text = value;
                                     },
                                     false,
-                                    isValid: true,
+                                    isValid:
+                                        beratBadanController.text.length > 0 ||
+                                            !isBeratBadanFieldOpen,
+                                    errorText: "Perlu diisi",
                                     isNumber: true,
                                   ),
                                 ],
@@ -104,6 +126,7 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
                     PinkButton(
                       "Lanjut",
                       () async {
+                        pageBloc.add(GoToCalendarSignUpPage3());
                         // signup
                         // goto onboard
                         // showPopUp(context: context, child: PopUpLoadingChild());
@@ -155,5 +178,22 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
         ],
       ),
     ));
+  }
+
+  bool tanggalValidation(String tanggal) {
+    List<String> details = tanggal.split("/");
+    if (details.length != 3) {
+      return false;
+    }
+    if (details[0].length != 4) {
+      return false;
+    }
+    if (details[1].length != 2) {
+      return false;
+    }
+    if (details[2].length != 2) {
+      return false;
+    }
+    return true;
   }
 }

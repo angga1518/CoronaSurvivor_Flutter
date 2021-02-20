@@ -20,7 +20,7 @@ class TextFieldWidget extends StatelessWidget {
       this.isDate = false,
       this.isEmail = false,
       this.errorText,
-      this.isValid = false,
+      this.isValid = true,
       this.suffixIcon,
       this.prefixText = "",
       this.editable = true,
@@ -51,12 +51,17 @@ class TextFieldWidget extends StatelessWidget {
             contentPadding: EdgeInsets.symmetric(
                 vertical: UIHelper.setResHeight(10),
                 horizontal: UIHelper.setResWidth(10)),
+            focusedBorder: OutlineInputBorder(
+                borderSide:
+                    BorderSide(color: UIHelper.colorGreyLight, width: 1.0),
+                borderRadius: BorderRadius.circular(10)),
             enabledBorder: OutlineInputBorder(
               borderSide:
                   BorderSide(color: UIHelper.colorGreyLight, width: 1.0),
               borderRadius: BorderRadius.circular(10),
             ),
-            fillColor: UIHelper.colorGreyLight,
+            filled: !editable,
+            fillColor: UIHelper.colorGreySuperLight2.withOpacity(0.5),
             focusColor: UIHelper.colorGreyLight,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

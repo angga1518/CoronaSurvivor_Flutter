@@ -12,22 +12,18 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
   TextEditingController puskesmasController = TextEditingController();
   TextEditingController tanggalLahirController =
       TextEditingController(text: "30/03/2000");
-  TextEditingController jenisKelaminController = TextEditingController();
+  TextEditingController jenisKelaminController =
+      TextEditingController(text: "Laki-Laki");
   TextEditingController domisiliController =
       TextEditingController(text: "Jakarta Selatan");
   TextEditingController noTeleponController =
-      TextEditingController(text: "081532453621");
+      TextEditingController(text: "81532453621");
   TextEditingController emailController =
       TextEditingController(text: "sigigibesar@gmail.com");
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  bool isPassConfirmAlreadyOpen = false;
   bool isAlreadyOpen = false;
-  bool isEmailValid = true;
-  bool isPassValid = true;
-  bool isTanggalValid = true;
-  int filled = 0;
 
   String selectedGender;
   List<String> listGender = ["Laki-Laki", "Perempuan"];
@@ -83,12 +79,8 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                                   TextFieldWidget(
                                     "Nama Lengkap",
                                     "Nama Lengkap",
-                                    (value) {
-                                      // namaController.text = "Muhammad Erlangga";
-                                      // isAlreadyOpen = true;
-                                    },
+                                    null,
                                     false,
-                                    isValid: true,
                                     editable: false,
                                     controller: namaController,
                                   ),
@@ -104,27 +96,20 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                                     isValid: true,
                                   ),
                                   UIHelper.vertSpace(5),
-                                  DropdownTextField(
-                                      items: listGender,
-                                      value: selectedGender,
-                                      hintText: "Jenis Kelamin",
-                                      onChange: (String value) {
-                                        setState(() {
-                                          isAlreadyOpen = true;
-                                          selectedGender = value;
-                                          print(selectedGender);
-                                        });
-                                      }),
-                                  UIHelper.vertSpace(20),
+                                  TextFieldWidget(
+                                    "Jenis Kelamin",
+                                    "Jenis Kelamin",
+                                    null,
+                                    false,
+                                    editable: false,
+                                    controller: jenisKelaminController,
+                                  ),
+                                  UIHelper.vertSpace(5),
                                   TextFieldWidget(
                                     "Domisili",
                                     "Domisili",
-                                    (value) {
-                                      // isAlreadyOpen = true;
-                                      // domisiliController.text = value;
-                                    },
+                                    null,
                                     false,
-                                    isValid: true,
                                     editable: false,
                                     controller: domisiliController,
                                   ),
@@ -132,17 +117,8 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                                   TextFieldWidget(
                                     "yyyy/MM/dd",
                                     "Tanggal Lahir",
-                                    (value) {
-                                      setState(() {
-                                        // isAlreadyOpen = true;
-                                        // tanggalLahirController.text = value;
-                                        // isTanggalValid = tanggalValidation(value);
-                                      });
-                                    },
+                                    null,
                                     false,
-                                    isValid: isTanggalValid,
-                                    errorText: "Format tidak sesuai",
-                                    isDate: true,
                                     editable: false,
                                     controller: tanggalLahirController,
                                   ),
@@ -150,34 +126,18 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                                   TextFieldWidget(
                                     "Email",
                                     "Email",
-                                    (value) {
-                                      // setState(() {
-                                      //   isAlreadyOpen = true;
-
-                                      //   isEmailValid =
-                                      //       EmailValidator.validate(value);
-                                      //   emailController.text = value;
-                                      // });
-                                    },
+                                    null,
                                     false,
-                                    isValid: isEmailValid,
-                                    isEmail: true,
                                     editable: false,
                                     controller: emailController,
-                                    errorText: "Email tidak valid",
                                   ),
                                   UIHelper.vertSpace(5),
                                   TextFieldWidget(
                                     "",
                                     "Nomor Telepon",
-                                    (value) {
-                                      // isAlreadyOpen = true;
-                                      // noTeleponController.text = value;
-                                    },
+                                    null,
                                     false,
-                                    isValid: true,
-                                    // prefixText: "+62 ",
-                                    isNumber: true,
+                                    prefixText: "+62 ",
                                     controller: noTeleponController,
                                     editable: false,
                                   ),
@@ -190,7 +150,6 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                                       puskesmasController.text = value;
                                     },
                                     false,
-                                    isValid: true,
                                   ),
                                 ],
                               ),
@@ -201,6 +160,7 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
                     PinkButton(
                       "Lanjut",
                       () async {
+                        pageBloc.add(GoToCalendarSignUpPage2());
                         // signup
                         // goto onboard
                         // showPopUp(context: context, child: PopUpLoadingChild());

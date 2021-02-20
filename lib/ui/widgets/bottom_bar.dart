@@ -37,7 +37,7 @@ class BottomBar extends StatelessWidget {
         pageBloc.add(GoToInfoPage());
       },
       () {
-        pageBloc.add(GoToProfilePage());
+        pageBloc.add(GoToCalendarOnboardPage());
       },
     ];
     return Container(
