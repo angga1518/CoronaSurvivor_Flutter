@@ -9,8 +9,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-    // Navigator.canPop(context);
-    // Navigator.pop(context);
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToOnboardPage());
@@ -255,9 +253,7 @@ class _HomePageState extends State<HomePage> {
                     29,
                     62,
                     nextMessage: "Lihat lokasi lainnya",
-                    onMessageTap: () async {
-                      await AuthServices.signOut();
-                    },
+                    onMessageTap: () {},
                   ),
                   UIHelper.vertSpace(18),
                   LogoCardContainer(

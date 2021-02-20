@@ -70,8 +70,8 @@ class _WrapperState extends State<Wrapper> {
     } else {
       if (!(prevPageEvent is GoToHomePage)) {
         prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
         pageBloc.add(prevPageEvent);
-        userBloc.add(LoadUser(user.uid));
       }
     }
     // if (user == null) {

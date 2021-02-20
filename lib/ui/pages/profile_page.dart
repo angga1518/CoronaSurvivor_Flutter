@@ -46,10 +46,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           Column(
                             children: [
                               ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {pageBloc.add(GoToDonorGiverPage());}),
+                                  "Muhammad Erlangga", "O", "Jakarta", () {
+                                pageBloc.add(GoToDonorGiverPage());
+                              }),
                               UIHelper.vertSpace(10),
                               ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {pageBloc.add(GoToDonorGiverPage());}),
+                                  "Alfan Adhitia", "A", "Depok", () {
+                                pageBloc.add(GoToDonorGiverPage());
+                              }),
                             ],
                           )),
                       UIHelper.vertSpace(18),
@@ -58,14 +62,20 @@ class _ProfilePageState extends State<ProfilePage> {
                           Column(
                             children: [
                               ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {pageBloc.add(GoToDonorReceiverPage());}),
+                                  "Muhammad Erlangga", "O", "Jakarta", () {
+                                pageBloc.add(GoToDonorReceiverPage());
+                              }),
                               UIHelper.vertSpace(10),
                               ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {pageBloc.add(GoToDonorReceiverPage());}),
+                                  "Alfan Adhitia", "A", "Depok", () {
+                                pageBloc.add(GoToDonorReceiverPage());
+                              }),
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton("Keluar", () {}),
+                      PinkButton("Keluar", () async {
+                        await AuthServices.signOut();
+                      }),
                       UIHelper.vertSpace(20),
                     ],
                   )

@@ -1,32 +1,45 @@
 part of 'models.dart';
 
-class Pengguna extends Equatable {
-  final String id;
-  final String email;
-  final String name;
+class Pengguna {
+  String email;
+  String namaLengkap;
+  String tanggalLahir;
+  String jenisKelamin;
+  String domisili;
+  String noTelepon;
+  List<String> listIdArtikelDisimpan;
+  List<String> listIdLikedArtikel;
+  List<String> listIdLikedKomentar;
 
-  Pengguna(
-    this.id,
-    this.email, {
-    this.name,
+  Pengguna({
+    @required this.namaLengkap,
+    @required this.email,
+    @required this.tanggalLahir,
+    @required this.jenisKelamin,
+    @required this.domisili,
+    @required this.noTelepon,
+    this.listIdArtikelDisimpan,
+    this.listIdLikedArtikel,
+    this.listIdLikedKomentar,
   });
 
-  Pengguna copyWith({String name, String profilePictureUrl, int balance}) =>
+  Pengguna copyWith(
+          {List<String> listIdArtikelDisimpan,
+          List<String> listIdLikedArtikel,
+          List<String> listIdLikedKomentar}) =>
       Pengguna(
-        this.id,
-        this.email,
-        name: name ?? this.name,
-      );
-
-  @override
-  List<Object> get props => [
-        id,
-        email,
-        name,
-      ];
+          namaLengkap: this.namaLengkap,
+          email: this.email,
+          tanggalLahir: this.tanggalLahir,
+          jenisKelamin: this.jenisKelamin,
+          domisili: this.domisili,
+          noTelepon: this.noTelepon,
+          listIdArtikelDisimpan: listIdArtikelDisimpan,
+          listIdLikedArtikel: listIdLikedArtikel,
+          listIdLikedKomentar: listIdLikedKomentar);
 
   @override
   String toString() {
-    return "[$id] - $name, $email";
+    return "[$namaLengkap] - $email";
   }
 }
