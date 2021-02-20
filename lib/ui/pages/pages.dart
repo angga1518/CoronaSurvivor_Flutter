@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:corona_survivor_flutter/bloc/blocs.dart';
+import 'package:corona_survivor_flutter/models/models.dart';
 import 'package:corona_survivor_flutter/services/services.dart';
 import 'package:corona_survivor_flutter/shared/shared.dart';
 import 'package:corona_survivor_flutter/ui/shared/shared_ui.dart';
