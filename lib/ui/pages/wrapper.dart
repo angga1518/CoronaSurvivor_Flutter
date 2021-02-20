@@ -63,23 +63,49 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     if (user == null) {
-      pageBloc.add(GoToHomePage());
-      // pageBloc.add(GoToProfilePage());
-      // pageBloc.add(GoToOnboardPage());
-      // pageBloc.add(GoToSplashPage());
+      if (!(prevPageEvent is GoToSplashPage)) {
+        prevPageEvent = GoToSplashPage();
+        pageBloc.add(prevPageEvent);
+      }
     } else {
-      userBloc.add(LoadUser(user.uid));
-      pageBloc.add(GoToHomePage());
+      if (prevPageEvent is GoToOnboardPage) {
+        prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
+        pageBloc.add(GoToOnboardPage());
+      }
+      if (!(prevPageEvent is GoToHomePage)) {
+        prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
+        pageBloc.add(prevPageEvent);
+      }
     }
+    // if (user == null) {
+    //   pageBloc.add(GoToLoginPage());
+    // pageBloc.add(GoToCalendarSignUpPage1());
+    // pageBloc.add(GoToCalendarOnboardPage());
+    // pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
+    //     "\"Tata Cara Mencuci Hidung yang Benar\"", true));
+    // pageBloc.add(GoToDetailInfoPage());
+    // pageBloc.add(GoToInfoPage());
+    // pageBloc.add(GoToHomePage());
+    // pageBloc.add(GoToProfilePage());
+    // pageBloc.add(GoToOnboardPage());
+    // pageBloc.add(GoToSplashPage());
+    // } else {
+    //   userBloc.add(LoadUser(user.uid));
+    //   pageBloc.add(GoToHomePage());
+    // }
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
-          // return SplashPage();
-          return SignupPage();
+          return SplashPage();
+          // return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
           return LoginPage();
+        } else if (state is OnSignupPage) {
+          return SignUpPage();
         } else if (state is OnOnboardPage) {
           return OnboardPage();
         } else if (state is OnProfilePage) {
@@ -88,6 +114,16 @@ class _WrapperState extends State<Wrapper> {
           return DonorGiverPage();
         } else if (state is OnDonorReceiverPage) {
           return DonorReceiverPage();
+        } else if (state is OnInfoPage) {
+          return InfoPage();
+        } else if (state is OnDetailInfoPage) {
+          return DetailInfo();
+        } else if (state is OnAddCommentPage) {
+          return AddCommentPage(state.title, state.component, state.isReply);
+        } else if (state is OnCalendarOnboardPage) {
+          return CalendarOnboardPage();
+        } else if (state is OnCalendarSignUpPage1) {
+          return CalendarSignUpPage1();
         } else {
           return Container();
         }

@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(state.pengguna.id),
+                  Text(state.pengguna.email),
                   RaisedButton(
                     child: Text("Sign Out"),
                     onPressed: () async {

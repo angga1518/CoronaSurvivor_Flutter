@@ -16,7 +16,7 @@ class UIHelper {
   }
 
   static double setResHeight(double height) {
-    return ScreenUtil.instance.setWidth(height);
+    return ScreenUtil.instance.setHeight(height);
   }
 
   static double setResFontSize(double fontSize) {
@@ -62,24 +62,28 @@ class UIHelper {
       fontSize: setResFontSize(17),
       fontWeight: FontWeight.w400);
 
-  static Color kColorButtonPink = Color(0xFFFFE0E0);
-  static Color kColorButtonText = Color(0xFFFC312F);
-  static Color kColorButtonBorder = Color(0xFFFFCFCF);
+  static const Color kColorButtonPink = Color(0xFFFFE0E0);
+  static const Color kColorButtonText = Color(0xFFFC312F);
+  static const Color kColorButtonBorder = Color(0xFFFFCFCF);
 
-  static Color colorMainRed = Color(0xFFFC312F);
-  static Color colorMainLightRed = Color(0xFFFFCFCF);
-  static Color colorMainGreen = Color(0xFF45AB5D);
-  static Color colorMainYellow = Color(0xFFFB8D46);
-  static Color colorPink = Color(0xFFFFE0E0);
-  static Color colorPinkLight = Color(0xFFEECACA);
-  static Color colorPinkSuperLight = Color(0xFFF6F1F1);
-  static Color colorSoftPink = Color(0xFFF9F3F3);
-  static Color colorDarkGrey = Color(0xFF1B252E);
-  static Color colorSoftBlue = Color(0xFF4193C0);
-  static Color colorGrey = Color(0xFF40576B);
-  static Color colorGreyLight = Color(0xFF52708A);
-  static Color colorGreySuperLight = Color(0xFF8DA2B6);
-  static Color colorDarkWhite = Color(0xFFF2F4F5);
+  static const Color colorMainRed = Color(0xFFFC312F);
+  static const Color colorMainLightRed = Color(0xFFFFCFCF);
+  static const Color colorMainGreen = Color(0xFF45AB5D);
+  static const Color colorMainYellow = Color(0xFFFB8D46);
+  static const Color colorPink = Color(0xFFFFE0E0);
+  static const Color colorPinkLight = Color(0xFFEECACA);
+  static const Color colorPinkSuperLight = Color(0xFFF6F1F1);
+  static const Color colorSoftPink = Color(0xFFF9F3F3);
+  static const Color colorSoftBlue = Color(0xFF4193C0);
+  static const Color colorDarkGrey = Color(0xFF1B252E);
+  static const Color colorMediumDarkGrey = Color(0xFF254D71);
+  static const Color colorGrey = Color(0xFF40576B);
+  static const Color colorMediumLightGrey = Color(0xFFE1E6ED);
+  static const Color colorGreyLight = Color(0xFF52708A);
+  static const Color colorGreySuperLight = Color(0xFF8DA2B6);
+  static const Color colorGreySuperLight2 = Color(0xFFE8ECF0);
+  static const Color colorDarkWhite = Color(0xFFF2F4F5);
+  static const Color colorSoftWhite = Color(0xFFF6F7FB);
 
   static Widget fourBubble(int index) {
     List<Widget> listBubble = [];

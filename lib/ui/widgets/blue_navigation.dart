@@ -3,7 +3,8 @@ part of 'widgets.dart';
 class BlueNavigation extends StatelessWidget {
   final String message;
   final Function onTap;
-  BlueNavigation(this.message, this.onTap);
+  final MainAxisAlignment mainAxisAlignment;
+  BlueNavigation(this.message, this.onTap, {this.mainAxisAlignment = MainAxisAlignment.end});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -11,7 +12,7 @@ class BlueNavigation extends StatelessWidget {
         onTap();
       },
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: mainAxisAlignment,
         children: [
           Text(
             message,

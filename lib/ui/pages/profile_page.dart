@@ -26,30 +26,40 @@ class _ProfilePageState extends State<ProfilePage> {
                   Column(
                     children: [
                       UIHelper.vertSpace(88),
-                      CardContainer(
-                          "Data Diri",
-                          Column(
-                            children: [
-                              InformationContainer(
-                                  "Nama Lengkap", "Nur Fauziah Hasanah"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer(
-                                  "Tanggal Lahir", "30/02/2000"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer(
-                                  "Email", "sigigibesar@gmail.com"),
-                            ],
-                          )),
+                      CardContainer("Data Diri",
+                          BlocBuilder<UserBloc, UserState>(
+                        builder: (context, state) {
+                          if (state is UserLoaded) {
+                            Pengguna pengguna = state.pengguna;
+                            return Column(
+                              children: [
+                                InformationContainer(
+                                    "Nama Lengkap", pengguna.namaLengkap),
+                                UIHelper.vertSpace(10),
+                                InformationContainer("Tanggal Lahir",
+                                    pengguna.getTanggalLahir()),
+                                UIHelper.vertSpace(10),
+                                InformationContainer("Email", pengguna.email)
+                              ],
+                            );
+                          }
+                          return Container();
+                        },
+                      )),
                       UIHelper.vertSpace(18),
                       CardContainer(
                           "Data Pemberi Donor",
                           Column(
                             children: [
                               ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {pageBloc.add(GoToDonorGiverPage());}),
+                                  "Muhammad Erlangga", "O", "Jakarta", () {
+                                pageBloc.add(GoToDonorGiverPage());
+                              }),
                               UIHelper.vertSpace(10),
                               ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {pageBloc.add(GoToDonorGiverPage());}),
+                                  "Alfan Adhitia", "A", "Depok", () {
+                                pageBloc.add(GoToDonorGiverPage());
+                              }),
                             ],
                           )),
                       UIHelper.vertSpace(18),
@@ -58,14 +68,20 @@ class _ProfilePageState extends State<ProfilePage> {
                           Column(
                             children: [
                               ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {pageBloc.add(GoToDonorReceiverPage());}),
+                                  "Muhammad Erlangga", "O", "Jakarta", () {
+                                pageBloc.add(GoToDonorReceiverPage());
+                              }),
                               UIHelper.vertSpace(10),
                               ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {pageBloc.add(GoToDonorReceiverPage());}),
+                                  "Alfan Adhitia", "A", "Depok", () {
+                                pageBloc.add(GoToDonorReceiverPage());
+                              }),
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton("Keluar", () {}),
+                      PinkButton("Keluar", () async {
+                        await AuthServices.signOut();
+                      }),
                       UIHelper.vertSpace(20),
                     ],
                   )

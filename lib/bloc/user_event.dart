@@ -8,9 +8,9 @@ abstract class UserEvent extends Equatable {
 }
 
 class LoadUser extends UserEvent {
-  final String id;
+  final String email;
 
-  LoadUser(this.id);
+  LoadUser(this.email);
 }
 
 class SignOut extends UserEvent {}
