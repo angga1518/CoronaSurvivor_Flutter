@@ -21,7 +21,7 @@ class _DropdownTextStateField extends State<DropdownTextField> {
     return Container(
       height: UIHelper.setResHeight(40),
       width: UIHelper.setResWidth(270),
-      padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(5)),
+      padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(8)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: UIHelper.colorGreyLight, width: 1.0)),
@@ -30,21 +30,17 @@ class _DropdownTextStateField extends State<DropdownTextField> {
           icon: Icon(Icons.arrow_drop_down),
           hint: Text(widget.hintText,
               style: UIHelper.greyLightFont.copyWith(
-                  color: UIHelper.colorGreySuperLight,
-                  fontSize: UIHelper.setResFontSize(16))),
+                  fontSize: UIHelper.setResFontSize(15))),
           value: widget.value,
           style: UIHelper.greyLightFont.copyWith(
-              color: UIHelper.colorGreySuperLight,
-              fontSize: UIHelper.setResFontSize(16)),
+              fontSize: UIHelper.setResFontSize(15)),
           items: widget.items
               .map(
                   (value) => DropdownMenuItem(value: value, child: Text(value)))
               .toList(),
           onChanged: (value) {
             widget.onChange(value);
-            setState(() {
-              widget.value = value;
-            });
+            widget.value = value;
           }),
     );
   }

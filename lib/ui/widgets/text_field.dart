@@ -6,11 +6,21 @@ class TextFieldWidget extends StatelessWidget {
   final Function onChanged;
   final bool isPassword;
   final bool isNumber;
+  final bool isDate;
+  final bool isEmail;
   final String errorText;
   final bool isValid;
+  final Icon suffixIcon;
+  final String prefixText;
 
   TextFieldWidget(this.label, this.placeHolder, this.onChanged, this.isPassword,
-      {this.isNumber = false, this.errorText, this.isValid = false});
+      {this.isNumber = false,
+      this.isDate = false,
+      this.isEmail = false,
+      this.errorText,
+      this.isValid = false,
+      this.suffixIcon,
+      this.prefixText = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +28,11 @@ class TextFieldWidget extends StatelessWidget {
         width: UIHelper.setResWidth(270),
         height: UIHelper.setResHeight(60),
         child: TextField(
-          keyboardType: isNumber ? TextInputType.phone : TextInputType.name,
+          keyboardType: isNumber
+              ? TextInputType.phone
+              : isDate
+                  ? TextInputType.datetime
+                  : isEmail ? TextInputType.emailAddress : TextInputType.name,
           textAlignVertical: TextAlignVertical.center,
           obscureText: isPassword,
           onChanged: (value) {
@@ -27,6 +41,8 @@ class TextFieldWidget extends StatelessWidget {
             }
           },
           decoration: InputDecoration(
+            prefixText: prefixText == "" ? null : prefixText,
+            suffixIcon: suffixIcon ?? null,
             contentPadding: EdgeInsets.symmetric(
                 vertical: UIHelper.setResHeight(10),
                 horizontal: UIHelper.setResWidth(10)),

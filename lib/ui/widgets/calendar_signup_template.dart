@@ -28,7 +28,9 @@ class CalendarSignUpTemplate extends StatelessWidget {
                     children: [
                       UIHelper.vertSpace(88),
                       Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: UIHelper.setResWidth(10),
+                              vertical: UIHelper.setResHeight(10)),
                           width: UIHelper.setResWidth(322),
                           decoration: BoxDecoration(
                               color: Colors.white,

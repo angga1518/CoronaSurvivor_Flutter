@@ -44,6 +44,9 @@ class Pengguna {
   }
 
   String getTanggalLahir() {
+    if (!tanggalLahir.contains("T")) {
+      return tanggalLahir;
+    }
     String yyyyMMdd = this.tanggalLahir.split("T")[0];
     List<int> detailDate =
         yyyyMMdd.split("-").map((e) => int.parse(e)).toList();

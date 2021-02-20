@@ -68,6 +68,11 @@ class _WrapperState extends State<Wrapper> {
         pageBloc.add(prevPageEvent);
       }
     } else {
+      if (prevPageEvent is GoToOnboardPage) {
+        prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
+        pageBloc.add(GoToOnboardPage());
+      }
       if (!(prevPageEvent is GoToHomePage)) {
         prevPageEvent = GoToHomePage();
         userBloc.add(LoadUser(user.email));

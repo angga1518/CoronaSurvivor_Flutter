@@ -2,18 +2,21 @@ part of 'services.dart';
 
 class PenggunaServices {
   static Future<void> savePengguna(Pengguna pengguna) async {
-    // String url = base_url + "pengguna/create";
-    // final http.Response response = await http.post(
-    //   url,
-    //   headers: <String, String>{
-    //     'Content-Type': 'application/json; charset=UTF-8',
-    //   },
-    //   body: jsonEncode(<String, String>{
-    //     'id': pengguna.id,
-    //     'email': pengguna.email,
-    //     'name': pengguna.name,
-    //   }),
-    // );
+    String url = base_url + "pengguna/create";
+    http.Response response = await http.Client().post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "email": pengguna.email,
+        "namaLengkap": pengguna.namaLengkap,
+        "tanggalLahir": pengguna.getTanggalLahir(),
+        "jenisKelamin": pengguna.jenisKelamin,
+        "domisili": pengguna.domisili,
+        "noTelepon": pengguna.noTelepon
+      }),
+    );
   }
 
   static Future<Pengguna> getPengguna(String email) async {

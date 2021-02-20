@@ -13,15 +13,19 @@ class AuthServices {
     String noTelepon,
   ) async {
     try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      Pengguna pengguna = userCredential.user.convertToPengguna(
+      Pengguna pengguna = Pengguna(
           namaLengkap: namaLengkap,
+          email: email,
           tanggalLahir: tanggalLahir,
           jenisKelamin: jenisKelamin,
           domisili: domisili,
-          noTelepon: noTelepon);
+          noTelepon: noTelepon,
+          listIdArtikelDisimpan: null,
+          listIdLikedArtikel: null,
+          listIdLikedKomentar: null);
       await PenggunaServices.savePengguna(pengguna);
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       return SignInSignUpResult(pengguna, null);
     } catch (e) {
       return SignInSignUpResult(null, e.toString());
