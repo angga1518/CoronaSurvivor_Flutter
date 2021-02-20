@@ -12,6 +12,8 @@ class TextFieldWidget extends StatelessWidget {
   final bool isValid;
   final Icon suffixIcon;
   final String prefixText;
+  final bool editable;
+  final TextEditingController controller;
 
   TextFieldWidget(this.label, this.placeHolder, this.onChanged, this.isPassword,
       {this.isNumber = false,
@@ -20,7 +22,9 @@ class TextFieldWidget extends StatelessWidget {
       this.errorText,
       this.isValid = false,
       this.suffixIcon,
-      this.prefixText = ""});
+      this.prefixText = "",
+      this.editable = true,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,7 @@ class TextFieldWidget extends StatelessWidget {
         width: UIHelper.setResWidth(270),
         height: UIHelper.setResHeight(60),
         child: TextField(
+          controller: controller,
           keyboardType: isNumber
               ? TextInputType.phone
               : isDate
@@ -60,6 +65,7 @@ class TextFieldWidget extends StatelessWidget {
             labelText: placeHolder,
             labelStyle: TextStyle(color: UIHelper.colorGreyLight),
             hintText: label,
+            enabled: editable,
           ),
         ));
   }

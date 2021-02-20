@@ -62,23 +62,25 @@ class _WrapperState extends State<Wrapper> {
     User user = Provider.of<User>(context);
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
-    if (user == null) {
-      if (!(prevPageEvent is GoToSplashPage)) {
-        prevPageEvent = GoToSplashPage();
-        pageBloc.add(prevPageEvent);
-      }
-    } else {
-      if (prevPageEvent is GoToOnboardPage) {
-        prevPageEvent = GoToHomePage();
-        userBloc.add(LoadUser(user.email));
-        pageBloc.add(GoToOnboardPage());
-      }
-      if (!(prevPageEvent is GoToHomePage)) {
-        prevPageEvent = GoToHomePage();
-        userBloc.add(LoadUser(user.email));
-        pageBloc.add(prevPageEvent);
-      }
-    }
+
+    pageBloc.add(GoToCalendarSignUpPage2());
+    // if (user == null) {
+    //   if (!(prevPageEvent is GoToSplashPage)) {
+    //     prevPageEvent = GoToSplashPage();
+    //     pageBloc.add(prevPageEvent);
+    //   }
+    // } else {
+    //   if (prevPageEvent is GoToOnboardPage) {
+    //     prevPageEvent = GoToHomePage();
+    //     userBloc.add(LoadUser(user.email));
+    //     pageBloc.add(GoToOnboardPage());
+    //   }
+    //   if (!(prevPageEvent is GoToHomePage)) {
+    //     prevPageEvent = GoToHomePage();
+    //     userBloc.add(LoadUser(user.email));
+    //     pageBloc.add(prevPageEvent);
+    //   }
+    // }
     // if (user == null) {
     //   pageBloc.add(GoToLoginPage());
     // pageBloc.add(GoToCalendarSignUpPage1());
