@@ -63,26 +63,26 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    if (user == null) {
-      // for dev
-      // pageBloc.add(GoToCalendarSignUpPage1());
-      // pageBloc.add(GoToCalendarSignUpPage2());
-      if (!(prevPageEvent is GoToSplashPage)) {
-        prevPageEvent = GoToSplashPage();
-        pageBloc.add(prevPageEvent);
-      }
-    } else {
-      if (prevPageEvent is GoToOnboardPage) {
-        prevPageEvent = GoToHomePage();
-        userBloc.add(LoadUser(user.email));
-        pageBloc.add(GoToOnboardPage());
-      }
-      if (!(prevPageEvent is GoToHomePage)) {
-        prevPageEvent = GoToHomePage();
-        userBloc.add(LoadUser(user.email));
-        pageBloc.add(prevPageEvent);
-      }
-    }
+    // pageBloc.add(GoToCalendarSignUpPage1());
+    // if (user == null) {
+    //   // for dev
+    //   // pageBloc.add(GoToCalendarSignUpPage1());
+    //   if (!(prevPageEvent is GoToSplashPage)) {
+    //     prevPageEvent = GoToSplashPage();
+    //     pageBloc.add(prevPageEvent);
+    //   }
+    // } else {
+    //   if (prevPageEvent is GoToOnboardPage) {
+    //     prevPageEvent = GoToHomePage();
+    //     userBloc.add(LoadUser(user.email));
+    //     pageBloc.add(GoToOnboardPage());
+    //   }
+    //   if (!(prevPageEvent is GoToHomePage)) {
+    //     prevPageEvent = GoToHomePage();
+    //     userBloc.add(LoadUser(user.email));
+    //     pageBloc.add(prevPageEvent);
+    //   }
+    // }
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {

@@ -8,8 +8,25 @@ class CalendarSignUpPage5 extends StatefulWidget {
 class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return CalendarSignUpTemplate(
+      SizedBox(
+        child: Column(
+          children: [
+            CheckboxListTile(
+              value: true,
+              onChanged: (value) {},
+              title: Text(
+                "Demam",
+                style: UIHelper.greyLightFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
+              ),
+            )
+          ],
+        ),
+      ),
+      addHeader: false,
+      backTo: GoToCalendarSignUpPage4(),
+      goTo: null,
     );
   }
 }

@@ -8,8 +8,11 @@ class CalendarSignUpPage4 extends StatefulWidget {
 class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return CalendarSignUpTemplate(
+      Container(),
+      desc: "Masukkan riwayat penyakit yang Anda miliki",
+      backTo: GoToCalendarSignUpPage3(),
+      goTo: GoToCalendarSignUpPage5(),
     );
   }
 }
