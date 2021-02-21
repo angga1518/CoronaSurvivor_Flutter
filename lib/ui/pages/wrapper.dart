@@ -62,7 +62,11 @@ class _WrapperState extends State<Wrapper> {
     User user = Provider.of<User>(context);
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+
     if (user == null) {
+      // for dev
+      // pageBloc.add(GoToCalendarSignUpPage1());
+      // pageBloc.add(GoToCalendarSignUpPage2());
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
         pageBloc.add(prevPageEvent);
@@ -79,22 +83,6 @@ class _WrapperState extends State<Wrapper> {
         pageBloc.add(prevPageEvent);
       }
     }
-    // if (user == null) {
-    //   pageBloc.add(GoToLoginPage());
-    // pageBloc.add(GoToCalendarSignUpPage1());
-    // pageBloc.add(GoToCalendarOnboardPage());
-    // pageBloc.add(GoToAddCommentPage("Reply to Muhammad Erlangga",
-    //     "\"Tata Cara Mencuci Hidung yang Benar\"", true));
-    // pageBloc.add(GoToDetailInfoPage());
-    // pageBloc.add(GoToInfoPage());
-    // pageBloc.add(GoToHomePage());
-    // pageBloc.add(GoToProfilePage());
-    // pageBloc.add(GoToOnboardPage());
-    // pageBloc.add(GoToSplashPage());
-    // } else {
-    //   userBloc.add(LoadUser(user.uid));
-    //   pageBloc.add(GoToHomePage());
-    // }
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
@@ -124,6 +112,14 @@ class _WrapperState extends State<Wrapper> {
           return CalendarOnboardPage();
         } else if (state is OnCalendarSignUpPage1) {
           return CalendarSignUpPage1();
+        } else if (state is OnCalendarSignUpPage2) {
+          return CalendarSignUpPage2();
+        } else if (state is OnCalendarSignUpPage3) {
+          return CalendarSignUpPage3();
+        } else if (state is OnCalendarSignUpPage4) {
+          return CalendarSignUpPage4();
+        } else if (state is OnCalendarSignUpPage5) {
+          return CalendarSignUpPage5();
         } else {
           return Container();
         }
