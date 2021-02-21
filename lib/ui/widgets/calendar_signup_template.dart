@@ -4,15 +4,23 @@ class CalendarSignUpTemplate extends StatelessWidget {
   final Widget child;
   final bool addHeader;
   final String desc;
+  final PageEvent backTo;
+  final PageEvent goTo;
+  final double space;
 
-  CalendarSignUpTemplate(this.child, {this.addHeader = true, this.desc = ""});
+  CalendarSignUpTemplate(this.child,
+      {this.addHeader = true,
+      this.desc = "",
+      @required this.backTo,
+      @required this.goTo,
+      this.space = 38});
 
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToCalendarOnboardPage());
+        pageBloc.add(backTo);
         return false;
       },
       child: Scaffold(
@@ -66,19 +74,23 @@ class CalendarSignUpTemplate extends StatelessWidget {
                                       ),
                                     )
                                   : Container(),
-                              UIHelper.vertSpace(38),
+                              UIHelper.vertSpace(space),
                               child
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton("Lanjut", () {}),
+                      PinkButton("Lanjut", () {
+                        if (goTo != null) {
+                          pageBloc.add(goTo);
+                        }
+                      }),
                       UIHelper.vertSpace(20),
                     ],
                   )
                 ],
               ),
               TopBar("MyCalendar", () {
-                pageBloc.add(GoToCalendarOnboardPage());
+                pageBloc.add(backTo);
               }),
             ],
           ),
