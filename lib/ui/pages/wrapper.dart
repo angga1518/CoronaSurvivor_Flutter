@@ -64,25 +64,25 @@ class _WrapperState extends State<Wrapper> {
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     // pageBloc.add(GoToCalendarSignUpPage1());
-    // if (user == null) {
-    //   // for dev
-    //   // pageBloc.add(GoToCalendarSignUpPage1());
-    //   if (!(prevPageEvent is GoToSplashPage)) {
-    //     prevPageEvent = GoToSplashPage();
-    //     pageBloc.add(prevPageEvent);
-    //   }
-    // } else {
-    //   if (prevPageEvent is GoToOnboardPage) {
-    //     prevPageEvent = GoToHomePage();
-    //     userBloc.add(LoadUser(user.email));
-    //     pageBloc.add(GoToOnboardPage());
-    //   }
-    //   if (!(prevPageEvent is GoToHomePage)) {
-    //     prevPageEvent = GoToHomePage();
-    //     userBloc.add(LoadUser(user.email));
-    //     pageBloc.add(prevPageEvent);
-    //   }
-    // }
+    if (user == null) {
+      // for dev
+      // pageBloc.add(GoToCalendarSignUpPage1());
+      if (!(prevPageEvent is GoToSplashPage)) {
+        prevPageEvent = GoToSplashPage();
+        pageBloc.add(prevPageEvent);
+      }
+    } else {
+      if (prevPageEvent is GoToOnboardPage) {
+        prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
+        pageBloc.add(GoToOnboardPage());
+      }
+      if (!(prevPageEvent is GoToHomePage)) {
+        prevPageEvent = GoToHomePage();
+        userBloc.add(LoadUser(user.email));
+        pageBloc.add(prevPageEvent);
+      }
+    }
     return BlocBuilder<PageBloc, PageState>(
       builder: (context, state) {
         if (state is OnSplashPage) {
