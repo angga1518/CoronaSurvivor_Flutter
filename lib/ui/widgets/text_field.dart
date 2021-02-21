@@ -32,6 +32,9 @@ class TextFieldWidget extends StatelessWidget {
         width: UIHelper.setResWidth(270),
         height: UIHelper.setResHeight(60),
         child: TextField(
+          style: UIHelper.greyLightFont
+              .copyWith(fontSize: UIHelper.setResFontSize(15)),
+          cursorColor: UIHelper.colorGreyLight,
           controller: controller,
           keyboardType: isNumber
               ? TextInputType.phone
