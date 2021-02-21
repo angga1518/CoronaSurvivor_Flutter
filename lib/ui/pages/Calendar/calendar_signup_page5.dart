@@ -6,27 +6,26 @@ class CalendarSignUpPage5 extends StatefulWidget {
 }
 
 class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
+  bool isSetuju = false;
   @override
   Widget build(BuildContext context) {
     return CalendarSignUpTemplate(
       SizedBox(
-        child: Column(
-          children: [
-            CheckboxListTile(
-              value: true,
-              onChanged: (value) {},
-              title: Text(
-                "Demam",
-                style: UIHelper.greyLightFont
-                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
-              ),
-            )
-          ],
-        ),
+        child: generateCheckBox(
+            title:
+                "Saya menyatakan bahwa seluruh data yang saya masukkan benar adanya dan saya bertanggungjawab penuh atas kebenaran data - data tersebut",
+            value: isSetuju,
+            onChange: (value) {
+              setState(() {
+                isSetuju = value;
+              });
+            }),
       ),
+      space: 5,
       addHeader: false,
       backTo: GoToCalendarSignUpPage4(),
       goTo: null,
+      isEnabled: isSetuju,
     );
   }
 }

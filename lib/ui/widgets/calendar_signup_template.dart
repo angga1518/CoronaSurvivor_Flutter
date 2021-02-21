@@ -7,13 +7,15 @@ class CalendarSignUpTemplate extends StatelessWidget {
   final PageEvent backTo;
   final PageEvent goTo;
   final double space;
+  final bool isEnabled;
 
   CalendarSignUpTemplate(this.child,
       {this.addHeader = true,
       this.desc = "",
       @required this.backTo,
       @required this.goTo,
-      this.space = 38});
+      this.space = 38,
+      this.isEnabled = true});
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +81,15 @@ class CalendarSignUpTemplate extends StatelessWidget {
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton("Lanjut", () {
-                        if (goTo != null) {
-                          pageBloc.add(goTo);
-                        }
-                      }),
+                      PinkButton(
+                        "Lanjut",
+                        () {
+                          if (goTo != null) {
+                            pageBloc.add(goTo);
+                          }
+                        },
+                        isEnabled: isEnabled,
+                      ),
                       UIHelper.vertSpace(20),
                     ],
                   )
