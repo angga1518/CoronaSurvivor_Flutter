@@ -55,6 +55,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnConnectPuskesmasPage();
     } else if (event is GoToSuccessPage) {
       yield OnSuccessPage();
+    } else if (event is GoToRecoveryOnBoardPage) {
+      yield OnRecoveryOnBoardPage();
     }
   }
 }

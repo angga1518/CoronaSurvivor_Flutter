@@ -126,6 +126,8 @@ class _WrapperState extends State<Wrapper> {
           return ConnectPuskesPage();
         } else if (state is OnSuccessPage) {
           return SuccessPage();
+        } else if (state is OnRecoveryOnBoardPage) {
+          return RecoveryOnboardPage();
         } else {
           return Container();
         }

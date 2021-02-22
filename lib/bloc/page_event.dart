@@ -48,3 +48,5 @@ class GoToCalendarHome extends PageEvent {}
 class GoToConnectPuskesmasPage extends PageEvent {}
 
 class GoToSuccessPage extends PageEvent {}
+
+class GoToRecoveryOnBoardPage extends PageEvent {}

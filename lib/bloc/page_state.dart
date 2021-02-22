@@ -50,3 +50,5 @@ class OnCalendarHome extends PageState {}
 class OnConnectPuskesmasPage extends PageState {}
 
 class OnSuccessPage extends PageState {}
+
+class OnRecoveryOnBoardPage extends PageState {}
