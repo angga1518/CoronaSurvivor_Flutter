@@ -9,6 +9,8 @@ class CalendarDefaultTemplate extends StatelessWidget {
   final double space;
   final bool isEnabled;
   final bool withPinkButton;
+  final String pinkButtonTitle;
+  final String header;
 
   CalendarDefaultTemplate(this.child,
       {this.addHeader = true,
@@ -17,7 +19,9 @@ class CalendarDefaultTemplate extends StatelessWidget {
       @required this.goTo,
       this.space = 38,
       this.isEnabled = true,
-      this.withPinkButton = true});
+      this.withPinkButton = true,
+      this.header = "Buat MyCalendar",
+      this.pinkButtonTitle = "Lanjut"});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +59,7 @@ class CalendarDefaultTemplate extends StatelessWidget {
                                         children: [
                                           SizedBox(
                                             width: UIHelper.setResWidth(280),
-                                            child: Text("Buat MyCalendar",
+                                            child: Text(header,
                                                 style: UIHelper.greyFont
                                                     .copyWith(
                                                         fontSize: UIHelper
@@ -85,7 +89,7 @@ class CalendarDefaultTemplate extends StatelessWidget {
                       UIHelper.vertSpace(20),
                       (withPinkButton)
                           ? PinkButton(
-                              "Lanjut",
+                              pinkButtonTitle,
                               () {
                                 if (goTo != null) {
                                   pageBloc.add(goTo);

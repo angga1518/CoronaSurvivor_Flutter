@@ -122,6 +122,10 @@ class _WrapperState extends State<Wrapper> {
           return CalendarSignUpPage5();
         } else if (state is OnCalendarHome) {
           return CalendarHomePage();
+        } else if (state is OnConnectPuskesmasPage) {
+          return ConnectPuskesPage();
+        } else if (state is OnSuccessPage) {
+          return SuccessPage();
         } else {
           return Container();
         }

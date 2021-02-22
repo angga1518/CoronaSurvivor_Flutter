@@ -51,6 +51,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage5();
     } else if (event is GoToCalendarHome) {
       yield OnCalendarHome();
+    } else if (event is GoToConnectPuskesmasPage) {
+      yield OnConnectPuskesmasPage();
+    } else if (event is GoToSuccessPage) {
+      yield OnSuccessPage();
     }
   }
 }
