@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    // pageBloc.add(GoToConnectPuskesmasPage());
+    pageBloc.add(GoToRecoveryOnBoardPage());
     // if (user == null) {
     //   // for dev
     //   // pageBloc.add(GoToCalendarSignUpPage1());
@@ -87,7 +87,6 @@ class _WrapperState extends State<Wrapper> {
       builder: (context, state) {
         if (state is OnSplashPage) {
           return SplashPage();
-          // return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
