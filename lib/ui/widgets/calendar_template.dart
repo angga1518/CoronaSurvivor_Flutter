@@ -11,6 +11,7 @@ class CalendarDefaultTemplate extends StatelessWidget {
   final bool withPinkButton;
   final String pinkButtonTitle;
   final String header;
+  final Function onPinkButtonTap;
 
   CalendarDefaultTemplate(this.child,
       {this.addHeader = true,
@@ -21,7 +22,8 @@ class CalendarDefaultTemplate extends StatelessWidget {
       this.isEnabled = true,
       this.withPinkButton = true,
       this.header = "Buat MyCalendar",
-      this.pinkButtonTitle = "Lanjut"});
+      this.pinkButtonTitle = "Lanjut",
+      this.onPinkButtonTap});
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +95,9 @@ class CalendarDefaultTemplate extends StatelessWidget {
                               () {
                                 if (goTo != null) {
                                   pageBloc.add(goTo);
+                                }
+                                if (onPinkButtonTap != null) {
+                                  onPinkButtonTap();
                                 }
                               },
                               isEnabled: isEnabled,

@@ -6,16 +6,30 @@ class ConnectPuskesPage extends StatefulWidget {
 }
 
 class _ConnectPuskesPageState extends State<ConnectPuskesPage> {
+  TextEditingController kodeController = TextEditingController();
+  bool isKodeValid = true;
   @override
   Widget build(BuildContext context) {
     return CalendarDefaultTemplate(
-      SizedBox(),
+      SizedBox(
+        child: TextFieldWidget(
+          "Kode Puskesmas",
+          "Kode Puskesmas",
+          (value) {
+            kodeController.text = value;
+          },
+          false,
+          isValid: isKodeValid,
+          errorText: "Kode tidak valid",
+        ),
+      ),
       addHeader: true,
       header: "Hubungkan Dengan Puskesmas",
       desc: "Masukkan kode puskesmas",
       backTo: GoToCalendarHome(),
-      goTo: null,
+      goTo: GoToSuccessPage(),
       pinkButtonTitle: "Kirim",
+      onPinkButtonTap: () {},
     );
   }
 }

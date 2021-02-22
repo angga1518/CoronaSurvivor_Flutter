@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    pageBloc.add(GoToCalendarHome());
+    // pageBloc.add(GoToConnectPuskesmasPage());
     // if (user == null) {
     //   // for dev
     //   // pageBloc.add(GoToCalendarSignUpPage1());

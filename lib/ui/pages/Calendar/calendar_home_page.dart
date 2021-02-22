@@ -8,6 +8,7 @@ class CalendarHomePage extends StatefulWidget {
 class _CalendarHomePageState extends State<CalendarHomePage> {
   @override
   Widget build(BuildContext context) {
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return CalendarDefaultTemplate(
       SizedBox(
           child: Column(
@@ -96,7 +97,9 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
                       color: UIHelper.colorPink,
                       child: InkWell(
                         splashColor: UIHelper.colorPinkLight,
-                        onTap: () {},
+                        onTap: () {
+                          pageBloc.add(GoToConnectPuskesmasPage());
+                        },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: UIHelper.setResWidth(5)),
