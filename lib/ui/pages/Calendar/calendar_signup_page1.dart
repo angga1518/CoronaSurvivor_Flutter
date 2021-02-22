@@ -30,7 +30,7 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return CalendarSignUpTemplate(
+    return CalendarDefaultTemplate(
       SizedBox(
         child: Column(
           children: [

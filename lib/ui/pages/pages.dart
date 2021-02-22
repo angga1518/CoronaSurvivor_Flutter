@@ -39,3 +39,4 @@ part 'Calendar/calendar_signup_page2.dart';
 part 'Calendar/calendar_signup_page3.dart';
 part 'Calendar/calendar_signup_page4.dart';
 part 'Calendar/calendar_signup_page5.dart';
+part 'Calendar/calendar_home_page.dart';

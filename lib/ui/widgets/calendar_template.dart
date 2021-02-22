@@ -1,6 +1,6 @@
 part of 'widgets.dart';
 
-class CalendarSignUpTemplate extends StatelessWidget {
+class CalendarDefaultTemplate extends StatelessWidget {
   final Widget child;
   final bool addHeader;
   final String desc;
@@ -8,14 +8,16 @@ class CalendarSignUpTemplate extends StatelessWidget {
   final PageEvent goTo;
   final double space;
   final bool isEnabled;
+  final bool withPinkButton;
 
-  CalendarSignUpTemplate(this.child,
+  CalendarDefaultTemplate(this.child,
       {this.addHeader = true,
       this.desc = "",
       @required this.backTo,
       @required this.goTo,
       this.space = 38,
-      this.isEnabled = true});
+      this.isEnabled = true,
+      this.withPinkButton = true});
 
   @override
   Widget build(BuildContext context) {
@@ -81,16 +83,18 @@ class CalendarSignUpTemplate extends StatelessWidget {
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton(
-                        "Lanjut",
-                        () {
-                          if (goTo != null) {
-                            pageBloc.add(goTo);
-                          }
-                        },
-                        isEnabled: isEnabled,
-                      ),
-                      UIHelper.vertSpace(20),
+                      (withPinkButton)
+                          ? PinkButton(
+                              "Lanjut",
+                              () {
+                                if (goTo != null) {
+                                  pageBloc.add(goTo);
+                                }
+                              },
+                              isEnabled: isEnabled,
+                            )
+                          : Container(),
+                      (withPinkButton) ? UIHelper.vertSpace(20) : Container(),
                     ],
                   )
                 ],

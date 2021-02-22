@@ -42,3 +42,5 @@ class GoToCalendarSignUpPage3 extends PageEvent {}
 class GoToCalendarSignUpPage4 extends PageEvent {}
 
 class GoToCalendarSignUpPage5 extends PageEvent {}
+
+class GoToCalendarHome extends PageEvent {}

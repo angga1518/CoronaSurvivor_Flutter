@@ -9,7 +9,7 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
   bool isSetuju = false;
   @override
   Widget build(BuildContext context) {
-    return CalendarSignUpTemplate(
+    return CalendarDefaultTemplate(
       SizedBox(
         child: generateCheckBox(
             title:

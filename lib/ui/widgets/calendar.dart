@@ -6,9 +6,11 @@ class Calendar extends StatelessWidget {
   final int startYellow;
   final int endYellow;
   final int recoverDate;
+  final bool clickable;
 
   Calendar(this.startRed, this.endRed, this.startYellow, this.endYellow,
-      this.recoverDate);
+      this.recoverDate,
+      {this.clickable = false});
 
   List<Widget> component = [];
   List<String> days = [
@@ -25,7 +27,7 @@ class Calendar extends StatelessWidget {
   Widget build(BuildContext context) {
     if (component.length == 0) {
       generateDay();
-      generateDate();
+      (clickable) ? generateClickableDate() : generateDate(); 
     }
     return Wrap(
       spacing: UIHelper.setResWidth(10),
@@ -95,16 +97,19 @@ class Calendar extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           color: (date >= startRed && date <= endRed)
-              ? UIHelper.colorMainRed.withOpacity(0.25)
+              ? UIHelper.colorMainRed
               : (date >= startYellow && date <= endYellow)
-                  ? UIHelper.colorMainYellow.withOpacity(0.20)
+                  ? UIHelper.colorMainYellow
                   : null,
         ),
         child: Center(
           child: Text(
             (date).toString(),
-            style: UIHelper.greyLightFont
-                .copyWith(fontSize: UIHelper.setResFontSize(15)),
+            style: (date >= startRed && date <= endYellow)
+                ? UIHelper.whiteFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15))
+                : UIHelper.greyLightFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
           ),
         ),
       ));
@@ -113,24 +118,90 @@ class Calendar extends StatelessWidget {
     }
   }
 
-  void generetDummy() {
-    for (var i = 0; i < 31; i++) {
+  void generateClickableDate() {
+    DateTime now = DateTime.now();
+    int lastDate = DateTime(now.year, now.month + 1, 0).day;
+    int countDaysThisMonth = lastDate;
+    int countDaysNextMonth = DateTime(now.year, now.month + 2, 0).day;
+    int firstRedWeekDay = DateTime(now.year, now.month, startRed).weekday;
+    int dayNeedToPassed = generateDayNeedToPassed();
+    int date = startRed;
+    int dateFront = startRed;
+    for (var i = 1; i <= lastDate + countDaysNextMonth; i++) {
+      if (dateFront > countDaysThisMonth) {
+        dateFront = 1;
+      }
+      if (i <= dayNeedToPassed) {
+        continue;
+      }
+      if (date > recoverDate) {
+        break;
+      }
+      if (i < firstRedWeekDay + dayNeedToPassed) {
+        component.add(Container(
+          height: UIHelper.setResHeight(32),
+          width: UIHelper.setResWidth(32),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+          ),
+        ));
+        lastDate++;
+        continue;
+      }
+      if (date == recoverDate) {
+        component.add(Container(
+          height: UIHelper.setResHeight(32),
+          width: UIHelper.setResWidth(32),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: UIHelper.colorMainGreen, width: 2)),
+          child: Center(
+            child: Text(
+              (dateFront).toString(),
+              style: UIHelper.greyLightFont
+                  .copyWith(fontSize: UIHelper.setResFontSize(15)),
+            ),
+          ),
+        ));
+        date++;
+        dateFront++;
+        continue;
+      }
       component.add(Container(
         height: UIHelper.setResHeight(32),
         width: UIHelper.setResWidth(32),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: UIHelper.colorMainRed.withOpacity(0.25),
+          color: (date >= startRed && date <= endRed)
+              ? UIHelper.colorMainRed
+              : (date >= startYellow && date <= endYellow)
+                  ? UIHelper.colorMainYellow
+                  : null,
         ),
         child: Center(
           child: Text(
-            (i + 1).toString(),
-            style: UIHelper.greyLightFont
-                .copyWith(fontSize: UIHelper.setResFontSize(15)),
+            (dateFront).toString(),
+            style: (date >= startRed && date <= endYellow)
+                ? UIHelper.whiteFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15))
+                : UIHelper.greyLightFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
           ),
         ),
       ));
+
+      date++;
+      dateFront++;
     }
+  }
+
+  int generateDayNeedToPassed() {
+    int count = 0;
+    for (var i = 1; i < startRed; i = i + 7) {
+      count++;
+    }
+    count--;
+    return count * 7;
   }
 
   void cleanComponent() {

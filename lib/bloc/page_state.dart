@@ -44,3 +44,5 @@ class OnCalendarSignUpPage3 extends PageState {}
 class OnCalendarSignUpPage4 extends PageState {}
 
 class OnCalendarSignUpPage5 extends PageState {}
+
+class OnCalendarHome extends PageState {}

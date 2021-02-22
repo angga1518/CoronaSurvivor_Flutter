@@ -19,5 +19,5 @@ part 'bottom_bar.dart';
 part 'article_container.dart';
 part 'pop_up_child.dart';
 part 'pop_up_loading_child.dart';
-part 'calendar_signup_template.dart';
+part 'calendar_template.dart';
 part 'dropdown_textfield.dart';

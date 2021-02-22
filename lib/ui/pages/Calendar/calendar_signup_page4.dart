@@ -12,7 +12,7 @@ class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
   @override
   Widget build(BuildContext context) {
     int index = children.length;
-    return CalendarSignUpTemplate(
+    return CalendarDefaultTemplate(
       Padding(
         padding: EdgeInsets.only(left: UIHelper.setResWidth(10)),
         child: SizedBox(
