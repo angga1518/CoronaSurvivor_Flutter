@@ -124,8 +124,15 @@ class _AddRecoveryPageState extends State<AddRecoveryPage> {
       date: "01-10-2000",
       backTo: GoToRecoveryOnBoardPage(),
       withPinkButton: true,
-      onPinkButtonTap: (){
-        pageBloc.add(GoToCalendarHome());
+      onPinkButtonTap: () {
+        pageBloc.add(
+          GoToSuccessPage(
+              goTo: GoToCalendarHome(),
+              backTo: GoToCalendarHome(),
+              pinkButtonMessage: "Kembali ke MyCalendar",
+              message:
+                  "Laporan kondisi perkembangan kamu telah berhasil dikirimkan! silahkan press salah satu tanggal di MyCalendar untuk melihat status Anda"),
+        );
       },
     );
   }

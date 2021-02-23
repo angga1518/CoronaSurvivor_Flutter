@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    // pageBloc.add(GoToRecoveryOnBoardPage());
+    pageBloc.add(GoToRecoveryOnBoardPage());
     // if (user == null) {
     //   // for dev
     //   // pageBloc.add(GoToCalendarSignUpPage1());
@@ -124,11 +124,14 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnConnectPuskesmasPage) {
           return ConnectPuskesPage();
         } else if (state is OnSuccessPage) {
-          return SuccessPage();
+          return SuccessPage(
+              state.message, state.goTo, state.backTo, state.pinkButtonMessage);
         } else if (state is OnRecoveryOnBoardPage) {
           return RecoveryOnboardPage();
         } else if (state is OnAddRecoveryPage) {
           return AddRecoveryPage();
+        } else if (state is OnAddNewGejalaPage) {
+          return AddNewGejalaPage();
         } else {
           return Container();
         }

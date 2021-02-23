@@ -52,6 +52,7 @@ class _RecoveryOnboardPageState extends State<RecoveryOnboardPage> {
                     pageBloc.add(GoToAddRecoveryPage());
                   }, () async {
                     Navigator.pop(context);
+                    pageBloc.add(GoToAddNewGejalaPage());
                   }));
             }, height: 29, fontSize: 10, width: 150),
             UIHelper.vertSpace(10),

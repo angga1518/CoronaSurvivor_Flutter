@@ -1,6 +1,11 @@
 part of 'pages.dart';
 
 class SuccessPage extends StatefulWidget {
+  final String message;
+  final String pinkButtonMessage;
+  final PageEvent goTo;
+  final PageEvent backTo;
+  SuccessPage(this.message, this.goTo, this.backTo, this.pinkButtonMessage);
   @override
   _SuccessPageState createState() => _SuccessPageState();
 }
@@ -11,7 +16,7 @@ class _SuccessPageState extends State<SuccessPage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () {
-        pageBloc.add(GoToConnectPuskesmasPage());
+        pageBloc.add(widget.backTo);
         Future.value(false);
       },
       child: Scaffold(
@@ -39,7 +44,7 @@ class _SuccessPageState extends State<SuccessPage> {
                   SizedBox(
                     width: UIHelper.setResWidth(266),
                     child: Text(
-                      "MyCalendar Anda berhasil terhubung dengan Puskesmas Depok! Laporan Anda selanjutnya akan diberikan feedback oleh pihak puskesmas",
+                      widget.message,
                       style: UIHelper.greyFont.copyWith(
                           fontSize: UIHelper.setResFontSize(15),
                           fontWeight: FontWeight.w700),
@@ -47,8 +52,8 @@ class _SuccessPageState extends State<SuccessPage> {
                     ),
                   ),
                   UIHelper.vertSpace(80),
-                  PinkButton("Kembali ke Info", () {
-                    pageBloc.add(GoToCalendarHome());
+                  PinkButton(widget.pinkButtonMessage, () {
+                    pageBloc.add(widget.goTo);
                   })
                 ],
               ),

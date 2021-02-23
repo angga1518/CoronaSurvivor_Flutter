@@ -54,11 +54,14 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToConnectPuskesmasPage) {
       yield OnConnectPuskesmasPage();
     } else if (event is GoToSuccessPage) {
-      yield OnSuccessPage();
+      yield OnSuccessPage(
+          event.message, event.goTo, event.backTo, event.pinkButtonMessage);
     } else if (event is GoToRecoveryOnBoardPage) {
       yield OnRecoveryOnBoardPage();
     } else if (event is GoToAddRecoveryPage) {
       yield OnAddRecoveryPage();
+    } else if (event is GoToAddNewGejalaPage) {
+      yield OnAddNewGejalaPage();
     }
   }
 }

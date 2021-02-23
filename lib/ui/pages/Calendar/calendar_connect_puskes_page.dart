@@ -27,7 +27,13 @@ class _ConnectPuskesPageState extends State<ConnectPuskesPage> {
       header: "Hubungkan Dengan Puskesmas",
       desc: "Masukkan kode puskesmas",
       backTo: GoToCalendarHome(),
-      goTo: GoToSuccessPage(),
+      goTo: GoToSuccessPage(
+          message:
+              "MyCalendar Anda berhasil terhubung dengan Puskesmas Depok! Laporan Anda selanjutnya akan diberikan feedback oleh pihak puskesmas",
+          goTo: GoToCalendarHome(),
+          pinkButtonMessage: "Kembali ke MyCalendar",
+          backTo: GoToCalendarHome()
+          ),
       pinkButtonTitle: "Kirim",
       onPinkButtonTap: () {},
     );
