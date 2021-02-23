@@ -21,7 +21,12 @@ class GoToDonorReceiverPage extends PageEvent {}
 
 class GoToInfoPage extends PageEvent {}
 
-class GoToDetailInfoPage extends PageEvent {}
+class GoToDetailInfoPage extends PageEvent {
+  final String idArtikel;
+  final Pengguna pengguna;
+
+  GoToDetailInfoPage(this.idArtikel, this.pengguna);
+}
 
 class GoToAddCommentPage extends PageEvent {
   final String title;

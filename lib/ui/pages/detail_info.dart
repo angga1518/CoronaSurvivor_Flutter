@@ -1,6 +1,11 @@
 part of 'pages.dart';
 
 class DetailInfo extends StatefulWidget {
+  final String idArtikel;
+  final Pengguna pengguna;
+
+  DetailInfo(this.idArtikel, this.pengguna);
+
   @override
   _DetailInfoState createState() => _DetailInfoState();
 }

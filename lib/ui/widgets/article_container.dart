@@ -17,7 +17,7 @@ class ArticleContainer extends StatelessWidget {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return GestureDetector(
       onTap: () {
-        pageBloc.add(GoToDetailInfoPage());
+        pageBloc.add(GoToDetailInfoPage(idArtikel, pengguna));
       },
       child: Container(
         padding: EdgeInsets.symmetric(

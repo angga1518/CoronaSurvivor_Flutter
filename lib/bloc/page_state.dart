@@ -23,7 +23,12 @@ class OnDonorReceiverPage extends PageState {}
 
 class OnInfoPage extends PageState {}
 
-class OnDetailInfoPage extends PageState {}
+class OnDetailInfoPage extends PageState {
+  final String idArtikel;
+  final Pengguna pengguna;
+
+  OnDetailInfoPage(this.idArtikel, this.pengguna);
+}
 
 class OnAddCommentPage extends PageState {
   final String title;

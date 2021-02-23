@@ -105,7 +105,7 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnInfoPage) {
           return InfoPage();
         } else if (state is OnDetailInfoPage) {
-          return DetailInfo();
+          return DetailInfo(state.idArtikel, state.pengguna);
         } else if (state is OnAddCommentPage) {
           return AddCommentPage(state.title, state.component, state.isReply);
         } else if (state is OnCalendarOnboardPage) {

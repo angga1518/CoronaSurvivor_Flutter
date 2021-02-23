@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:corona_survivor_flutter/bloc/blocs.dart';
+import 'package:corona_survivor_flutter/models/models.dart';
 import 'package:corona_survivor_flutter/ui/pages/pages.dart';
 import 'package:meta/meta.dart';
 
@@ -34,7 +35,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToInfoPage) {
       yield OnInfoPage();
     } else if (event is GoToDetailInfoPage) {
-      yield OnDetailInfoPage();
+      yield OnDetailInfoPage(event.idArtikel, event.pengguna);
     } else if (event is GoToAddCommentPage) {
       yield OnAddCommentPage(event.title, event.component, event.isReply);
     } else if (event is GoToCalendarOnboardPage) {

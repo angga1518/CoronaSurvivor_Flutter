@@ -24,7 +24,6 @@ class PenggunaServices {
     http.Response response = await http.Client().get(url);
     var data = json.decode(response.body);
     data = data['result'];
-    // List<String> temp = data['listIdArtikelDisimpan'].map((e)=>""+e).toList();
     Pengguna pengguna = Pengguna(
         namaLengkap: data['namaLengkap'],
         email: data['email'],
