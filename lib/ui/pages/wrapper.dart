@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    pageBloc.add(GoToRecoveryOnBoardPage());
+    // pageBloc.add(GoToRecoveryOnBoardPage());
     // if (user == null) {
     //   // for dev
     //   // pageBloc.add(GoToCalendarSignUpPage1());
@@ -127,6 +127,8 @@ class _WrapperState extends State<Wrapper> {
           return SuccessPage();
         } else if (state is OnRecoveryOnBoardPage) {
           return RecoveryOnboardPage();
+        } else if (state is OnAddRecoveryPage) {
+          return AddRecoveryPage();
         } else {
           return Container();
         }

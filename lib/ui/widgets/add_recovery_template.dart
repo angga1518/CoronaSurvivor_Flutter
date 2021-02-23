@@ -97,7 +97,7 @@ class RecoveryTemplate extends StatelessWidget {
                               isEnabled: isPinkButtonEnabled,
                             )
                           : Container(),
-                      (withPinkButton) ? UIHelper.vertSpace(20) : Container(),
+                      (withPinkButton) ? UIHelper.vertSpace(70) : Container(),
                     ],
                   )
                 ],

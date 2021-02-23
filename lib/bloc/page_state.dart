@@ -52,3 +52,5 @@ class OnConnectPuskesmasPage extends PageState {}
 class OnSuccessPage extends PageState {}
 
 class OnRecoveryOnBoardPage extends PageState {}
+
+class OnAddRecoveryPage extends PageState {}

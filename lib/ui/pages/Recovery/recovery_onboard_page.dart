@@ -8,6 +8,7 @@ class RecoveryOnboardPage extends StatefulWidget {
 class _RecoveryOnboardPageState extends State<RecoveryOnboardPage> {
   @override
   Widget build(BuildContext context) {
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return RecoveryTemplate(
       child: SizedBox(
           child: Container(
@@ -43,24 +44,14 @@ class _RecoveryOnboardPageState extends State<RecoveryOnboardPage> {
             PinkButton("Isi Perkembangan", () async {
               await showPopUp(
                   context: context,
-                  child: PopUpChild("Apakah Anda mengalami demam?",
-                      "Demam dianggap salah satu gejala utama covid-19. Tambahkan gejala demam pada MyCalendar apabila Anda mengalami demam",
+                  child: PopUpChild(
+                      "Apakah Anda mengalami gejala yang berbeda dari sebelumnya?",
+                      "Tambahkan gejala lainnya pada MyCalendar apabila Anda mengalami gejala lain",
                       () {
                     Navigator.pop(context);
+                    pageBloc.add(GoToAddRecoveryPage());
                   }, () async {
                     Navigator.pop(context);
-                    await showPopUp(
-                        context: context,
-                        child: PopUpChild(
-                          "Apakah Anda mengalami gejala lainnya?",
-                          "Tambahkan gejala lainnya pada MyCalendar apabila Anda mengalami gejala lain",
-                          () {
-                            Navigator.pop(context);
-                          },
-                          () {
-                            Navigator.pop(context);
-                          },
-                        ));
                   }));
             }, height: 29, fontSize: 10, width: 150),
             UIHelper.vertSpace(10),
@@ -68,7 +59,7 @@ class _RecoveryOnboardPageState extends State<RecoveryOnboardPage> {
         ),
       )),
       date: "01-10-2000",
-      backTo: null,
+      backTo: GoToCalendarHome(),
       withPinkButton: false,
     );
   }

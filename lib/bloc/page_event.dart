@@ -50,3 +50,5 @@ class GoToConnectPuskesmasPage extends PageEvent {}
 class GoToSuccessPage extends PageEvent {}
 
 class GoToRecoveryOnBoardPage extends PageEvent {}
+
+class GoToAddRecoveryPage extends PageEvent {}

@@ -23,8 +23,11 @@ class Calendar extends StatelessWidget {
     "Su",
   ];
 
+  PageBloc pageBloc;
+
   @override
   Widget build(BuildContext context) {
+    pageBloc = BlocProvider.of<PageBloc>(context);
     if (component.length == 0) {
       generateDay();
       (clickable) ? generateClickableDate() : generateDate(); 
@@ -149,17 +152,23 @@ class Calendar extends StatelessWidget {
         continue;
       }
       if (date == recoverDate) {
-        component.add(Container(
-          height: UIHelper.setResHeight(32),
-          width: UIHelper.setResWidth(32),
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: UIHelper.colorMainGreen, width: 2)),
-          child: Center(
-            child: Text(
-              (dateFront).toString(),
-              style: UIHelper.greyLightFont
-                  .copyWith(fontSize: UIHelper.setResFontSize(15)),
+        component.add(GestureDetector(
+          onTap: (){
+            // TODO: sesuakan bro
+            pageBloc.add(GoToRecoveryOnBoardPage());
+          },
+                  child: Container(
+            height: UIHelper.setResHeight(32),
+            width: UIHelper.setResWidth(32),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: UIHelper.colorMainGreen, width: 2)),
+            child: Center(
+              child: Text(
+                (dateFront).toString(),
+                style: UIHelper.greyLightFont
+                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
+              ),
             ),
           ),
         ));
@@ -167,25 +176,31 @@ class Calendar extends StatelessWidget {
         dateFront++;
         continue;
       }
-      component.add(Container(
-        height: UIHelper.setResHeight(32),
-        width: UIHelper.setResWidth(32),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: (date >= startRed && date <= endRed)
-              ? UIHelper.colorMainRed
-              : (date >= startYellow && date <= endYellow)
-                  ? UIHelper.colorMainYellow
-                  : null,
-        ),
-        child: Center(
-          child: Text(
-            (dateFront).toString(),
-            style: (date >= startRed && date <= endYellow)
-                ? UIHelper.whiteFont
-                    .copyWith(fontSize: UIHelper.setResFontSize(15))
-                : UIHelper.greyLightFont
-                    .copyWith(fontSize: UIHelper.setResFontSize(15)),
+      component.add(GestureDetector(
+        onTap: (){
+          // TODO: sesuakan bro
+          pageBloc.add(GoToRecoveryOnBoardPage());
+        },
+              child: Container(
+          height: UIHelper.setResHeight(32),
+          width: UIHelper.setResWidth(32),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: (date >= startRed && date <= endRed)
+                ? UIHelper.colorMainRed
+                : (date >= startYellow && date <= endYellow)
+                    ? UIHelper.colorMainYellow
+                    : null,
+          ),
+          child: Center(
+            child: Text(
+              (dateFront).toString(),
+              style: (date >= startRed && date <= endYellow)
+                  ? UIHelper.whiteFont
+                      .copyWith(fontSize: UIHelper.setResFontSize(15))
+                  : UIHelper.greyLightFont
+                      .copyWith(fontSize: UIHelper.setResFontSize(15)),
+            ),
           ),
         ),
       ));

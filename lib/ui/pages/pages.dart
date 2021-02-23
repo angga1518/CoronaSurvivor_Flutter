@@ -42,4 +42,6 @@ part 'Calendar/calendar_signup_page5.dart';
 part 'Calendar/calendar_home_page.dart';
 part 'Calendar/calendar_connect_puskes_page.dart';
 part 'Recovery/recovery_onboard_page.dart';
+part 'Recovery/add_new_gejala_page.dart';
+part 'Recovery/add_recovery_page.dart';
 part 'success_page.dart';

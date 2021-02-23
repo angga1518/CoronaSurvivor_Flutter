@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool isValid;
   final Icon suffixIcon;
   final String prefixText;
+  final String helperText;
   final bool editable;
   final TextEditingController controller;
 
@@ -24,7 +25,8 @@ class TextFieldWidget extends StatelessWidget {
       this.suffixIcon,
       this.prefixText = "",
       this.editable = true,
-      this.controller});
+      this.controller,
+      this.helperText = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,8 @@ class TextFieldWidget extends StatelessWidget {
             }
           },
           decoration: InputDecoration(
+            helperStyle: TextStyle(color: UIHelper.colorGreySuperLight),
+            helperText: helperText == "" ? null : helperText,
             prefixText: prefixText == "" ? null : prefixText,
             suffixIcon: suffixIcon ?? null,
             contentPadding: EdgeInsets.symmetric(

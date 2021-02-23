@@ -24,7 +24,7 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
       space: 5,
       addHeader: false,
       backTo: GoToCalendarSignUpPage4(),
-      goTo: null,
+      goTo: GoToCalendarHome(),
       isEnabled: isSetuju,
     );
   }
