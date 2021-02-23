@@ -49,6 +49,21 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage4();
     } else if (event is GoToCalendarSignUpPage5) {
       yield OnCalendarSignUpPage5();
+    } else if (event is GoToCalendarHome) {
+      yield OnCalendarHome();
+    } else if (event is GoToConnectPuskesmasPage) {
+      yield OnConnectPuskesmasPage();
+    } else if (event is GoToSuccessPage) {
+      yield OnSuccessPage(
+          event.message, event.goTo, event.backTo, event.pinkButtonMessage);
+    } else if (event is GoToRecoveryOnBoardPage) {
+      yield OnRecoveryOnBoardPage();
+    } else if (event is GoToAddRecoveryPage) {
+      yield OnAddRecoveryPage();
+    } else if (event is GoToAddNewGejalaPage) {
+      yield OnAddNewGejalaPage();
+    } else if (event is GoToRecoveryDetailPage) {
+      yield OnRecoveryDetailPage();
     }
   }
 }

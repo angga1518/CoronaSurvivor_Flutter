@@ -42,3 +42,27 @@ class GoToCalendarSignUpPage3 extends PageEvent {}
 class GoToCalendarSignUpPage4 extends PageEvent {}
 
 class GoToCalendarSignUpPage5 extends PageEvent {}
+
+class GoToCalendarHome extends PageEvent {}
+
+class GoToConnectPuskesmasPage extends PageEvent {}
+
+class GoToSuccessPage extends PageEvent {
+  final String message;
+  final String pinkButtonMessage;
+  final PageEvent goTo;
+  final PageEvent backTo;
+  GoToSuccessPage(
+      {@required this.message,
+      @required this.goTo,
+      @required this.backTo,
+      @required this.pinkButtonMessage});
+}
+
+class GoToRecoveryOnBoardPage extends PageEvent {}
+
+class GoToAddRecoveryPage extends PageEvent {}
+
+class GoToAddNewGejalaPage extends PageEvent {}
+
+class GoToRecoveryDetailPage extends PageEvent {}

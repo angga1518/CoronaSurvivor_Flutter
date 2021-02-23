@@ -24,7 +24,7 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
   bool isMudahLelah = false;
   @override
   Widget build(BuildContext context) {
-    return CalendarSignUpTemplate(
+    return CalendarDefaultTemplate(
       SizedBox(
         child: Column(
           children: [
