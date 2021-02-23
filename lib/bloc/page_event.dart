@@ -64,3 +64,5 @@ class GoToRecoveryOnBoardPage extends PageEvent {}
 class GoToAddRecoveryPage extends PageEvent {}
 
 class GoToAddNewGejalaPage extends PageEvent {}
+
+class GoToRecoveryDetailPage extends PageEvent {}

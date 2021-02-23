@@ -62,3 +62,5 @@ class OnRecoveryOnBoardPage extends PageState {}
 class OnAddRecoveryPage extends PageState {}
 
 class OnAddNewGejalaPage extends PageState {}
+
+class OnRecoveryDetailPage extends PageState {}

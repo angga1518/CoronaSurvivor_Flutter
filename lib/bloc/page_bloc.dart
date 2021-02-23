@@ -62,6 +62,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnAddRecoveryPage();
     } else if (event is GoToAddNewGejalaPage) {
       yield OnAddNewGejalaPage();
+    } else if (event is GoToRecoveryDetailPage) {
+      yield OnRecoveryDetailPage();
     }
   }
 }
