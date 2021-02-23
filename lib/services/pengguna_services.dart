@@ -24,6 +24,7 @@ class PenggunaServices {
     http.Response response = await http.Client().get(url);
     var data = json.decode(response.body);
     data = data['result'];
+    // List<String> temp = data['listIdArtikelDisimpan'].map((e)=>""+e).toList();
     Pengguna pengguna = Pengguna(
         namaLengkap: data['namaLengkap'],
         email: data['email'],
@@ -31,9 +32,9 @@ class PenggunaServices {
         jenisKelamin: data['jenisKelamin'],
         domisili: data['domisili'],
         noTelepon: data['noTelepon'],
-        listIdArtikelDisimpan: data['listIdArtikelDisimpan'],
-        listIdLikedArtikel: data['listIdLikedArtikel'],
-        listIdLikedKomentar: data['listIdLikedKomentar']);
+        listIdArtikelDisimpan: data['listIdArtikelDisimpan'].cast<String>(),
+        listIdLikedArtikel: data['listIdLikedArtikel'].cast<String>(),
+        listIdLikedKomentar: data['listIdLikedKomentar'].cast<String>());
     return pengguna;
   }
 }

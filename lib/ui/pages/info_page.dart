@@ -21,7 +21,6 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToOnboardPage());
@@ -37,22 +36,50 @@ class _InfoPageState extends State<InfoPage> {
               ListView(
                 children: [
                   UIHelper.vertSpace(113),
-                  Container(
-                      height: UIHelper.height - UIHelper.setResHeight(185),
-                      child: PageView(
-                        onPageChanged: (index) {
-                          setState(() {
-                            infoIndex = index;
-                          });
-                        },
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: pageController,
-                        children: [
-                          // generateNotFound(),
-                          generatePortal(),
-                          generateSaved()
-                        ],
-                      ))
+                  BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return FutureBuilder(
+                            future: Future.wait([
+                              ArtikelServices.getAllArtikel(pengguna.email),
+                              ArtikelServices.getAllSavedArtikel(pengguna.email)
+                            ]),
+                            builder: (context,
+                                AsyncSnapshot<List<dynamic>> snapshot) {
+                              if (snapshot.hasData) {
+                                var allArtikel = snapshot.data[0]; //bar
+                                var savedArtikel = snapshot.data[1];
+                                return Container(
+                                    height: UIHelper.height -
+                                        UIHelper.setResHeight(185),
+                                    child: PageView(
+                                      onPageChanged: (index) {
+                                        setState(() {
+                                          infoIndex = index;
+                                        });
+                                      },
+                                      physics: NeverScrollableScrollPhysics(),
+                                      controller: pageController,
+                                      children: [
+                                        // generateNotFound(),
+                                        generatePortal(allArtikel, pengguna),
+                                        savedArtikel != null
+                                            ? generateSaved(
+                                                savedArtikel, pengguna)
+                                            : null,
+                                      ],
+                                    ));
+                              } else {
+                                // kasih sp
+                                return Container();
+                              }
+                            });
+                      } else {
+                        return Container();
+                      }
+                    },
+                  )
                 ],
               ),
               Column(
@@ -64,7 +91,8 @@ class _InfoPageState extends State<InfoPage> {
                         color: UIHelper.colorDarkWhite,
                         border: Border.symmetric(
                             vertical: BorderSide(
-                                color: UIHelper.colorMediumLightGrey, width: 1))),
+                                color: UIHelper.colorMediumLightGrey,
+                                width: 1))),
                     child: Row(
                       children: [
                         Expanded(
@@ -165,39 +193,57 @@ class _InfoPageState extends State<InfoPage> {
     );
   }
 
-  Widget generatePortal() {
+  Widget generatePortal(List<Artikel> listArtikel, Pengguna pengguna) {
+    List<Widget> children = [];
+
+    for (Artikel artikel in listArtikel) {
+      children.add(ArticleContainer(
+          pengguna,
+          artikel.idArtikel,
+          artikel.judul,
+          artikel.deskripsi,
+          artikel.listIdComment != null ? artikel.listIdComment.length : 0,
+          artikel.jumlahLike,
+          artikel.imageUrl));
+      children.add(
+        UIHelper.vertSpace(10),
+      );
+    }
+
     return Container(
       child: ListView(
         children: [
           UIHelper.vertSpace(15),
           generateSearchBar(),
           UIHelper.vertSpace(15),
-          CardContainer(
-              "Top Info",
-              Column(
-                children: [
-                  ArticleContainer(),
-                  UIHelper.vertSpace(10),
-                  ArticleContainer()
-                ],
-              )),
-          UIHelper.vertSpace(15),
-          CardContainer(
-              "Info Terbaru",
-              Column(
-                children: [
-                  ArticleContainer(),
-                  UIHelper.vertSpace(10),
-                  ArticleContainer()
-                ],
-              )),
+          CardContainer("", Column(children: children)),
           UIHelper.vertSpace(15),
         ],
       ),
     );
   }
 
-  Widget generateSaved() {
+  Widget generateSaved(List<Artikel> listArtikel, Pengguna pengguna) {
+    List<Widget> children = [];
+    if (listArtikel.length != 0) {
+      for (Artikel artikel in listArtikel) {
+        ArticleContainer articleContainer = new ArticleContainer(
+            pengguna,
+            artikel.idArtikel,
+            artikel.judul,
+            artikel.deskripsi,
+            artikel.listIdComment != null ? artikel.listIdComment.length : 0,
+            artikel.jumlahLike,
+            artikel.imageUrl);
+        children.add(articleContainer);
+        children.add(
+          UIHelper.vertSpace(10),
+        );
+      }
+    } else {
+      children.add(generateNotFoundSavedArtikel());
+    }
+
     return Container(
       child: ListView(
         children: [
@@ -207,13 +253,7 @@ class _InfoPageState extends State<InfoPage> {
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(22, 21, 22, 21),
-                  child: Column(
-                    children: [
-                      ArticleContainer(),
-                      UIHelper.vertSpace(10),
-                      ArticleContainer()
-                    ],
-                  ),
+                  child: Column(children: children),
                 )
               ],
             ),
@@ -226,6 +266,40 @@ class _InfoPageState extends State<InfoPage> {
           ),
           UIHelper.vertSpace(15),
         ],
+      ),
+    );
+  }
+
+  Widget generateNotFoundSavedArtikel() {
+    return Container(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(
+              width: UIHelper.setResWidth(300),
+              child: Text(
+                "Belum Ada Artikel Tersimpan",
+                style: UIHelper.redFont.copyWith(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            UIHelper.vertSpace(15),
+            SizedBox(
+              width: UIHelper.setResWidth(250),
+              child: Text(
+                "Ayo tambahkan artikel favorit anda!",
+                style: UIHelper.greyFont,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+        width: UIHelper.setResWidth(322),
+        margin: EdgeInsets.only(left: 19, right: 19),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+        ),
       ),
     );
   }

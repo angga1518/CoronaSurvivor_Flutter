@@ -4,6 +4,6 @@ part of 'shared.dart';
 // prod_base_url = "https://coronasurvivor.azurewebsites.net/";
 // please use http instead of https
 // const String base_url = "http://coronasurvivor.azurewebsites.net/";
-const String base_url = "http://c434f144bcfe.ngrok.io/";
+const String base_url = "http://7461e56f8bc4.ngrok.io/";
 
 PageEvent prevPageEvent;

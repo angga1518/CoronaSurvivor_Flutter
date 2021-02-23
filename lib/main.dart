@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-
 import 'bloc/blocs.dart';
 import 'ui/pages/pages.dart';
 
@@ -17,6 +16,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ArtikelServices.getAllSavedArtikel("AG@gmail.com");
+    ArtikelServices.getArtikelDetails("vRsS5gXFu9EvkW8ceVhv", "AG@gmail.com");
     return StreamProvider.value(
         value: AuthServices.userStream,
         child: MultiBlocProvider(
