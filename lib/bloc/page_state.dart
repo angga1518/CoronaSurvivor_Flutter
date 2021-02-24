@@ -22,7 +22,8 @@ class OnProfilePage extends PageState {
 
 class OnDonorGiverPage extends PageState {
   final Pengguna pengguna;
-  OnDonorGiverPage(this.pengguna);
+  final PemberiDonor pemberiDonor;
+  OnDonorGiverPage(this.pengguna, this.pemberiDonor);
 }
 
 class OnDonorReceiverPage extends PageState {

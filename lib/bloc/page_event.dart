@@ -20,7 +20,8 @@ class GoToProfilePage extends PageEvent {
 
 class GoToDonorGiverPage extends PageEvent {
   final Pengguna pengguna;
-  GoToDonorGiverPage(this.pengguna);
+  final PemberiDonor pemberiDonor;
+  GoToDonorGiverPage(this.pengguna, this.pemberiDonor);
 }
 
 class GoToDonorReceiverPage extends PageEvent {
