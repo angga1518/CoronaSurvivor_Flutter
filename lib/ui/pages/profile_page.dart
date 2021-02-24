@@ -51,21 +51,38 @@ class _ProfilePageState extends State<ProfilePage> {
                       UIHelper.vertSpace(18),
                       CardContainer(
                           "Data Pemberi Donor",
-                          Column(
-                            children: [
-                              ListNavigationContainer(
-                                  "Muhammad Erlangga", "O", "Jakarta", () {
-                                pageBloc
-                                    .add(GoToDonorGiverPage(widget.pengguna));
-                              }),
-                              UIHelper.vertSpace(10),
-                              ListNavigationContainer(
-                                  "Alfan Adhitia", "A", "Depok", () {
-                                pageBloc
-                                    .add(GoToDonorGiverPage(widget.pengguna));
-                              }),
-                            ],
-                          )),
+                          FutureBuilder(
+                              future:
+                                  PemberiDonorService.getPemberiDonorByEmail(
+                                      widget.pengguna.email),
+                              builder: (_, snapshot) {
+                                if (snapshot.hasData) {
+                                  List<PemberiDonor> listPemberiDonor =
+                                      snapshot.data as List<PemberiDonor>;
+                                  List<Widget> children = [];
+                                  for (PemberiDonor pemberiDonor
+                                      in listPemberiDonor) {
+                                    children.add(ListNavigationContainer(
+                                        pemberiDonor.namaLengkap,
+                                        pemberiDonor.golonganDarah,
+                                        pemberiDonor.domisili, () {
+                                      pageBloc.add(GoToDonorGiverPage(
+                                          widget.pengguna, pemberiDonor));
+                                    }));
+                                    children.add(UIHelper.vertSpace(10));
+                                  }
+                                  return Column(
+                                    children: children,
+                                  );
+                                } else {
+                                  return Container(
+                                    child: Center(
+                                        child: SpinKitThreeBounce(
+                                            color: UIHelper.colorMainLightRed,
+                                            size: UIHelper.setResWidth(20))),
+                                  );
+                                }
+                              })),
                       UIHelper.vertSpace(18),
                       CardContainer(
                           "Data Penerima Donor",

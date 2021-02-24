@@ -29,7 +29,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToSignupPage) {
       yield OnSignupPage();
     } else if (event is GoToDonorGiverPage) {
-      yield OnDonorGiverPage(event.pengguna);
+      yield OnDonorGiverPage(event.pengguna, event.pemberiDonor);
     } else if (event is GoToDonorReceiverPage) {
       yield OnDonorReceiverPage(event.pengguna, event.penerimaDonor);
     } else if (event is GoToInfoPage) {

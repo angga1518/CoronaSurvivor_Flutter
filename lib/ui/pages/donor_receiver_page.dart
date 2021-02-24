@@ -60,7 +60,7 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                           Column(
                             children: [
                               InformationContainer(
-                                  "Golonga Darah", pendonor.golonganDarah),
+                                  "Golongan Darah", pendonor.golonganDarah),
                               UIHelper.vertSpace(10),
                               InformationContainer(
                                   "Rhesus", "(${pendonor.rhesus})"),
