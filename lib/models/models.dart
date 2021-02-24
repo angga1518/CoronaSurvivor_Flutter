@@ -4,3 +4,4 @@ import 'package:intl/intl.dart';
 
 part 'pengguna.dart';
 part 'artikel.dart';
+part 'penerima_donor.dart';
