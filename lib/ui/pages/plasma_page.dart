@@ -19,6 +19,8 @@ class _PlasmaPageState extends State<PlasmaPage> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
+    List<DataPenerima> lisDataPenerima =
+        PlasmaServices.getAllSavedDataPenerima();
 
     return WillPopScope(
       onWillPop: () async {
@@ -54,7 +56,7 @@ class _PlasmaPageState extends State<PlasmaPage> {
                 ),
                 Column(
                   children: [
-                    TopBar("Info", () {}),
+                    TopBar("Plasma", () {}),
                     Container(
                       height: UIHelper.setResHeight(45),
                       decoration: BoxDecoration(
@@ -160,12 +162,14 @@ class _PlasmaPageState extends State<PlasmaPage> {
             ),
           ),
           floatingActionButton: Padding(
-            padding: const EdgeInsets.only(bottom: 500),
+            padding: const EdgeInsets.only(bottom: 70),
             child: FloatingActionButton.extended(
+              elevation: 0,
               backgroundColor: UIHelper.colorMainLightRed,
               foregroundColor: UIHelper.colorMainRed,
               onPressed: () {
                 // Respond to button press
+                pageBloc.add(GoToPlasmaPenerimaSignUp1());
               },
               icon: Icon(Icons.add),
               label: Text(

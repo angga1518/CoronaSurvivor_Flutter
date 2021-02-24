@@ -69,7 +69,10 @@ class UIHelper {
   static const Color colorMainRed = Color(0xFFFC312F);
   static const Color colorMainLightRed = Color(0xFFFFCFCF);
   static const Color colorMainGreen = Color(0xFF45AB5D);
+  static const Color colorLightMainGreen = Color(0xFF82D996);
   static const Color colorMainYellow = Color(0xFFFB8D46);
+  static const Color colorLightYellow = Color(0xFFF98C45);
+  static const Color colorSuperLightYellow = Color(0xFFFEEEE3);
   static const Color colorPink = Color(0xFFFFE0E0);
   static const Color colorPinkLight = Color(0xFFEECACA);
   static const Color colorPinkSuperLight = Color(0xFFF6F1F1);

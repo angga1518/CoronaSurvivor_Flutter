@@ -1,18 +1,19 @@
 part of '../pages.dart';
 
-class CalendarSignUpPage4 extends StatefulWidget {
+class PlasmaPenerimaSignUp4 extends StatefulWidget {
   @override
-  CalendarSignUpPage4State createState() => CalendarSignUpPage4State();
+  _PlasmaPenerimaSignUp4State createState() => _PlasmaPenerimaSignUp4State();
 }
 
-class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
+class _PlasmaPenerimaSignUp4State extends State<PlasmaPenerimaSignUp4> {
   List<Widget> children = [];
   TextEditingController newGejalaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     int index = children.length;
-    return CalendarDefaultTemplate(
+
+    return PlasmaDefaultTemplate(
       Padding(
         padding: EdgeInsets.only(left: UIHelper.setResWidth(10)),
         child: SizedBox(
@@ -89,46 +90,9 @@ class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
       ),
       space: 10,
       desc: "Masukkan riwayat penyakit yang Anda miliki",
-      backTo: GoToCalendarSignUpPage3(),
-      goTo: GoToCalendarSignUpPage5(),
-    );
-  }
-}
-
-class IndexList extends StatelessWidget {
-  final String text;
-  Function onTap;
-  IndexList({@required this.text, @required this.onTap});
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () {
-              onTap();
-            },
-            child: SizedBox(
-                height: UIHelper.setResHeight(15),
-                width: UIHelper.setResWidth(15),
-                child: Text(
-                  "-",
-                  style: UIHelper.greyLightFont.copyWith(
-                      fontSize: UIHelper.setResFontSize(15),
-                      fontWeight: FontWeight.w700),
-                )),
-          ),
-          UIHelper.horzSpace(15),
-          SizedBox(
-            width: UIHelper.setResWidth(200),
-            child: Text(
-              text,
-              style: UIHelper.greyLightFont
-                  .copyWith(fontSize: UIHelper.setResFontSize(15)),
-            ),
-          )
-        ],
-      ),
+      header: "Daftar Menjadi Penerima",
+      goTo: GoToPlasmaPenerimaSignUp5(),
+      backTo: GoToPlasmaPenerimaSignUp3(),
     );
   }
 }

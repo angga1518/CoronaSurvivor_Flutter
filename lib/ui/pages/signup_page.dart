@@ -102,7 +102,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                         setState(() {
                                           isAlreadyOpen = true;
                                           selectedGender = value;
-                                          print(selectedGender);
                                         });
                                       }),
                                   UIHelper.vertSpace(20),

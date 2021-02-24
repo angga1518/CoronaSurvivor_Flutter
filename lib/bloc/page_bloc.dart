@@ -51,6 +51,41 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage5();
     } else if (event is GoToPlasmaPage) {
       yield OnPlasmaPage();
+    } else if (event is GoToCalendarHome) {
+      yield OnCalendarHome();
+    } else if (event is GoToConnectPuskesmasPage) {
+      yield OnConnectPuskesmasPage();
+    } else if (event is GoToSuccessPage) {
+      yield OnSuccessPage(
+          event.message, event.goTo, event.backTo, event.pinkButtonMessage);
+    } else if (event is GoToRecoveryOnBoardPage) {
+      yield OnRecoveryOnBoardPage();
+    } else if (event is GoToAddRecoveryPage) {
+      yield OnAddRecoveryPage();
+    } else if (event is GoToAddNewGejalaPage) {
+      yield OnAddNewGejalaPage();
+    } else if (event is GoToRecoveryDetailPage) {
+      yield OnRecoveryDetailPage();
+    } else if (event is GoToPlasmaPenerimaSignUp1) {
+      yield OnPlasmaPenerimaSignUp1();
+    } else if (event is GoToPlasmaPenerimaSignUp2) {
+      yield OnPlasmaPenerimaSignUp2();
+    } else if (event is GoToPlasmaPenerimaSignUp3) {
+      yield OnPlasmaPenerimaSignUp3();
+    } else if (event is GoToPlasmaPenerimaSignUp4) {
+      yield OnPlasmaPenerimaSignUp4();
+    } else if (event is GoToPlasmaPenerimaSignUp5) {
+      yield OnPlasmaPenerimaSignUp5();
+    } else if (event is GoToPlasmaPendonorSignUp1) {
+      yield OnPlasmaPendonorSignUp1();
+    } else if (event is GoToPlasmaPendonorSignUp2) {
+      yield OnPlasmaPendonorSignUp2();
+    } else if (event is GoToPlasmaPendonorSignUp3) {
+      yield OnPlasmaPendonorSignUp3();
+    } else if (event is GoToPlasmaPendonorSignUp4) {
+      yield OnPlasmaPendonorSignUp4();
+    } else if (event is GoToPlasmaPendonorSignUp5) {
+      yield OnPlasmaPendonorSignUp5();
     }
   }
 }

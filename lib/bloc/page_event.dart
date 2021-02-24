@@ -43,4 +43,48 @@ class GoToCalendarSignUpPage4 extends PageEvent {}
 
 class GoToCalendarSignUpPage5 extends PageEvent {}
 
+class GoToPlasmaPenerimaSignUp1 extends PageEvent {}
+
+class GoToPlasmaPenerimaSignUp2 extends PageEvent {}
+
+class GoToPlasmaPenerimaSignUp3 extends PageEvent {}
+
+class GoToPlasmaPenerimaSignUp4 extends PageEvent {}
+
+class GoToPlasmaPenerimaSignUp5 extends PageEvent {}
+
+class GoToPlasmaPendonorSignUp1 extends PageEvent {}
+
+class GoToPlasmaPendonorSignUp2 extends PageEvent {}
+
+class GoToPlasmaPendonorSignUp3 extends PageEvent {}
+
+class GoToPlasmaPendonorSignUp4 extends PageEvent {}
+
+class GoToPlasmaPendonorSignUp5 extends PageEvent {}
+
 class GoToPlasmaPage extends PageEvent {}
+
+class GoToCalendarHome extends PageEvent {}
+
+class GoToConnectPuskesmasPage extends PageEvent {}
+
+class GoToSuccessPage extends PageEvent {
+  final String message;
+  final String pinkButtonMessage;
+  final PageEvent goTo;
+  final PageEvent backTo;
+  GoToSuccessPage(
+      {@required this.message,
+      @required this.goTo,
+      @required this.backTo,
+      @required this.pinkButtonMessage});
+}
+
+class GoToRecoveryOnBoardPage extends PageEvent {}
+
+class GoToAddRecoveryPage extends PageEvent {}
+
+class GoToAddNewGejalaPage extends PageEvent {}
+
+class GoToRecoveryDetailPage extends PageEvent {}

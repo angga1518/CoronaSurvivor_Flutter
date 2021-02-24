@@ -1,11 +1,11 @@
 part of '../pages.dart';
 
-class CalendarSignUpPage3 extends StatefulWidget {
+class PlasmaPenerimaSignUp3 extends StatefulWidget {
   @override
-  CalendarSignUpPage3State createState() => CalendarSignUpPage3State();
+  _PlasmaPenerimaSignUp3State createState() => _PlasmaPenerimaSignUp3State();
 }
 
-class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
+class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
   bool isDemam = false;
   bool isBatuk = false;
   bool isHilangPenciuman = false;
@@ -22,9 +22,10 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
   bool isSaturasiKecil = false;
   bool isRadangTenggorokan = false;
   bool isMudahLelah = false;
+
   @override
   Widget build(BuildContext context) {
-    return CalendarDefaultTemplate(
+    return PlasmaDefaultTemplate(
       SizedBox(
         child: Column(
           children: [
@@ -161,38 +162,39 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
         ),
       ),
       space: 10,
-      desc: "Masukkan gejala yang Anda alami",
-      backTo: GoToCalendarSignUpPage2(),
-      goTo: GoToCalendarSignUpPage4(),
+      desc: "Masukkan Gejala yang Anda alami",
+      header: "Daftar Menjadi Penerima",
+      goTo: GoToPlasmaPenerimaSignUp4(),
+      backTo: GoToPlasmaPenerimaSignUp2(),
     );
   }
-}
 
-Widget generateCheckBox(
-    {@required String title,
-    @required bool value,
-    @required Function onChange}) {
-  return SizedBox(
-    child: Row(
-      children: [
-        UIHelper.horzSpace(10),
-        Theme(
-          data: ThemeData(unselectedWidgetColor: UIHelper.colorGreyLight),
-          child: Checkbox(
-              value: value,
-              onChanged: onChange,
-              activeColor: UIHelper.colorPink),
-        ),
-        UIHelper.horzSpace(10),
-        SizedBox(
-          width: UIHelper.setResWidth(200),
-          child: Text(
-            title,
-            style: UIHelper.greyLightFont
-                .copyWith(fontSize: UIHelper.setResFontSize(15)),
+  Widget generateCheckBox(
+      {@required String title,
+      @required bool value,
+      @required Function onChange}) {
+    return SizedBox(
+      child: Row(
+        children: [
+          UIHelper.horzSpace(10),
+          Theme(
+            data: ThemeData(unselectedWidgetColor: UIHelper.colorGreyLight),
+            child: Checkbox(
+                value: value,
+                onChanged: onChange,
+                activeColor: UIHelper.colorPink),
           ),
-        )
-      ],
-    ),
-  );
+          UIHelper.horzSpace(10),
+          SizedBox(
+            width: UIHelper.setResWidth(200),
+            child: Text(
+              title,
+              style: UIHelper.greyLightFont
+                  .copyWith(fontSize: UIHelper.setResFontSize(15)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }

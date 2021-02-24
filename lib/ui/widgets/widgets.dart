@@ -1,4 +1,5 @@
 import 'package:corona_survivor_flutter/bloc/blocs.dart';
+import 'package:corona_survivor_flutter/models/models.dart';
 import 'package:corona_survivor_flutter/ui/shared/shared_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,5 +19,7 @@ part 'bottom_bar.dart';
 part 'article_container.dart';
 part 'pop_up_child.dart';
 part 'pop_up_loading_child.dart';
-part 'calendar_signup_template.dart';
+part 'calendar_template.dart';
 part 'dropdown_textfield.dart';
+part 'add_recovery_template.dart';
+part 'plasma_template.dart';

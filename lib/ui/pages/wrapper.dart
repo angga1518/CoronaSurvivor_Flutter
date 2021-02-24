@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    // pageBloc.add(GoToCalendarSignUpPage1());
+    // pageBloc.add(GoToRecoveryDetailPage());
     if (user == null) {
       // for dev
       // pageBloc.add(GoToCalendarSignUpPage1());
@@ -87,7 +87,6 @@ class _WrapperState extends State<Wrapper> {
       builder: (context, state) {
         if (state is OnSplashPage) {
           return SplashPage();
-          // return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
@@ -122,6 +121,41 @@ class _WrapperState extends State<Wrapper> {
           return CalendarSignUpPage5();
         } else if (state is OnPlasmaPage) {
           return PlasmaPage();
+        } else if (state is OnCalendarHome) {
+          return CalendarHomePage();
+        } else if (state is OnConnectPuskesmasPage) {
+          return ConnectPuskesPage();
+        } else if (state is OnSuccessPage) {
+          return SuccessPage(
+              state.message, state.goTo, state.backTo, state.pinkButtonMessage);
+        } else if (state is OnRecoveryOnBoardPage) {
+          return RecoveryOnboardPage();
+        } else if (state is OnAddRecoveryPage) {
+          return AddRecoveryPage();
+        } else if (state is OnAddNewGejalaPage) {
+          return AddNewGejalaPage();
+        } else if (state is OnRecoveryDetailPage) {
+          return RecoveryDetailPage();
+        } else if (state is OnPlasmaPenerimaSignUp1) {
+          return PlasmaPenerimaSignUp1();
+        } else if (state is OnPlasmaPenerimaSignUp2) {
+          return PlasmaPenerimaSignUp2();
+        } else if (state is OnPlasmaPenerimaSignUp3) {
+          return PlasmaPenerimaSignUp3();
+        } else if (state is OnPlasmaPenerimaSignUp4) {
+          return PlasmaPenerimaSignUp4();
+        } else if (state is OnPlasmaPenerimaSignUp5) {
+          return PlasmaPenerimaSignUp5();
+        } else if (state is OnPlasmaPendonorSignUp1) {
+          return PlasmaPendonorSignUp1();
+        } else if (state is OnPlasmaPendonorSignUp2) {
+          return PlasmaPendonorSignUp2();
+        } else if (state is OnPlasmaPendonorSignUp3) {
+          return PlasmaPendonorSignUp3();
+        } else if (state is OnPlasmaPendonorSignUp4) {
+          return PlasmaPendonorSignUp4();
+        } else if (state is OnPlasmaPendonorSignUp5) {
+          return PlasmaPendonorSignUp5();
         } else {
           return Container();
         }

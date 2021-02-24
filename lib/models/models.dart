@@ -3,4 +3,5 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 part 'pengguna.dart';
-
+part 'artikel.dart';
+part 'data_penerima.dart';

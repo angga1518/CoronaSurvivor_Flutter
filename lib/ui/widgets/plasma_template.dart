@@ -1,19 +1,29 @@
 part of 'widgets.dart';
 
-class CalendarSignUpTemplate extends StatelessWidget {
+class PlasmaDefaultTemplate extends StatelessWidget {
   final Widget child;
   final bool addHeader;
   final String desc;
   final PageEvent backTo;
   final PageEvent goTo;
   final double space;
+  final bool isEnabled;
+  final bool withPinkButton;
+  final String pinkButtonTitle;
+  final String header;
+  final Function onPinkButtonTap;
 
-  CalendarSignUpTemplate(this.child,
+  PlasmaDefaultTemplate(this.child,
       {this.addHeader = true,
       this.desc = "",
       @required this.backTo,
       @required this.goTo,
-      this.space = 38});
+      this.space = 38,
+      this.isEnabled = true,
+      this.withPinkButton = true,
+      this.header = "",
+      this.pinkButtonTitle = "Lanjut",
+      this.onPinkButtonTap});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +61,7 @@ class CalendarSignUpTemplate extends StatelessWidget {
                                         children: [
                                           SizedBox(
                                             width: UIHelper.setResWidth(280),
-                                            child: Text("Buat MyCalendar",
+                                            child: Text(header,
                                                 style: UIHelper.greyFont
                                                     .copyWith(
                                                         fontSize: UIHelper
@@ -79,17 +89,26 @@ class CalendarSignUpTemplate extends StatelessWidget {
                             ],
                           )),
                       UIHelper.vertSpace(20),
-                      PinkButton("Lanjut", () {
-                        if (goTo != null) {
-                          pageBloc.add(goTo);
-                        }
-                      }),
-                      UIHelper.vertSpace(20),
+                      (withPinkButton)
+                          ? PinkButton(
+                              pinkButtonTitle,
+                              () {
+                                if (goTo != null) {
+                                  pageBloc.add(goTo);
+                                }
+                                if (onPinkButtonTap != null) {
+                                  onPinkButtonTap();
+                                }
+                              },
+                              isEnabled: isEnabled,
+                            )
+                          : Container(),
+                      (withPinkButton) ? UIHelper.vertSpace(20) : Container(),
                     ],
                   )
                 ],
               ),
-              TopBar("MyCalendar", () {
+              TopBar("Plasma", () {
                 pageBloc.add(backTo);
               }),
             ],
