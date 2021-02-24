@@ -285,27 +285,41 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     UIHelper.horzSpace(23),
-                    GestureDetector(
-                      onTap: () {
-                        pageBloc.add(GoToProfilePage());
-                      },
-                      child: Container(
-                        height: UIHelper.setResHeight(32),
-                        width: UIHelper.setResWidth(32),
-                        decoration: BoxDecoration(
-                          color: UIHelper.colorSoftPink,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: SizedBox(
-                            child: Image(
-                              image: AssetImage("assets/user.png"),
-                              height: UIHelper.setResHeight(20),
-                              width: UIHelper.setResWidth(20),
+                    BlocBuilder<UserBloc, UserState>(
+                      builder: (context, state) {
+                        if (state is UserLoaded) {
+                          return GestureDetector(
+                            onTap: () {
+                              pageBloc.add(GoToProfilePage(state.pengguna));
+                            },
+                            child: Container(
+                              height: UIHelper.setResHeight(32),
+                              width: UIHelper.setResWidth(32),
+                              decoration: BoxDecoration(
+                                color: UIHelper.colorSoftPink,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Center(
+                                child: SizedBox(
+                                  child: Image(
+                                    image: AssetImage("assets/user.png"),
+                                    height: UIHelper.setResHeight(20),
+                                    width: UIHelper.setResWidth(20),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
+                          );
+                        } else {
+                          return Container(
+                            child: Center(
+                                child: SpinKitThreeBounce(
+                              color: UIHelper.colorMainLightRed,
+                              size: UIHelper.setResWidth(10)
+                            )),
+                          );
+                        }
+                      },
                     ),
                     UIHelper.horzSpace(56),
                     Logo(39, 15, 18, 148)

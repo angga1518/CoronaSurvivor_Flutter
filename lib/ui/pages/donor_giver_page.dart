@@ -1,6 +1,8 @@
 part of 'pages.dart';
 
 class DonorGiverPage extends StatefulWidget {
+  final Pengguna pengguna;
+  DonorGiverPage(this.pengguna);
   @override
   _DonorGiverPageState createState() => _DonorGiverPageState();
 }
@@ -88,7 +90,7 @@ class _DonorGiverPageState extends State<DonorGiverPage> {
                 ],
               ),
               TopBar("Pemberi Donor", () {
-                pageBloc.add(GoToProfilePage());
+                pageBloc.add(GoToProfilePage(widget.pengguna));
               })
             ],
           ),
