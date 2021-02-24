@@ -49,6 +49,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage4();
     } else if (event is GoToCalendarSignUpPage5) {
       yield OnCalendarSignUpPage5();
+    } else if (event is GoToPlasmaPage) {
+      yield OnPlasmaPage();
     }
   }
 }

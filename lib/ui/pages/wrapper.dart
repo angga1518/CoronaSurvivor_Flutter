@@ -120,6 +120,8 @@ class _WrapperState extends State<Wrapper> {
           return CalendarSignUpPage4();
         } else if (state is OnCalendarSignUpPage5) {
           return CalendarSignUpPage5();
+        } else if (state is OnPlasmaPage) {
+          return PlasmaPage();
         } else {
           return Container();
         }
