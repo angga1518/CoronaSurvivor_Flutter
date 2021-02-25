@@ -37,7 +37,8 @@ class _SplashPageState extends State<SplashPage> {
                       fit: BoxFit.cover)),
             ),
             Container(
-              child: Column(
+              child: ListView(
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   SizedBox(
                     height: UIHelper.setResHeight(50),

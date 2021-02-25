@@ -2,10 +2,13 @@ part of 'pages.dart';
 
 class AddCommentPage extends StatefulWidget {
   final String title;
-  final String component;
+  final Pengguna pengguna;
   final bool isReply;
+  final String idArtkel;
+  final String namaReplied;
 
-  AddCommentPage(this.title, this.component, this.isReply);
+  AddCommentPage(
+      this.title, this.idArtkel, this.pengguna, this.isReply, this.namaReplied);
 
   @override
   _AddCommentPageState createState() => _AddCommentPageState();
@@ -24,7 +27,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToDetailInfoPage());
+        pageBloc.add(
+            GoToDetailInfoPage(widget.idArtkel, widget.pengguna, widget.title));
         return false;
       },
       child: Scaffold(
@@ -50,7 +54,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
                               SizedBox(
                                 width: UIHelper.setResWidth(250),
                                 child: Text(
-                                  widget.title,
+                                  widget.isReply
+                                      ? "Reply to " + widget.namaReplied
+                                      : widget.title,
                                   textAlign: TextAlign.center,
                                   style: UIHelper.darkGreyFont.copyWith(
                                       fontSize: UIHelper.setResFontSize(13),
@@ -62,7 +68,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                                   ? SizedBox(
                                       width: UIHelper.setResWidth(250),
                                       child: Text(
-                                        widget.component,
+                                        widget.title,
                                         textAlign: TextAlign.center,
                                         style: UIHelper.darkGreyFont.copyWith(
                                             fontSize:
@@ -109,13 +115,25 @@ class _AddCommentPageState extends State<AddCommentPage> {
                 ],
               ),
               TopBar((widget.isReply) ? "Reply" : "Comment", () {
-                pageBloc.add(GoToDetailInfoPage());
+                pageBloc.add(GoToDetailInfoPage(
+                    widget.idArtkel, widget.pengguna, widget.title));
               }),
               Positioned(
                   top: UIHelper.setResHeight(520),
                   left: UIHelper.setResWidth((360 - 252) / 2),
-                  child: PinkButton("Kirim", () {
-                    pageBloc.add(GoToDetailInfoPage());
+                  child: PinkButton("Kirim", () async {
+                    if (widget.isReply) {
+                      Reply reply = new Reply();
+                    } else {
+                      Komentar komentar = new Komentar(
+                          namaLengkap: widget.pengguna.namaLengkap,
+                          isi: textController.text,
+                          tanggalPost: DateTime.now().toString(),
+                          jumlahLike: 0);
+                      await KomentarServices.saveKomentar(
+                          komentar, widget.idArtkel);
+                    }
+                    // pageBloc.add(GoToDetailInfoPage());
                   })),
             ],
           ),

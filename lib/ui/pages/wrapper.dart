@@ -63,7 +63,7 @@ class _WrapperState extends State<Wrapper> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
-    // pageBloc.add(GoToCalendarSignUpPage1());
+    // pageBloc.add(GoToRecoveryDetailPage());
     if (user == null) {
       // for dev
       // pageBloc.add(GoToCalendarSignUpPage1());
@@ -87,7 +87,6 @@ class _WrapperState extends State<Wrapper> {
       builder: (context, state) {
         if (state is OnSplashPage) {
           return SplashPage();
-          // return SignupPage();
         } else if (state is OnHomePage) {
           return HomePage();
         } else if (state is OnLoginPage) {
@@ -105,9 +104,10 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnInfoPage) {
           return InfoPage();
         } else if (state is OnDetailInfoPage) {
-          return DetailInfo(state.idArtikel, state.pengguna);
+          return DetailInfo(state.idArtikel, state.pengguna, state.judul);
         } else if (state is OnAddCommentPage) {
-          return AddCommentPage(state.title, state.component, state.isReply);
+          return AddCommentPage(state.title, state.idArtikel, state.pengguna,
+              state.isReply, state.repliedUser);
         } else if (state is OnCalendarOnboardPage) {
           return CalendarOnboardPage();
         } else if (state is OnCalendarSignUpPage1) {
@@ -120,6 +120,21 @@ class _WrapperState extends State<Wrapper> {
           return CalendarSignUpPage4();
         } else if (state is OnCalendarSignUpPage5) {
           return CalendarSignUpPage5();
+        } else if (state is OnCalendarHome) {
+          return CalendarHomePage();
+        } else if (state is OnConnectPuskesmasPage) {
+          return ConnectPuskesPage();
+        } else if (state is OnSuccessPage) {
+          return SuccessPage(
+              state.message, state.goTo, state.backTo, state.pinkButtonMessage);
+        } else if (state is OnRecoveryOnBoardPage) {
+          return RecoveryOnboardPage();
+        } else if (state is OnAddRecoveryPage) {
+          return AddRecoveryPage();
+        } else if (state is OnAddNewGejalaPage) {
+          return AddNewGejalaPage();
+        } else if (state is OnRecoveryDetailPage) {
+          return RecoveryDetailPage();
         } else {
           return Container();
         }

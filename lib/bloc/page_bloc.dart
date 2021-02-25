@@ -35,9 +35,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToInfoPage) {
       yield OnInfoPage();
     } else if (event is GoToDetailInfoPage) {
-      yield OnDetailInfoPage(event.idArtikel, event.pengguna);
+      yield OnDetailInfoPage(event.idArtikel, event.pengguna, event.judul);
     } else if (event is GoToAddCommentPage) {
-      yield OnAddCommentPage(event.title, event.component, event.isReply);
+      yield OnAddCommentPage(event.title, event.idArtikel, event.pengguna,
+          event.isReply, event.repliedUser);
     } else if (event is GoToCalendarOnboardPage) {
       yield OnCalendarOnboardPage();
     } else if (event is GoToCalendarSignUpPage1) {
@@ -50,6 +51,21 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage4();
     } else if (event is GoToCalendarSignUpPage5) {
       yield OnCalendarSignUpPage5();
+    } else if (event is GoToCalendarHome) {
+      yield OnCalendarHome();
+    } else if (event is GoToConnectPuskesmasPage) {
+      yield OnConnectPuskesmasPage();
+    } else if (event is GoToSuccessPage) {
+      yield OnSuccessPage(
+          event.message, event.goTo, event.backTo, event.pinkButtonMessage);
+    } else if (event is GoToRecoveryOnBoardPage) {
+      yield OnRecoveryOnBoardPage();
+    } else if (event is GoToAddRecoveryPage) {
+      yield OnAddRecoveryPage();
+    } else if (event is GoToAddNewGejalaPage) {
+      yield OnAddNewGejalaPage();
+    } else if (event is GoToRecoveryDetailPage) {
+      yield OnRecoveryDetailPage();
     }
   }
 }

@@ -24,16 +24,20 @@ class GoToInfoPage extends PageEvent {}
 class GoToDetailInfoPage extends PageEvent {
   final String idArtikel;
   final Pengguna pengguna;
+  final String judul;
 
-  GoToDetailInfoPage(this.idArtikel, this.pengguna);
+  GoToDetailInfoPage(this.idArtikel, this.pengguna, this.judul);
 }
 
 class GoToAddCommentPage extends PageEvent {
   final String title;
-  final String component;
+  final String idArtikel;
+  final Pengguna pengguna;
   final bool isReply;
+  final String repliedUser;
 
-  GoToAddCommentPage(this.title, this.component, this.isReply);
+  GoToAddCommentPage(this.title, this.idArtikel, this.pengguna, this.isReply,
+      this.repliedUser);
 }
 
 class GoToCalendarOnboardPage extends PageEvent {}
@@ -47,3 +51,27 @@ class GoToCalendarSignUpPage3 extends PageEvent {}
 class GoToCalendarSignUpPage4 extends PageEvent {}
 
 class GoToCalendarSignUpPage5 extends PageEvent {}
+
+class GoToCalendarHome extends PageEvent {}
+
+class GoToConnectPuskesmasPage extends PageEvent {}
+
+class GoToSuccessPage extends PageEvent {
+  final String message;
+  final String pinkButtonMessage;
+  final PageEvent goTo;
+  final PageEvent backTo;
+  GoToSuccessPage(
+      {@required this.message,
+      @required this.goTo,
+      @required this.backTo,
+      @required this.pinkButtonMessage});
+}
+
+class GoToRecoveryOnBoardPage extends PageEvent {}
+
+class GoToAddRecoveryPage extends PageEvent {}
+
+class GoToAddNewGejalaPage extends PageEvent {}
+
+class GoToRecoveryDetailPage extends PageEvent {}
