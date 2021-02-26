@@ -2,7 +2,9 @@ part of 'services.dart';
 
 class PlasmaServices {
   static Future<List<DataPenerima>> getAllSavedDataPenerima() async {
+    print("test 1");
     String url = base_url + "getAllDataPenerimaDonor";
+    print("test 2");
     http.Response response = await http.Client().get(url);
     var data = json.decode(response.body);
     data = data['result'];

@@ -15,11 +15,21 @@ class OnHomePage extends PageState {}
 
 class OnOnboardPage extends PageState {}
 
-class OnProfilePage extends PageState {}
+class OnProfilePage extends PageState {
+  final Pengguna pengguna;
+  OnProfilePage(this.pengguna);
+}
 
-class OnDonorGiverPage extends PageState {}
+class OnDonorGiverPage extends PageState {
+  final Pengguna pengguna;
+  OnDonorGiverPage(this.pengguna);
+}
 
-class OnDonorReceiverPage extends PageState {}
+class OnDonorReceiverPage extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  OnDonorReceiverPage(this.pengguna, this.penerimaDonor);
+}
 
 class OnInfoPage extends PageState {}
 

@@ -13,11 +13,21 @@ class GoToHomePage extends PageEvent {}
 
 class GoToOnboardPage extends PageEvent {}
 
-class GoToProfilePage extends PageEvent {}
+class GoToProfilePage extends PageEvent {
+  final Pengguna pengguna;
+  GoToProfilePage(this.pengguna);
+}
 
-class GoToDonorGiverPage extends PageEvent {}
+class GoToDonorGiverPage extends PageEvent {
+  final Pengguna pengguna;
+  GoToDonorGiverPage(this.pengguna);
+}
 
-class GoToDonorReceiverPage extends PageEvent {}
+class GoToDonorReceiverPage extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  GoToDonorReceiverPage(this.pengguna, this.penerimaDonor);
+}
 
 class GoToInfoPage extends PageEvent {}
 

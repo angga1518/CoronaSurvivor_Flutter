@@ -1,6 +1,9 @@
 part of 'pages.dart';
 
 class DonorReceiverPage extends StatefulWidget {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  DonorReceiverPage(this.pengguna, this.penerimaDonor);
   @override
   _DonorReceiverPageState createState() => _DonorReceiverPageState();
 }
@@ -8,6 +11,7 @@ class DonorReceiverPage extends StatefulWidget {
 class _DonorReceiverPageState extends State<DonorReceiverPage> {
   @override
   Widget build(BuildContext context) {
+    PenerimaDonor pendonor = widget.penerimaDonor;
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
@@ -31,23 +35,23 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                           Column(
                             children: [
                               InformationContainer(
-                                  "Nama Lengkap", "Nur Fauziah Hasanah"),
+                                  "Nama Lengkap", pendonor.namaLengkap),
                               UIHelper.vertSpace(10),
-                              InformationContainer("NIK", "327511028464393"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer(
-                                  "Jenis Kelamin", "Perempuan"),
+                              InformationContainer("NIK", pendonor.nik),
                               UIHelper.vertSpace(10),
                               InformationContainer(
-                                  "Domisili", "Jakarta Selatan"),
+                                  "Jenis Kelamin", pendonor.jenisKelamin),
                               UIHelper.vertSpace(10),
                               InformationContainer(
-                                  "Tanggal Lahir", "30/02/2000"),
+                                  "Domisili", pendonor.domisili),
+                              UIHelper.vertSpace(10),
+                              InformationContainer("Tanggal Lahir",
+                                  getTanggalFormatted(pendonor.tanggalLahir)),
+                              UIHelper.vertSpace(10),
+                              InformationContainer("Email", pendonor.email),
                               UIHelper.vertSpace(10),
                               InformationContainer(
-                                  "Email", "sigigibesar@gmail.com"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer("No Telp", "081532453621"),
+                                  "No Telp", pendonor.noTelepon),
                             ],
                           )),
                       UIHelper.vertSpace(18),
@@ -55,37 +59,46 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                           "Keterangan Pendonor",
                           Column(
                             children: [
-                              InformationContainer("Golonga Darah", "A"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer("Rhesus", "(-)"),
+                              InformationContainer(
+                                  "Golonga Darah", pendonor.golonganDarah),
                               UIHelper.vertSpace(10),
                               InformationContainer(
-                                  "Tanggal Positif", "30/02/2000"),
+                                  "Rhesus", "(${pendonor.rhesus})"),
                               UIHelper.vertSpace(10),
-                              InformationContainer(
-                                  "Tanggal Muncul Gejala", "30/02/2000"),
+                              InformationContainer("Tanggal Positif",
+                                  getTanggalFormatted(pendonor.tanggalPositif)),
+                              UIHelper.vertSpace(10),
+                              InformationContainer("Tanggal Muncul Gejala",
+                                  getTanggalFormatted(pendonor.tanggalGejala)),
                               UIHelper.vertSpace(10),
                               InformationContainer("Gejala yang Dialami",
-                                  "Batuk\nPilek\nDemam\nAnosmia"),
+                                  pendonor.formattedGejala()),
+                              UIHelper.vertSpace(10),
+                              InformationContainer("Riwayat Penyakit",
+                                  pendonor.formattedRiwayatPenyakit()),
                               UIHelper.vertSpace(10),
                               InformationContainer(
-                                  "Riwayat Penyakit", "Asma\nRhinitis"),
+                                  "Berat Badan", "${pendonor.beratBadan} kg"),
                               UIHelper.vertSpace(10),
-                              InformationContainer("Berat Badan", "45 kg"),
-                              UIHelper.vertSpace(10),
-                              InformationContainer("Catatan Tambahan",
-                                  "Saya belum pernah donor darah"),
+                              (pendonor.catatanTambahan != "")
+                                  ? InformationContainer("Catatan Tambahan",
+                                      pendonor.catatanTambahan)
+                                  : Container()
                             ],
                           )),
                       UIHelper.vertSpace(18),
-                      PinkButton("Hapus", () {}),
+                      PinkButton("Hapus", () async {
+                        showPopUp(context: context, child: PopUpLoadingChild());
+                        await PenerimaDonorService.deletePenerimaDonorById(pendonor.idDataPenerimaDonor).whenComplete(() => Navigator.pop(context));
+                        pageBloc.add(GoToProfilePage(widget.pengguna));
+                      }),
                       UIHelper.vertSpace(20),
                     ],
                   )
                 ],
               ),
               TopBar("Penerima Donor", () {
-                pageBloc.add(GoToProfilePage());
+                pageBloc.add(GoToProfilePage(widget.pengguna));
               })
             ],
           ),

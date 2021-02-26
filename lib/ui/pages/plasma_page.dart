@@ -19,8 +19,8 @@ class _PlasmaPageState extends State<PlasmaPage> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-    List<DataPenerima> lisDataPenerima =
-        PlasmaServices.getAllSavedDataPenerima();
+    // List<DataPenerima> lisDataPenerima =
+    //     PlasmaServices.getAllSavedDataPenerima();
 
     return WillPopScope(
       onWillPop: () async {
@@ -37,21 +37,37 @@ class _PlasmaPageState extends State<PlasmaPage> {
                 ListView(
                   children: [
                     UIHelper.vertSpace(113),
-                    Container(
-                        height: UIHelper.height - UIHelper.setResHeight(185),
-                        child: PageView(
-                          onPageChanged: (index) {
-                            setState(() {
-                              infoIndex = index;
-                            });
-                          },
-                          physics: NeverScrollableScrollPhysics(),
-                          controller: pageController,
-                          children: [
-                            generateListPenerima(),
-                            generateNotFound()
-                          ],
-                        ))
+                    FutureBuilder(
+                        future: Future.wait(
+                            [PlasmaServices.getAllSavedDataPenerima()]),
+                        builder:
+                            (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                          if (snapshot.hasData) {
+                            var allPenerima = snapshot.data[0]; //bar
+                            // var allPendonor = snapshot.data[1];
+                            return Container(
+                                height: UIHelper.height -
+                                    UIHelper.setResHeight(185),
+                                child: PageView(
+                                  onPageChanged: (index) {
+                                    setState(() {
+                                      infoIndex = index;
+                                    });
+                                  },
+                                  physics: NeverScrollableScrollPhysics(),
+                                  controller: pageController,
+                                  children: [
+                                    generateListPenerima(),
+                                    generateNotFound()
+                                  ],
+                                ));
+                          } else {
+                            // kasih sp
+                            return Container(
+                              child: Text("hi"),
+                            );
+                          }
+                        })
                   ],
                 ),
                 Column(

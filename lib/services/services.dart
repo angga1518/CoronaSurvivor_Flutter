@@ -12,3 +12,5 @@ part 'push_notification_service.dart';
 part 'pengguna_services.dart';
 part 'artikel_services.dart';
 part 'plasma_services.dart';
+part 'penerima_donor_services.dart';
+part 'pemberi_donor_services.dart';
