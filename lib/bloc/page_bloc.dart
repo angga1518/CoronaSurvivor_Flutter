@@ -39,19 +39,19 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToAddCommentPage) {
       yield OnAddCommentPage(event.title, event.component, event.isReply);
     } else if (event is GoToCalendarOnboardPage) {
-      yield OnCalendarOnboardPage();
+      yield OnCalendarOnboardPage(event.calendarModel, event.pengguna);
     } else if (event is GoToCalendarSignUpPage1) {
-      yield OnCalendarSignUpPage1();
+      yield OnCalendarSignUpPage1(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage2) {
-      yield OnCalendarSignUpPage2();
+      yield OnCalendarSignUpPage2(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage3) {
-      yield OnCalendarSignUpPage3();
+      yield OnCalendarSignUpPage3(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage4) {
-      yield OnCalendarSignUpPage4();
+      yield OnCalendarSignUpPage4(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage5) {
-      yield OnCalendarSignUpPage5();
+      yield OnCalendarSignUpPage5(event.calendarModel);
     } else if (event is GoToCalendarHome) {
-      yield OnCalendarHome();
+      yield OnCalendarHome(event.calendarModel);
     } else if (event is GoToConnectPuskesmasPage) {
       yield OnConnectPuskesmasPage();
     } else if (event is GoToSuccessPage) {

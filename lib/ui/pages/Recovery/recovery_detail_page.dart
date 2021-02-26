@@ -101,14 +101,14 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
       backTo: GoToRecoveryOnBoardPage(),
       withPinkButton: true,
       onPinkButtonTap: () {
-        pageBloc.add(
-          GoToSuccessPage(
-              goTo: GoToCalendarHome(),
-              backTo: GoToCalendarHome(),
-              pinkButtonMessage: "Kembali ke MyCalendar",
-              message:
-                  "Laporan kondisi perkembangan kamu telah berhasil dikirimkan! silahkan press salah satu tanggal di MyCalendar untuk melihat status Anda"),
-        );
+        // pageBloc.add(
+        //   GoToSuccessPage(
+        //       goTo: GoToCalendarHome(),
+        //       backTo: GoToCalendarHome(),
+        //       pinkButtonMessage: "Kembali ke MyCalendar",
+        //       message:
+        //           "Laporan kondisi perkembangan kamu telah berhasil dikirimkan! silahkan press salah satu tanggal di MyCalendar untuk melihat status Anda"),
+        // );
       },
     );
   }

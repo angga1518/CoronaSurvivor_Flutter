@@ -183,9 +183,16 @@ class _InfoPageState extends State<InfoPage> {
                 ],
               ),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: BottomBar(3),
-              )
+                  alignment: Alignment.bottomCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return BottomBar(3, pengguna);
+                      }
+                      return Container();
+                    },
+                  ))
             ],
           ),
         ),

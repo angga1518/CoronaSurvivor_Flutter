@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class CalendarOnboardPage extends StatefulWidget {
+  CalendarModel calendarModel;
+  Pengguna pengguna;
+  CalendarOnboardPage(this.pengguna, {this.calendarModel});
   @override
   _CalendarOnboardPageState createState() => _CalendarOnboardPageState();
 }
@@ -8,8 +11,10 @@ class CalendarOnboardPage extends StatefulWidget {
 class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
   @override
   Widget build(BuildContext context) {
+    CalendarModel calendar =
+        (widget.calendarModel == null) ? CalendarModel() : widget.calendarModel;
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-    TextEditingController textController = TextEditingController();
+    TextEditingController kodePuskesmasController = TextEditingController(text: calendar.kodePuskesmas);
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToHomePage());
@@ -72,7 +77,7 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                                           context: context,
                                           child: PopUpChild(
                                             "Apakah Anda sudah berkunjung ke puskesmas terdekat?",
-                                            "Masukkan kode yang diberikan oleh pihak puskesmas. Bila Anda belum mengunjungi puskesmas, Anda dapat",
+                                            "Masukkan kode yang diberikan oleh pihak puskesmas. Bila Anda belum mengunjungi puskesmas, Anda dapat memasukannya nanti",
                                             () {
                                               Navigator.pop(context);
                                             },
@@ -96,8 +101,14 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                                                                 .colorGreySuperLight,
                                                             fontSize: UIHelper
                                                                 .setResFontSize(
-                                                                    16)),
-                                                    controller: textController,
+                                                                    15)),
+                                                    controller:
+                                                        kodePuskesmasController,
+                                                    textAlignVertical:
+                                                        TextAlignVertical
+                                                            .bottom,
+                                                    cursorColor:
+                                                        UIHelper.colorGreyLight,
                                                     decoration: InputDecoration(
                                                       enabledBorder:
                                                           OutlineInputBorder(
@@ -125,19 +136,29 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                                                             BorderRadius
                                                                 .circular(10),
                                                       ),
-                                                      labelText: "NIK",
+                                                      labelText:
+                                                          "Kode Puskesmas",
                                                       labelStyle: TextStyle(
                                                           color: UIHelper
                                                               .colorGreyLight),
-                                                      hintText: "NIK",
+                                                      hintText:
+                                                          "Kode Puskesmas",
                                                     ),
                                                   ),
                                                 ),
                                                 UIHelper.vertSpace(20),
                                                 PinkButton("Lanjut", () {
+                                                  // proses input kode puskses kalau ga null
+                                                  // kasih feedback kalo salah kode
+                                                  calendar.pengguna =
+                                                      widget.pengguna;
+                                                  calendar.kodePuskesmas =
+                                                      kodePuskesmasController
+                                                          .text;
                                                   Navigator.pop(context);
                                                   pageBloc.add(
-                                                      GoToCalendarSignUpPage1());
+                                                      GoToCalendarSignUpPage1(
+                                                          calendar));
                                                 },
                                                     fontSize: 12,
                                                     height: 36,
@@ -175,9 +196,16 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                 onTapHelp: () {},
               ),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: BottomBar(4),
-              )
+                  alignment: Alignment.bottomCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return BottomBar(4, pengguna);
+                      }
+                      return Container();
+                    },
+                  ))
             ],
           ),
         ),
