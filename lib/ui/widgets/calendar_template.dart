@@ -7,6 +7,7 @@ class CalendarDefaultTemplate extends StatelessWidget {
   final PageEvent backTo;
   final PageEvent goTo;
   final double space;
+  final double bottomSpace;
   final bool isEnabled;
   final bool withPinkButton;
   final String pinkButtonTitle;
@@ -23,7 +24,8 @@ class CalendarDefaultTemplate extends StatelessWidget {
       this.withPinkButton = true,
       this.header = "Buat MyCalendar",
       this.pinkButtonTitle = "Lanjut",
-      this.onPinkButtonTap});
+      this.onPinkButtonTap,
+      this.bottomSpace = 20});
 
   @override
   Widget build(BuildContext context) {
@@ -93,17 +95,19 @@ class CalendarDefaultTemplate extends StatelessWidget {
                           ? PinkButton(
                               pinkButtonTitle,
                               () {
-                                if (goTo != null) {
-                                  pageBloc.add(goTo);
-                                }
                                 if (onPinkButtonTap != null) {
                                   onPinkButtonTap();
+                                }
+                                if (goTo != null) {
+                                  pageBloc.add(goTo);
                                 }
                               },
                               isEnabled: isEnabled,
                             )
                           : Container(),
-                      (withPinkButton) ? UIHelper.vertSpace(20) : Container(),
+                      (withPinkButton)
+                          ? UIHelper.vertSpace(bottomSpace)
+                          : Container(),
                     ],
                   )
                 ],
@@ -111,6 +115,17 @@ class CalendarDefaultTemplate extends StatelessWidget {
               TopBar("MyCalendar", () {
                 pageBloc.add(backTo);
               }),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return BottomBar(4, pengguna);
+                      }
+                      return Container();
+                    },
+                  ))
             ],
           ),
         ),

@@ -2,8 +2,9 @@ part of 'widgets.dart';
 
 class BottomBar extends StatelessWidget {
   final int index;
+  final Pengguna pengguna;
 
-  BottomBar(this.index);
+  BottomBar(this.index, this.pengguna);
 
   PageBloc pageBloc;
 
@@ -36,8 +37,13 @@ class BottomBar extends StatelessWidget {
       () {
         pageBloc.add(GoToInfoPage());
       },
-      () {
-        pageBloc.add(GoToCalendarOnboardPage());
+      () async {
+        CalendarModel calendar = sharedCalendar;
+        pageBloc.add(GoToCalendarOnboardPage(pengguna));
+        // if (calendar == null) {
+        // } else {
+        // pageBloc.add(GoToCalendarHome());
+        // }
       },
     ];
     return Container(

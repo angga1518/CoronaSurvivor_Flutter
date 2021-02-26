@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class CalendarHomePage extends StatefulWidget {
+  CalendarModel calendarModel;
+  CalendarHomePage(this.calendarModel);
   @override
   _CalendarHomePageState createState() => _CalendarHomePageState();
 }
@@ -151,7 +153,7 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
       )),
       space: 5,
       addHeader: false,
-      backTo: GoToCalendarSignUpPage4(),
+      backTo: GoToCalendarSignUpPage4(widget.calendarModel),
       goTo: null,
       withPinkButton: false,
     );
