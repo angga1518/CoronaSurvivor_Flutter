@@ -81,20 +81,27 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
               (value) {
                 setState(() {
                   isBeratBadanOpened = true;
-                  try {
-                    widget.calendarModel.beratBadan =
-                        int.parse(value.toString());
-                    isBeratBadanValid = true;
-                  } catch (e) {
-                    isBeratBadanValid = false;
+                  if (value == "") {
+                    widget.calendarModel.beratBadan = 0;
+                  } else {
+                    try {
+                      widget.calendarModel.beratBadan =
+                          int.parse(value.toString());
+                      isBeratBadanValid = true;
+                    } catch (e) {
+                      isBeratBadanValid = false;
+                    }
                   }
                 });
               },
               false,
               controller: beratBadanController,
               isValid:
-                  (beratBadanController.text.length > 0 && isBeratBadanValid) || !isBeratBadanOpened,
-              errorText: (beratBadanController.text.length != 0) ? "Format tidak sesuai" : "Field harus diisi",
+                  (beratBadanController.text.length > 0 && isBeratBadanValid) ||
+                      !isBeratBadanOpened,
+              errorText: (beratBadanController.text.length != 0)
+                  ? "Format tidak sesuai"
+                  : "Field harus diisi",
               isNumber: true,
             ),
           ],
