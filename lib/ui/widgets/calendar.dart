@@ -1,6 +1,8 @@
 part of 'widgets.dart';
 
 class Calendar extends StatelessWidget {
+  final int startMonth;
+  final int startYear;
   final int startRed;
   final int endRed;
   final int startYellow;
@@ -10,7 +12,9 @@ class Calendar extends StatelessWidget {
 
   Calendar(this.startRed, this.endRed, this.startYellow, this.endYellow,
       this.recoverDate,
-      {this.clickable = false});
+      {this.clickable = false,
+      @required this.startMonth,
+      @required this.startYear});
 
   List<Widget> component = [];
   List<String> days = [
@@ -30,7 +34,7 @@ class Calendar extends StatelessWidget {
     pageBloc = BlocProvider.of<PageBloc>(context);
     if (component.length == 0) {
       generateDay();
-      (clickable) ? generateClickableDate() : generateDate(); 
+      (clickable) ? generateClickableDate() : generateDate();
     }
     return Wrap(
       spacing: UIHelper.setResWidth(10),
@@ -61,8 +65,8 @@ class Calendar extends StatelessWidget {
 
   void generateDate() {
     DateTime now = DateTime.now();
-    int lastDate = DateTime(now.year, now.month + 1, 0).day;
-    int firstWeekDay = DateTime(now.year, now.month, 1).weekday;
+    int lastDate = DateTime(startYear, startMonth + 1, 0).day;
+    int firstWeekDay = DateTime(startYear, startMonth, 1).weekday;
     int date = 1;
     for (var i = 0; i < lastDate; i++) {
       if (i + 1 < firstWeekDay) {
@@ -122,11 +126,10 @@ class Calendar extends StatelessWidget {
   }
 
   void generateClickableDate() {
-    DateTime now = DateTime.now();
-    int lastDate = DateTime(now.year, now.month + 1, 0).day;
+    int lastDate = DateTime(startYear, startMonth + 1, 0).day;
     int countDaysThisMonth = lastDate;
-    int countDaysNextMonth = DateTime(now.year, now.month + 2, 0).day;
-    int firstRedWeekDay = DateTime(now.year, now.month, startRed).weekday;
+    int countDaysNextMonth = DateTime(startYear, startMonth + 2, 0).day;
+    int firstRedWeekDay = DateTime(startYear, startMonth, startRed).weekday;
     int dayNeedToPassed = generateDayNeedToPassed();
     int date = startRed;
     int dateFront = startRed;
@@ -153,11 +156,11 @@ class Calendar extends StatelessWidget {
       }
       if (date == recoverDate) {
         component.add(GestureDetector(
-          onTap: (){
+          onTap: () {
             // TODO: sesuakan bro
             pageBloc.add(GoToRecoveryOnBoardPage());
           },
-                  child: Container(
+          child: Container(
             height: UIHelper.setResHeight(32),
             width: UIHelper.setResWidth(32),
             decoration: BoxDecoration(
@@ -177,11 +180,11 @@ class Calendar extends StatelessWidget {
         continue;
       }
       component.add(GestureDetector(
-        onTap: (){
+        onTap: () {
           // TODO: sesuakan bro
           pageBloc.add(GoToRecoveryOnBoardPage());
         },
-              child: Container(
+        child: Container(
           height: UIHelper.setResHeight(32),
           width: UIHelper.setResWidth(32),
           decoration: BoxDecoration(
@@ -215,7 +218,9 @@ class Calendar extends StatelessWidget {
     for (var i = 1; i < startRed; i = i + 7) {
       count++;
     }
-    count--;
+    if (startRed > 1) {
+      count--;
+    }
     return count * 7;
   }
 

@@ -12,6 +12,7 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
+    CalendarBloc calendarBloc = BlocProvider.of<CalendarBloc>(context);
     return CalendarDefaultTemplate(
       SizedBox(
         child: generateCheckBox(
@@ -37,6 +38,7 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
         widget.calendarModel =
             await GejalaService.createGejala(widget.calendarModel)
                 .whenComplete(() => Navigator.pop(context));
+        calendarBloc.add(LoadLocalCalendar(calendar: widget.calendarModel));
         pageBloc.add(GoToCalendarHome(widget.calendarModel));
       },
       backTo: GoToCalendarSignUpPage4(widget.calendarModel),
