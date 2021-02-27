@@ -51,19 +51,41 @@ class GoToAddCommentPage extends PageEvent {
       {this.idParentKomentar});
 }
 
-class GoToCalendarOnboardPage extends PageEvent {}
+class GoToCalendarOnboardPage extends PageEvent {
+  CalendarModel calendarModel;
+  final Pengguna pengguna;
+  GoToCalendarOnboardPage(this.pengguna, {this.calendarModel});
+}
 
-class GoToCalendarSignUpPage1 extends PageEvent {}
+class GoToCalendarSignUpPage1 extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarSignUpPage1(this.calendarModel);
+}
 
-class GoToCalendarSignUpPage2 extends PageEvent {}
+class GoToCalendarSignUpPage2 extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarSignUpPage2(this.calendarModel);
+}
 
-class GoToCalendarSignUpPage3 extends PageEvent {}
+class GoToCalendarSignUpPage3 extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarSignUpPage3(this.calendarModel);
+}
 
-class GoToCalendarSignUpPage4 extends PageEvent {}
+class GoToCalendarSignUpPage4 extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarSignUpPage4(this.calendarModel);
+}
 
-class GoToCalendarSignUpPage5 extends PageEvent {}
+class GoToCalendarSignUpPage5 extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarSignUpPage5(this.calendarModel);
+}
 
-class GoToCalendarHome extends PageEvent {}
+class GoToCalendarHome extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToCalendarHome(this.calendarModel);
+}
 
 class GoToConnectPuskesmasPage extends PageEvent {}
 

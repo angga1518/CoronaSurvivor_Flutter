@@ -29,6 +29,9 @@ class MyApp extends StatelessWidget {
               BlocProvider<UserBloc>(
                 create: (context) => UserBloc(),
               ),
+              BlocProvider<CalendarBloc>(
+                create: (context) => CalendarBloc(),
+              ),
             ],
             child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {

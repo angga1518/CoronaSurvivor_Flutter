@@ -10,6 +10,9 @@ PageEvent prevPageEvent;
 List<Komentar> sharedListKomentar;
 Map<String, List<Komentar>> mapIdArtikelKeKomentar;
 
+CalendarModel sharedCalendar;
+CovidIndo sharedCovidIndo;
+
 String getTanggalFormatted(String tanggal) {
   if (!tanggal.contains("T")) {
     return tanggal;

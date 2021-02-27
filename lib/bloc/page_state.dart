@@ -52,19 +52,41 @@ class OnAddCommentPage extends PageState {
       {this.idParentKomentar});
 }
 
-class OnCalendarOnboardPage extends PageState {}
+class OnCalendarOnboardPage extends PageState {
+  final CalendarModel calendarModel;
+  final Pengguna pengguna;
+  OnCalendarOnboardPage(this.calendarModel, this.pengguna);
+}
 
-class OnCalendarSignUpPage1 extends PageState {}
+class OnCalendarSignUpPage1 extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarSignUpPage1(this.calendarModel);
+}
 
-class OnCalendarSignUpPage2 extends PageState {}
+class OnCalendarSignUpPage2 extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarSignUpPage2(this.calendarModel);
+}
 
-class OnCalendarSignUpPage3 extends PageState {}
+class OnCalendarSignUpPage3 extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarSignUpPage3(this.calendarModel);
+}
 
-class OnCalendarSignUpPage4 extends PageState {}
+class OnCalendarSignUpPage4 extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarSignUpPage4(this.calendarModel);
+}
 
-class OnCalendarSignUpPage5 extends PageState {}
+class OnCalendarSignUpPage5 extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarSignUpPage5(this.calendarModel);
+}
 
-class OnCalendarHome extends PageState {}
+class OnCalendarHome extends PageState {
+  final CalendarModel calendarModel;
+  OnCalendarHome(this.calendarModel);
+}
 
 class OnConnectPuskesmasPage extends PageState {}
 

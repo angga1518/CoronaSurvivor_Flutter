@@ -106,9 +106,16 @@ class RecoveryTemplate extends StatelessWidget {
                 pageBloc.add(backTo);
               }),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: BottomBar(4),
-              )
+                  alignment: Alignment.bottomCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return BottomBar(4, pengguna);
+                      }
+                      return Container();
+                    },
+                  ))
             ],
           ),
         ),

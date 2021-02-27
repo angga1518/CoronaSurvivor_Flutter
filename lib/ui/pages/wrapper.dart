@@ -62,6 +62,7 @@ class _WrapperState extends State<Wrapper> {
     User user = Provider.of<User>(context);
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    CalendarBloc calendarBloc = BlocProvider.of<CalendarBloc>(context);
 
     // pageBloc.add(GoToRecoveryDetailPage());
     if (user == null) {
@@ -75,11 +76,13 @@ class _WrapperState extends State<Wrapper> {
       if (prevPageEvent is GoToOnboardPage) {
         prevPageEvent = GoToHomePage();
         userBloc.add(LoadUser(user.email));
+        calendarBloc.add(LoadCalendar(emailPengguna: user.email));
         pageBloc.add(GoToOnboardPage());
       }
       if (!(prevPageEvent is GoToHomePage)) {
         prevPageEvent = GoToHomePage();
         userBloc.add(LoadUser(user.email));
+        calendarBloc.add(LoadCalendar(emailPengguna: user.email));
         pageBloc.add(prevPageEvent);
       }
     }
@@ -109,19 +112,20 @@ class _WrapperState extends State<Wrapper> {
           return AddCommentPage(state.artikel, state.pengguna,
               state.isReply, state.namaReplied, state.idParentKomentar);
         } else if (state is OnCalendarOnboardPage) {
-          return CalendarOnboardPage();
+          return CalendarOnboardPage(state.pengguna,
+              calendarModel: state.calendarModel);
         } else if (state is OnCalendarSignUpPage1) {
-          return CalendarSignUpPage1();
+          return CalendarSignUpPage1(state.calendarModel);
         } else if (state is OnCalendarSignUpPage2) {
-          return CalendarSignUpPage2();
+          return CalendarSignUpPage2(state.calendarModel);
         } else if (state is OnCalendarSignUpPage3) {
-          return CalendarSignUpPage3();
+          return CalendarSignUpPage3(state.calendarModel);
         } else if (state is OnCalendarSignUpPage4) {
-          return CalendarSignUpPage4();
+          return CalendarSignUpPage4(state.calendarModel);
         } else if (state is OnCalendarSignUpPage5) {
-          return CalendarSignUpPage5();
+          return CalendarSignUpPage5(state.calendarModel);
         } else if (state is OnCalendarHome) {
-          return CalendarHomePage();
+          return CalendarHomePage(state.calendarModel);
         } else if (state is OnConnectPuskesmasPage) {
           return ConnectPuskesPage();
         } else if (state is OnSuccessPage) {
