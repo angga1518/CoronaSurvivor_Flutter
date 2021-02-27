@@ -25,20 +25,23 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToOnboardPage) {
       yield OnOnboardPage();
     } else if (event is GoToProfilePage) {
-      yield OnProfilePage();
+      yield OnProfilePage(event.pengguna);
     } else if (event is GoToSignupPage) {
       yield OnSignupPage();
     } else if (event is GoToDonorGiverPage) {
-      yield OnDonorGiverPage();
+      yield OnDonorGiverPage(event.pengguna, event.pemberiDonor);
     } else if (event is GoToDonorReceiverPage) {
-      yield OnDonorReceiverPage();
+      yield OnDonorReceiverPage(event.pengguna, event.penerimaDonor);
     } else if (event is GoToInfoPage) {
+      // GoToInfoPage(savedArtikel : idArtikel???);
+      // await likeservice.likeAtikel(event.idLikedarticle);
       yield OnInfoPage();
     } else if (event is GoToDetailInfoPage) {
-      yield OnDetailInfoPage(event.idArtikel, event.pengguna, event.judul);
+      yield OnDetailInfoPage(event.artikel, event.pengguna);
     } else if (event is GoToAddCommentPage) {
-      yield OnAddCommentPage(event.title, event.idArtikel, event.pengguna,
-          event.isReply, event.repliedUser);
+      yield OnAddCommentPage(
+          event.artikel, event.pengguna, event.isReply, event.namaReplied,
+          idParentKomentar: event.idParentKomentar);
     } else if (event is GoToCalendarOnboardPage) {
       yield OnCalendarOnboardPage();
     } else if (event is GoToCalendarSignUpPage1) {

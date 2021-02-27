@@ -7,7 +7,7 @@ class ArtikelServices {
     var data = json.decode(response.body);
     data = data['result'];
     List<Artikel> listArtikel =
-        await ArtikelServices.convertToListArtikel(data);    
+        await ArtikelServices.convertToListArtikel(data);
     return listArtikel;
   }
 
@@ -41,8 +41,10 @@ class ArtikelServices {
     int jumlahView = data['jumlahView'];
     int jumlahLike = data['jumlahLike'];
     bool isLiked = data['liked'];
+    bool isSaved = data['saved'];
     List<dynamic> listIdkomentar = data['listIdComment'];
     Artikel artikel = new Artikel(
+        listIdComment: listIdkomentar.cast<String>(),
         author: author,
         idArtikel: idArtikel,
         institusi: institusi,
@@ -52,12 +54,10 @@ class ArtikelServices {
         jumlahLike: jumlahLike,
         jumlahView: jumlahView,
         imageUrl: imageUrl,
-        isLiked: isLiked);
+        isLiked: isLiked,
+        isSaved: isSaved);
     return artikel;
   }
-  
-
-
 
   static Future<List<Artikel>> convertToListArtikel(var data) async {
     List<dynamic> listResult = data as List<dynamic>;
@@ -74,8 +74,10 @@ class ArtikelServices {
       int jumlahView = x['jumlahView'];
       int jumlahLike = x['jumlahLike'];
       bool isLiked = x['liked'];
+      bool isSaved = x['saved']; 
       List<dynamic> listIdkomentar = x['listIdComment'];
       Artikel artikel = new Artikel(
+          listIdComment: listIdkomentar.cast<String>(),
           author: author,
           idArtikel: idArtikel,
           institusi: institusi,
@@ -85,9 +87,25 @@ class ArtikelServices {
           jumlahLike: jumlahLike,
           jumlahView: jumlahView,
           imageUrl: imageUrl,
+          isSaved: isSaved,
           isLiked: isLiked);
       listArtikel.add(artikel);
     }
     return listArtikel;
+  }
+
+  static Future<void> postSavedArtikel(Artikel artikel, String email) async {
+    //localhost:8080/postSavedArtikel?email=alfangg@gmail.com
+    String url = base_url + "postSavedArtikel?email=" + email;
+    http.Response response = await http.Client().post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "idArtikel": artikel.idArtikel,
+        "liked": artikel.isLiked.toString()
+      }),
+    );
   }
 }

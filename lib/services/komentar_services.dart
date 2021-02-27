@@ -53,7 +53,6 @@ class KomentarServices {
   }
 
   static Future<void> saveKomentar(Komentar komentar, String idArtikel) async {
-    //localhost:8080/createKomentar?idArtikel=3g4DRCC6Y1OhO0Riwb9I
     String url = base_url + "createKomentar?idArtikel=" + idArtikel;
     http.Response response = await http.Client().post(
       url,
@@ -62,7 +61,6 @@ class KomentarServices {
       },
       body: jsonEncode(<String, String>{
         "namaLengkap": komentar.namaLengkap,
-        "tanggalPost": komentar.tanggalPost,
         "isi": komentar.isi,
         "jumlahLike": komentar.jumlahLike.toString(),
       }),

@@ -13,31 +13,42 @@ class GoToHomePage extends PageEvent {}
 
 class GoToOnboardPage extends PageEvent {}
 
-class GoToProfilePage extends PageEvent {}
+class GoToProfilePage extends PageEvent {
+  final Pengguna pengguna;
+  GoToProfilePage(this.pengguna);
+}
 
-class GoToDonorGiverPage extends PageEvent {}
+class GoToDonorGiverPage extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor pemberiDonor;
+  GoToDonorGiverPage(this.pengguna, this.pemberiDonor);
+}
 
-class GoToDonorReceiverPage extends PageEvent {}
+class GoToDonorReceiverPage extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  GoToDonorReceiverPage(this.pengguna, this.penerimaDonor);
+}
 
 class GoToInfoPage extends PageEvent {}
 
 class GoToDetailInfoPage extends PageEvent {
-  final String idArtikel;
+  final Artikel artikel;
   final Pengguna pengguna;
-  final String judul;
 
-  GoToDetailInfoPage(this.idArtikel, this.pengguna, this.judul);
+  GoToDetailInfoPage(this.artikel, this.pengguna);
 }
 
 class GoToAddCommentPage extends PageEvent {
-  final String title;
-  final String idArtikel;
+  final Artikel artikel;
   final Pengguna pengguna;
   final bool isReply;
-  final String repliedUser;
+  final String namaReplied;
+  final String idParentKomentar;
 
-  GoToAddCommentPage(this.title, this.idArtikel, this.pengguna, this.isReply,
-      this.repliedUser);
+  GoToAddCommentPage(
+      this.artikel, this.pengguna, this.isReply, this.namaReplied,
+      {this.idParentKomentar});
 }
 
 class GoToCalendarOnboardPage extends PageEvent {}

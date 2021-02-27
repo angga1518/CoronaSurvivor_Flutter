@@ -1,18 +1,24 @@
 part of 'pages.dart';
 
 class DetailInfo extends StatefulWidget {
-  final String idArtikel;
   final Pengguna pengguna;
-  final String judul;
+  final Artikel artikel;
 
-  DetailInfo(this.idArtikel, this.pengguna, this.judul);
+  DetailInfo(this.artikel, this.pengguna);
 
   @override
   _DetailInfoState createState() => _DetailInfoState();
 }
 
 class _DetailInfoState extends State<DetailInfo> {
+  bool isSavedIcon;
   PageBloc pageBloc;
+
+  @override
+  void initState() {
+    isSavedIcon = widget.artikel.isSaved;
+  }
+
   @override
   Widget build(BuildContext context) {
     pageBloc = BlocProvider.of<PageBloc>(context);
@@ -43,213 +49,194 @@ class _DetailInfoState extends State<DetailInfo> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: UIHelper.setResHeight(10)),
-                              child: FutureBuilder(
-                                future: Future.wait([
-                                  ArtikelServices.getArtikelDetails(
-                                      widget.idArtikel, widget.pengguna.email),
-                                ]),
-                                builder: (context,
-                                    AsyncSnapshot<List<dynamic>> snapshot) {
-                                  if (snapshot.hasData) {
-                                    // snapshot.data[0]; //bar
-                                    // snapshot.data[1];
-                                    return Column(
-                                      children: [
-                                        SizedBox(
-                                          width: UIHelper.setResWidth(250),
-                                          child: Text(
-                                            snapshot.data[0].judul,
-                                            style: UIHelper.darkGreyFont
+                                padding: EdgeInsets.symmetric(
+                                    vertical: UIHelper.setResHeight(10)),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      width: UIHelper.setResWidth(250),
+                                      child: Text(
+                                        widget.artikel.judul,
+                                        style: UIHelper.darkGreyFont.copyWith(
+                                            fontSize:
+                                                UIHelper.setResFontSize(16)),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    UIHelper.vertSpace(20),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: UIHelper.setResWidth(15)),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                              child: Text(
+                                            widget.artikel.institusi,
+                                            style: UIHelper.greyLightFont
                                                 .copyWith(
                                                     fontSize:
                                                         UIHelper.setResFontSize(
-                                                            16)),
+                                                            10),
+                                                    color: UIHelper
+                                                        .colorGreySuperLight),
                                             textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                        UIHelper.vertSpace(20),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal:
-                                                  UIHelper.setResWidth(15)),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                  child: Text(
-                                                snapshot.data[0].institusi,
-                                                style: UIHelper.greyLightFont
-                                                    .copyWith(
-                                                        fontSize: UIHelper
-                                                            .setResFontSize(10),
-                                                        color: UIHelper
-                                                            .colorGreySuperLight),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                              Expanded(
-                                                  child: Text(
-                                                snapshot.data[0].author,
-                                                style: UIHelper.greyLightFont
-                                                    .copyWith(
-                                                        fontSize: UIHelper
-                                                            .setResFontSize(10),
-                                                        color: UIHelper
-                                                            .colorGreySuperLight),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                              Expanded(
-                                                  child: Text(
-                                                getTanggalForUI(snapshot
-                                                    .data[0].tanggalPost),
-                                                style: UIHelper.greyLightFont
-                                                    .copyWith(
-                                                        fontSize: UIHelper
-                                                            .setResFontSize(10),
-                                                        color: UIHelper
-                                                            .colorGreySuperLight),
-                                                textAlign: TextAlign.center,
-                                              ))
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.symmetric(
-                                              vertical:
-                                                  UIHelper.setResHeight(10)),
-                                          height: UIHelper.setResHeight(140),
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(snapshot
-                                                      .data[0].imageUrl),
-                                                  fit: BoxFit.fill)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal:
-                                                UIHelper.setResWidth(10),
-                                          ),
-                                          child: SizedBox(
-                                              child: Text(
-                                            snapshot.data[0].deskripsi,
-                                            style: UIHelper.greyLightFont,
                                           )),
-                                        ),
-                                        UIHelper.vertSpace(10),
-                                        Row(
+                                          Expanded(
+                                              child: Text(
+                                            widget.artikel.author,
+                                            style: UIHelper.greyLightFont
+                                                .copyWith(
+                                                    fontSize:
+                                                        UIHelper.setResFontSize(
+                                                            10),
+                                                    color: UIHelper
+                                                        .colorGreySuperLight),
+                                            textAlign: TextAlign.center,
+                                          )),
+                                          Expanded(
+                                              child: Text(
+                                            getTanggalForUI(
+                                                widget.artikel.tanggalPost),
+                                            style: UIHelper.greyLightFont
+                                                .copyWith(
+                                                    fontSize:
+                                                        UIHelper.setResFontSize(
+                                                            10),
+                                                    color: UIHelper
+                                                        .colorGreySuperLight),
+                                            textAlign: TextAlign.center,
+                                          ))
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.symmetric(
+                                          vertical: UIHelper.setResHeight(10)),
+                                      height: UIHelper.setResHeight(140),
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  widget.artikel.imageUrl),
+                                              fit: BoxFit.fill)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: UIHelper.setResWidth(10),
+                                      ),
+                                      child: SizedBox(
+                                          child: Text(
+                                        widget.artikel.deskripsi,
+                                        style: UIHelper.greyLightFont,
+                                      )),
+                                    ),
+                                    UIHelper.vertSpace(10),
+                                    Row(
+                                      children: [
+                                        Spacer(),
+                                        Expanded(
+                                            child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Spacer(),
-                                            Expanded(
-                                                child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height:
-                                                      UIHelper.setResHeight(13),
-                                                  width:
-                                                      UIHelper.setResWidth(13),
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          "assets/comment_red.png")),
-                                                ),
-                                                UIHelper.horzSpace(5),
-                                                Text(
-                                                  snapshot.data[0]
-                                                              .listIdComment !=
-                                                          null
-                                                      ? snapshot.data[0]
-                                                          .listIdComment.length
-                                                          .toString()
-                                                      : "0",
-                                                  style: UIHelper.redFont
-                                                      .copyWith(
-                                                          fontSize: UIHelper
-                                                              .setResFontSize(
-                                                                  10),
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                )
-                                              ],
-                                            )),
-                                            Expanded(
-                                                child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height:
-                                                      UIHelper.setResHeight(13),
-                                                  width:
-                                                      UIHelper.setResWidth(13),
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          "assets/like_red.png")),
-                                                ),
-                                                UIHelper.horzSpace(5),
-                                                Text(
-                                                  snapshot.data[0].jumlahLike
-                                                      .toString(),
-                                                  style: UIHelper.redFont
-                                                      .copyWith(
-                                                          fontSize: UIHelper
-                                                              .setResFontSize(
-                                                                  10),
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                )
-                                              ],
-                                            )),
-                                            Spacer()
+                                            SizedBox(
+                                              height: UIHelper.setResHeight(13),
+                                              width: UIHelper.setResWidth(13),
+                                              child: Image(
+                                                  image: AssetImage(
+                                                      "assets/comment_red.png")),
+                                            ),
+                                            UIHelper.horzSpace(5),
+                                            Text(
+                                              widget.artikel.listIdComment !=
+                                                      null
+                                                  ? widget.artikel.listIdComment
+                                                      .length
+                                                      .toString()
+                                                  : "0",
+                                              style: UIHelper.redFont.copyWith(
+                                                  fontSize:
+                                                      UIHelper.setResFontSize(
+                                                          10),
+                                                  fontWeight: FontWeight.w400),
+                                            )
                                           ],
-                                        ),
-                                        UIHelper.vertSpace(10),
+                                        )),
+                                        Expanded(
+                                            child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              height: UIHelper.setResHeight(13),
+                                              width: UIHelper.setResWidth(13),
+                                              child: Image(
+                                                  image: AssetImage(
+                                                      "assets/like_red.png")),
+                                            ),
+                                            UIHelper.horzSpace(5),
+                                            Text(
+                                              widget.artikel.jumlahLike
+                                                  .toString(),
+                                              style: UIHelper.redFont.copyWith(
+                                                  fontSize:
+                                                      UIHelper.setResFontSize(
+                                                          10),
+                                                  fontWeight: FontWeight.w400),
+                                            )
+                                          ],
+                                        )),
+                                        Spacer()
                                       ],
-                                    );
-                                  } else {
-                                    return Container();
-                                  }
-                                },
-                              ),
-                            )
+                                    ),
+                                    UIHelper.vertSpace(10),
+                                  ],
+                                ))
                           ],
                         ),
                       ),
                       UIHelper.vertSpace(15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        //Action di Artikel
                         children: [
                           generateActionContainer(
                               "assets/comment",
                               "Comment",
                               false,
                               true,
-                              widget.idArtikel,
+                              widget.artikel.idArtikel,
                               widget.pengguna,
-                              widget.judul,
+                              widget.artikel.judul,
+                              "",
+                              "Comment",
                               ""),
                           generateActionContainer(
                               "assets/like",
                               "Like",
                               true,
                               true,
-                              widget.idArtikel,
+                              widget.artikel.idArtikel,
                               widget.pengguna,
-                              widget.judul,
+                              widget.artikel.judul,
+                              "",
+                              "Like",
                               ""),
                           generateActionContainer(
                               "assets/like",
                               "Save",
+                              isSavedIcon,
                               true,
-                              true,
-                              widget.idArtikel,
+                              widget.artikel.idArtikel,
                               widget.pengguna,
-                              widget.judul,
+                              widget.artikel.judul,
+                              "",
+                              "Save",
                               ""),
                         ],
                       ),
                       UIHelper.vertSpace(20),
-                      commentSection(widget.idArtikel, widget.pengguna.email),
+                      commentSection(
+                          widget.artikel.idArtikel, widget.pengguna.email),
                       UIHelper.vertSpace(20),
                     ],
                   )
@@ -273,20 +260,32 @@ class _DetailInfoState extends State<DetailInfo> {
       String idArtikel,
       Pengguna pengguna,
       String judul,
-      String repliedUser) {
+      String repliedUser,
+      String action,
+      String parentKomentar) {
     String inputtedAsset = (active) ? asset + "_red.png" : asset + ".png";
     String inputtedTitle = (active) ? title + "d" : title;
     Color backgroundColor = (active) ? UIHelper.colorPink : Colors.white;
     Color borderColor =
         (active) ? UIHelper.colorMainLightRed : UIHelper.colorMediumLightGrey;
     return GestureDetector(
-      onTap: () {
-        if (isCommentArticle) {
+      onTap: () async {
+        if (action == "Comment") {
+          pageBloc.add(
+              GoToAddCommentPage(widget.artikel, pengguna, false, repliedUser));
+        } else if (action == "Reply") {
           pageBloc.add(GoToAddCommentPage(
-              judul, idArtikel, pengguna, false, repliedUser));
-        } else {
-          pageBloc.add(GoToAddCommentPage(
-              judul, idArtikel, pengguna, true, repliedUser));
+              widget.artikel, pengguna, true, repliedUser,
+              idParentKomentar: parentKomentar));
+        } else if (action == "Save" && active == false) {
+          print("Masuk");
+          showPopUp(context: context, child: PopUpLoadingChild());
+          await ArtikelServices.postSavedArtikel(
+                  widget.artikel, widget.pengguna.email)
+              .whenComplete(() => Navigator.pop(context));
+          setState(() {
+            isSavedIcon = true;
+          });
         }
       },
       child: Container(
@@ -326,45 +325,68 @@ class _DetailInfoState extends State<DetailInfo> {
   }
 
   Widget commentSection(String idArtikel, String email) {
-    return FutureBuilder(
-      future: Future.wait(
-          [KomentarServices.getAllKomentarWithReplies(idArtikel, email)]),
-      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-        if (snapshot.hasData) {
-          List<Widget> children = [];
-          for (var komentar in snapshot.data[0]) {
-            children.add(generateCommentContainer(komentar.namaLengkap,
-                komentar.isi, komentar.jumlahLike, komentar.tanggalPost, true));
-            children.add(UIHelper.vertSpace(5));
-            if (komentar.replies != null) {
-              for (Reply reply in komentar.replies) {
-                children.add(generateRepliedCommentContainer(
-                    reply.namaLengkap, reply.isi, 0, reply.tanggalPost));
-                children.add(UIHelper.vertSpace(5));
-              }
-            }
+    if (!(mapIdArtikelKeKomentar[idArtikel].isEmpty)) {
+      List<Komentar> sharedListKomentar = mapIdArtikelKeKomentar[idArtikel];
+      List<Widget> children = convertListKomentarToWidget(sharedListKomentar);
+      return Container(
+          padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(17)),
+          child: Column(children: children));
+    } else {
+      List<Komentar> sharedListKomentar = [];
+      return FutureBuilder(
+        future: Future.wait(
+            [KomentarServices.getAllKomentarWithReplies(idArtikel, email)]),
+        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+          if (snapshot.hasData) {
+            sharedListKomentar = snapshot.data[0];
+            mapIdArtikelKeKomentar[idArtikel] = sharedListKomentar;
+            List<Widget> children =
+                convertListKomentarToWidget(sharedListKomentar);
+            return Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(17)),
+                child: Column(children: children));
+          } else {
+            return Container();
           }
-          return Container(
-              padding:
-                  EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(17)),
-              child: Column(children: children));
-        } else {
-          return Container();
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
-  Widget generateRepliedCommentContainer(
-      String name, String comment, int likeAmount, String date) {
-    return generateCommentContainer(name, comment, likeAmount, date, false,
+  List<Widget> convertListKomentarToWidget(List<dynamic> listKomentar) {
+    List<Widget> children = [];
+    for (var komentar in listKomentar) {
+      children.add(generateCommentContainer(
+          komentar.namaLengkap,
+          komentar.isi,
+          komentar.jumlahLike,
+          komentar.tanggalPost,
+          true,
+          komentar.idKomentar));
+      children.add(UIHelper.vertSpace(5));
+      if (komentar.replies != null) {
+        for (Reply reply in komentar.replies) {
+          children.add(generateRepliedCommentContainer(reply.namaLengkap,
+              reply.isi, 0, reply.tanggalPost, komentar.idKomentar));
+          children.add(UIHelper.vertSpace(5));
+        }
+      }
+    }
+    return children;
+  }
+
+  Widget generateRepliedCommentContainer(String name, String comment,
+      int likeAmount, String date, String parentKomentar) {
+    return generateCommentContainer(
+        name, comment, likeAmount, date, false, parentKomentar,
         width: 290);
   }
 
-  Widget generateCommentContainer(
-      String name, String comment, int likeAmount, String date, bool isParent,
+  Widget generateCommentContainer(String name, String comment, int likeAmount,
+      String date, bool isParent, String parentKomentar,
       {double width = 320}) {
-    String dateString = getTanggalForUI(date);
+    String dateString = date;
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
@@ -396,16 +418,19 @@ class _DetailInfoState extends State<DetailInfo> {
                 SizedBox(
                   child: Row(
                     children: [
+                      // di Komentar
                       (isParent)
                           ? generateActionContainer(
                               "assets/comment",
                               "Reply",
                               false,
                               false,
-                              widget.idArtikel,
+                              widget.artikel.idArtikel,
                               widget.pengguna,
-                              widget.judul,
-                              name)
+                              widget.artikel.judul,
+                              name,
+                              "Reply",
+                              parentKomentar)
                           : Container(),
                       (isParent)
                           ? generateActionContainer(
@@ -413,10 +438,12 @@ class _DetailInfoState extends State<DetailInfo> {
                               likeAmount.toString(),
                               false,
                               false,
-                              widget.idArtikel,
+                              widget.artikel.idArtikel,
                               widget.pengguna,
-                              widget.judul,
-                              name)
+                              widget.artikel.judul,
+                              name,
+                              "Like",
+                              "")
                           : Container()
                     ],
                   ),

@@ -1,14 +1,14 @@
 part of 'pages.dart';
 
 class AddCommentPage extends StatefulWidget {
-  final String title;
+  final Artikel artikel;
   final Pengguna pengguna;
   final bool isReply;
-  final String idArtkel;
   final String namaReplied;
+  final String idParentKomentar;
 
-  AddCommentPage(
-      this.title, this.idArtkel, this.pengguna, this.isReply, this.namaReplied);
+  AddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
+      this.idParentKomentar);
 
   @override
   _AddCommentPageState createState() => _AddCommentPageState();
@@ -27,8 +27,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(
-            GoToDetailInfoPage(widget.idArtkel, widget.pengguna, widget.title));
+        pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna));
         return false;
       },
       child: Scaffold(
@@ -56,7 +55,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                                 child: Text(
                                   widget.isReply
                                       ? "Reply to " + widget.namaReplied
-                                      : widget.title,
+                                      : widget.artikel.judul,
                                   textAlign: TextAlign.center,
                                   style: UIHelper.darkGreyFont.copyWith(
                                       fontSize: UIHelper.setResFontSize(13),
@@ -68,7 +67,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                                   ? SizedBox(
                                       width: UIHelper.setResWidth(250),
                                       child: Text(
-                                        widget.title,
+                                        widget.artikel.judul,
                                         textAlign: TextAlign.center,
                                         style: UIHelper.darkGreyFont.copyWith(
                                             fontSize:
@@ -115,25 +114,33 @@ class _AddCommentPageState extends State<AddCommentPage> {
                 ],
               ),
               TopBar((widget.isReply) ? "Reply" : "Comment", () {
-                pageBloc.add(GoToDetailInfoPage(
-                    widget.idArtkel, widget.pengguna, widget.title));
+                pageBloc
+                    .add(GoToDetailInfoPage(widget.artikel, widget.pengguna));
               }),
               Positioned(
                   top: UIHelper.setResHeight(520),
                   left: UIHelper.setResWidth((360 - 252) / 2),
                   child: PinkButton("Kirim", () async {
+                    showPopUp(context: context, child: PopUpLoadingChild());
                     if (widget.isReply) {
-                      Reply reply = new Reply();
+                      print(widget.idParentKomentar);
+                      Reply reply = new Reply(
+                          namaLengkap: widget.pengguna.namaLengkap,
+                          isi: textController.text);
+                      await ReplyServices.saveReply(
+                              reply, widget.idParentKomentar)
+                          .whenComplete(() => Navigator.pop(context));
                     } else {
                       Komentar komentar = new Komentar(
                           namaLengkap: widget.pengguna.namaLengkap,
                           isi: textController.text,
-                          tanggalPost: DateTime.now().toString(),
                           jumlahLike: 0);
                       await KomentarServices.saveKomentar(
-                          komentar, widget.idArtkel);
+                              komentar, widget.artikel.idArtikel)
+                          .whenComplete(() => Navigator.pop(context));
                     }
-                    // pageBloc.add(GoToDetailInfoPage());
+                    pageBloc.add(
+                        GoToDetailInfoPage(widget.artikel, widget.pengguna));
                   })),
             ],
           ),

@@ -96,18 +96,18 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnOnboardPage) {
           return OnboardPage();
         } else if (state is OnProfilePage) {
-          return ProfilePage();
+          return ProfilePage(state.pengguna);
         } else if (state is OnDonorGiverPage) {
-          return DonorGiverPage();
+          return DonorGiverPage(state.pengguna, state.pemberiDonor);
         } else if (state is OnDonorReceiverPage) {
-          return DonorReceiverPage();
+          return DonorReceiverPage(state.pengguna, state.penerimaDonor);
         } else if (state is OnInfoPage) {
           return InfoPage();
         } else if (state is OnDetailInfoPage) {
-          return DetailInfo(state.idArtikel, state.pengguna, state.judul);
+          return DetailInfo(state.artikel, state.pengguna);
         } else if (state is OnAddCommentPage) {
-          return AddCommentPage(state.title, state.idArtikel, state.pengguna,
-              state.isReply, state.repliedUser);
+          return AddCommentPage(state.artikel, state.pengguna,
+              state.isReply, state.namaReplied, state.idParentKomentar);
         } else if (state is OnCalendarOnboardPage) {
           return CalendarOnboardPage();
         } else if (state is OnCalendarSignUpPage1) {

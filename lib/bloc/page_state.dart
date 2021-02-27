@@ -15,30 +15,41 @@ class OnHomePage extends PageState {}
 
 class OnOnboardPage extends PageState {}
 
-class OnProfilePage extends PageState {}
+class OnProfilePage extends PageState {
+  final Pengguna pengguna;
+  OnProfilePage(this.pengguna);
+}
 
-class OnDonorGiverPage extends PageState {}
+class OnDonorGiverPage extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor pemberiDonor;
+  OnDonorGiverPage(this.pengguna, this.pemberiDonor);
+}
 
-class OnDonorReceiverPage extends PageState {}
+class OnDonorReceiverPage extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  OnDonorReceiverPage(this.pengguna, this.penerimaDonor);
+}
 
 class OnInfoPage extends PageState {}
 
 class OnDetailInfoPage extends PageState {
-  final String idArtikel;
   final Pengguna pengguna;
-  final String judul;
+  final Artikel artikel;
 
-  OnDetailInfoPage(this.idArtikel, this.pengguna, this.judul);
+  OnDetailInfoPage(this.artikel, this.pengguna);
 }
 
 class OnAddCommentPage extends PageState {
-  final String title;
-  final String idArtikel;
+  final Artikel artikel;
   final Pengguna pengguna;
   final bool isReply;
-  final String repliedUser;
+  final String namaReplied;
+  final String idParentKomentar;
 
-  OnAddCommentPage(this.title, this.idArtikel, this.pengguna, this.isReply,this.repliedUser);
+  OnAddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
+      {this.idParentKomentar});
 }
 
 class OnCalendarOnboardPage extends PageState {}

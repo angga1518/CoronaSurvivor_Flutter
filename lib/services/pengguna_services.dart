@@ -31,9 +31,15 @@ class PenggunaServices {
         jenisKelamin: data['jenisKelamin'],
         domisili: data['domisili'],
         noTelepon: data['noTelepon'],
-        listIdArtikelDisimpan: data['listIdArtikelDisimpan'].cast<String>(),
-        listIdLikedArtikel: data['listIdLikedArtikel'].cast<String>(),
-        listIdLikedKomentar: data['listIdLikedKomentar'].cast<String>());
+        listIdArtikelDisimpan: data['listIdArtikelDisimpan'] == null
+            ? null
+            : data['listIdArtikelDisimpan'].cast<String>(),
+        listIdLikedArtikel: data['listIdLikedArtikel'] == null
+            ? null
+            : data['listIdLikedArtikel'].cast<String>(),
+        listIdLikedKomentar: data['listIdLikedKomentar'] == null
+            ? null
+            : data['listIdLikedKomentar'].cast<String>());
     return pengguna;
   }
 }
