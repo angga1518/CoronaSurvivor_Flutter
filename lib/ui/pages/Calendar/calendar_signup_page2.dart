@@ -21,11 +21,20 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
   @override
   void initState() {
     super.initState();
-    beratBadanController.text = widget.calendarModel.beratBadan.toString();
+    beratBadanController.text =
+        (widget.calendarModel.beratBadan.toString() == "0")
+            ? ""
+            : (widget.calendarModel.beratBadan == null)
+                ? ""
+                : widget.calendarModel.beratBadan.toString();
     tanggalPositifController.text =
-        widget.calendarModel.tanggalPositif.toString();
+        (widget.calendarModel.tanggalPositif == null)
+            ? ""
+            : widget.calendarModel.tanggalPositif.toString();
     tanggalGejalaController.text =
-        widget.calendarModel.tanggalMunculGejala.toString();
+        (widget.calendarModel.tanggalMunculGejala == null)
+            ? ""
+            : widget.calendarModel.tanggalMunculGejala.toString();
     isAlreadyOpen = beratBadanController.text != "" ||
         tanggalPositifController.text != "" ||
         tanggalGejalaController.text != "";
@@ -103,6 +112,7 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
                   ? "Format tidak sesuai"
                   : "Field harus diisi",
               isNumber: true,
+              suffixText: "KG",
             ),
           ],
         ),
@@ -111,22 +121,5 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
       goTo: GoToCalendarSignUpPage3(widget.calendarModel),
       backTo: GoToCalendarSignUpPage1(widget.calendarModel),
     );
-  }
-
-  bool tanggalValidation(String tanggal) {
-    List<String> details = tanggal.split("/");
-    if (details.length != 3) {
-      return false;
-    }
-    if (details[0].length != 4) {
-      return false;
-    }
-    if (details[1].length != 2) {
-      return false;
-    }
-    if (details[2].length != 2) {
-      return false;
-    }
-    return true;
   }
 }

@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool isValid;
   final Icon suffixIcon;
   final String prefixText;
+  final String suffixText;
   final String helperText;
   final bool editable;
   final TextEditingController controller;
@@ -24,6 +25,7 @@ class TextFieldWidget extends StatelessWidget {
       this.isValid = true,
       this.suffixIcon,
       this.prefixText = "",
+      this.suffixText = "",
       this.editable = true,
       this.controller,
       this.helperText = ""});
@@ -54,6 +56,7 @@ class TextFieldWidget extends StatelessWidget {
             helperStyle: TextStyle(color: UIHelper.colorGreySuperLight),
             helperText: helperText == "" ? null : helperText,
             prefixText: prefixText == "" ? null : prefixText,
+            suffixText: suffixText == "" ? null : suffixText,
             suffixIcon: suffixIcon ?? null,
             contentPadding: EdgeInsets.symmetric(
                 vertical: UIHelper.setResHeight(10),

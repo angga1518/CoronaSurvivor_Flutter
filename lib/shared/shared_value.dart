@@ -4,7 +4,7 @@ part of 'shared.dart';
 // prod_base_url = "https://coronasurvivor.azurewebsites.net/";
 // please use http instead of https
 // const String base_url = "http://coronasurvivor.azurewebsites.net/";
-const String base_url = "http://b6ba2f191b8d.ngrok.io/";
+const String base_url = "http://a04b8454e69e.ngrok.io/";
 
 PageEvent prevPageEvent;
 CalendarModel sharedCalendar;

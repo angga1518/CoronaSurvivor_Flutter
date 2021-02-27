@@ -5,6 +5,7 @@ class CalendarModel {
   String kodePuskesmas;
   String emailPengguna;
   List<String> listGejala;
+  List<String> listRiwayat;
   String nik;
   int beratBadan;
   int red;
@@ -25,6 +26,7 @@ class CalendarModel {
     this.kodePuskesmas,
     this.emailPengguna,
     this.listGejala,
+    this.listRiwayat,
     this.nik,
     this.beratBadan,
     this.red,

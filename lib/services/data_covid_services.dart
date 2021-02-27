@@ -7,8 +7,8 @@ class CovidInfoService {
     if (response.statusCode != 200) {
       // default value
       return CovidIndo(
-        sembuh: "1,306,141",
-        positif: "1,112,725",
+        positif: "1,306,141",
+        sembuh: "1,112,725",
         meninggal: "35,254",
         dirawat: "158,162",
       );
