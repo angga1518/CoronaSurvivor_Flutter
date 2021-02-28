@@ -34,6 +34,8 @@ class OnDonorReceiverPage extends PageState {
 
 class OnInfoPage extends PageState {}
 
+class OnListProvinsi extends PageState {}
+
 class OnDetailInfoPage extends PageState {}
 
 class OnAddCommentPage extends PageState {

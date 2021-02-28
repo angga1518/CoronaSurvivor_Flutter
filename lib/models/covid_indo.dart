@@ -12,3 +12,18 @@ class CovidIndo {
       @required this.meninggal,
       @required this.dirawat});
 }
+
+class KasusProvinsi {
+  int kodeUrut;
+  String provinsi;
+  int positif;
+  int sembuh;
+  int meninggal;
+  KasusProvinsi({
+    @required this.kodeUrut,
+    @required this.provinsi,
+    @required this.positif,
+    @required this.sembuh,
+    @required this.meninggal,
+  });
+}

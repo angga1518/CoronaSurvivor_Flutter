@@ -47,3 +47,4 @@ part 'Recovery/add_new_gejala_page.dart';
 part 'Recovery/add_recovery_page.dart';
 part 'Recovery/recovery_detail_page.dart';
 part 'success_page.dart';
+part 'list_provinsi_page.dart';

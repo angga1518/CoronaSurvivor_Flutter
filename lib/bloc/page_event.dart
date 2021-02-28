@@ -115,3 +115,6 @@ class GoToRecoveryDetailPage extends PageEvent {
   final Recovery recovery;
   GoToRecoveryDetailPage(this.calendar, this.recovery);
 }
+
+class GoToListProvinsi extends PageEvent {}
+
