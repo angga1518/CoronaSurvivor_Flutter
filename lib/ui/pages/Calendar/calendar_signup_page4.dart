@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class CalendarSignUpPage4 extends StatefulWidget {
+  CalendarModel calendarModel;
+  CalendarSignUpPage4(this.calendarModel);
   @override
   CalendarSignUpPage4State createState() => CalendarSignUpPage4State();
 }
@@ -89,8 +91,8 @@ class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
       ),
       space: 10,
       desc: "Masukkan riwayat penyakit yang Anda miliki",
-      backTo: GoToCalendarSignUpPage3(),
-      goTo: GoToCalendarSignUpPage5(),
+      backTo: GoToCalendarSignUpPage3(widget.calendarModel),
+      goTo: GoToCalendarSignUpPage5(widget.calendarModel),
     );
   }
 }

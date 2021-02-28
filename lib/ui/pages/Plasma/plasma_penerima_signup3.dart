@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class PlasmaPenerimaSignUp3 extends StatefulWidget {
+  Pengguna pengguna;
+  PenerimaDonor penerima;
+  PlasmaPenerimaSignUp3(this.pengguna, this.penerima);
   @override
   _PlasmaPenerimaSignUp3State createState() => _PlasmaPenerimaSignUp3State();
 }
@@ -35,6 +38,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isDemam = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Demam");
+                    } else {
+                      if (widget.penerima.gejala.contains("Demam")) {
+                        widget.penerima.gejala.remove("Demam");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -43,6 +53,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isBatuk = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Batuk");
+                    } else {
+                      if (widget.penerima.gejala.contains("Batuk")) {
+                        widget.penerima.gejala.remove("Batuk");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -51,6 +68,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isHilangPenciuman = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Hilang Penciuman");
+                    } else {
+                      if (widget.penerima.gejala.contains("Hilang Penciuman")) {
+                        widget.penerima.gejala.remove("Hilang Penciuman");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -59,6 +83,16 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isKurangPenciuman = value;
+                    if (value) {
+                      widget.penerima.gejala
+                          .add("Kemampuan Penciuman Berkurang");
+                    } else {
+                      if (widget.penerima.gejala
+                          .contains("Kemampuan Penciuman Berkurang")) {
+                        widget.penerima.gejala
+                            .remove("Kemampuan Penciuman Berkurang");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -67,6 +101,14 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isHilangPengecapan = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Hilang Pengecapan");
+                    } else {
+                      if (widget.penerima.gejala
+                          .contains("Hilang Pengecapan")) {
+                        widget.penerima.gejala.remove("Hilang Pengecapan");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -75,6 +117,16 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isKurangPengecapan = value;
+                    if (value) {
+                      widget.penerima.gejala
+                          .add("Kemampuan Pengecapan Berkurang");
+                    } else {
+                      if (widget.penerima.gejala
+                          .contains("Kemampuan Pengecapan Berkurang")) {
+                        widget.penerima.gejala
+                            .remove("Kemampuan Pengecapan Berkurang");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -83,6 +135,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isBadanPegal = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Badan Pegal");
+                    } else {
+                      if (widget.penerima.gejala.contains("Badan Pegal")) {
+                        widget.penerima.gejala.remove("Badan Pegal");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -91,6 +150,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isMeriang = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Meriang");
+                    } else {
+                      if (widget.penerima.gejala.contains("Meriang")) {
+                        widget.penerima.gejala.remove("Meriang");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -99,6 +165,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isPusing = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Pusing");
+                    } else {
+                      if (widget.penerima.gejala.contains("Pusing")) {
+                        widget.penerima.gejala.remove("Pusing");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -107,6 +180,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isMual = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Mual");
+                    } else {
+                      if (widget.penerima.gejala.contains("Mual")) {
+                        widget.penerima.gejala.remove("Mual");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -115,6 +195,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isMuntah = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Muntah");
+                    } else {
+                      if (widget.penerima.gejala.contains("Muntah")) {
+                        widget.penerima.gejala.remove("Muntah");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -123,6 +210,14 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isSeleraMakanBerkurang = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Selera Makan berkurang");
+                    } else {
+                      if (widget.penerima.gejala
+                          .contains("Selera Makan berkurang")) {
+                        widget.penerima.gejala.remove("Selera Makan berkurang");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -131,6 +226,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isSesakNafas = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Sesak Nafas");
+                    } else {
+                      if (widget.penerima.gejala.contains("Sesak Nafas")) {
+                        widget.penerima.gejala.remove("Sesak Nafas");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -139,6 +241,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isSaturasiKecil = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Saturasi <95");
+                    } else {
+                      if (widget.penerima.gejala.contains("Saturasi <95")) {
+                        widget.penerima.gejala.remove("Saturasi <95");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -147,6 +256,14 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isRadangTenggorokan = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Radang Tenggorokan");
+                    } else {
+                      if (widget.penerima.gejala
+                          .contains("Radang Tenggorokan")) {
+                        widget.penerima.gejala.remove("Radang Tenggorokan");
+                      }
+                    }
                   });
                 }),
             generateCheckBox(
@@ -155,6 +272,13 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
                 onChange: (value) {
                   setState(() {
                     isMudahLelah = value;
+                    if (value) {
+                      widget.penerima.gejala.add("Mudah Lelah");
+                    } else {
+                      if (widget.penerima.gejala.contains("Mudah Lelah")) {
+                        widget.penerima.gejala.remove("Mudah Lelah");
+                      }
+                    }
                   });
                 }),
             UIHelper.vertSpace(20)
@@ -164,8 +288,8 @@ class _PlasmaPenerimaSignUp3State extends State<PlasmaPenerimaSignUp3> {
       space: 10,
       desc: "Masukkan Gejala yang Anda alami",
       header: "Daftar Menjadi Penerima",
-      goTo: GoToPlasmaPenerimaSignUp4(),
-      backTo: GoToPlasmaPenerimaSignUp2(),
+      goTo: GoToPlasmaPenerimaSignUp4(widget.pengguna, widget.penerima),
+      backTo: GoToPlasmaPenerimaSignUp2(widget.pengguna, widget.penerima),
     );
   }
 

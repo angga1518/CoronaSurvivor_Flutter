@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                                 style: UIHelper.greyLightFont),
                             GestureDetector(
                               onTap: () {
-                                pageBloc.add(GoToPlasmaPage());
+                                pageBloc.add(GoToSignupPage());
                               },
                               child: Text(
                                 " DAFTAR",

@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class CalendarSignUpPage2 extends StatefulWidget {
+  CalendarModel calendarModel;
+  CalendarSignUpPage2(this.calendarModel);
   @override
   CalendarSignUpPage2State createState() => CalendarSignUpPage2State();
 }
@@ -11,11 +13,23 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
   TextEditingController tanggalGejalaController = TextEditingController();
 
   bool isAlreadyOpen = false;
-  bool isBeratBadanFieldOpen = false;
+  bool isBeratBadanValid = false;
+  bool isBeratBadanOpened = false;
   bool isTanggalPositifValid = true;
   bool isTanggalMunculGejalaValid = true;
 
-  String selectedGender;
+  @override
+  void initState() {
+    super.initState();
+    beratBadanController.text = widget.calendarModel.beratBadan.toString();
+    tanggalPositifController.text =
+        widget.calendarModel.tanggalPositif.toString();
+    tanggalGejalaController.text =
+        widget.calendarModel.tanggalMunculGejala.toString();
+    isAlreadyOpen = beratBadanController.text != "" ||
+        tanggalPositifController.text != "" ||
+        tanggalGejalaController.text != "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +43,12 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
               (value) {
                 setState(() {
                   isAlreadyOpen = true;
-                  tanggalPositifController.text = value;
                   isTanggalPositifValid = tanggalValidation(value);
+                  widget.calendarModel.tanggalPositif = value;
                 });
               },
               false,
+              controller: tanggalPositifController,
               isValid: isTanggalPositifValid,
               errorText: "Format tidak sesuai",
               isDate: true,
@@ -47,11 +62,12 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
               (value) {
                 setState(() {
                   isAlreadyOpen = true;
-                  tanggalGejalaController.text = value;
                   isTanggalMunculGejalaValid = tanggalValidation(value);
+                  widget.calendarModel.tanggalMunculGejala = value;
                 });
               },
               false,
+              controller: tanggalGejalaController,
               isValid: isTanggalMunculGejalaValid,
               errorText: "Format tidak sesuai",
               isDate: true,
@@ -63,21 +79,37 @@ class CalendarSignUpPage2State extends State<CalendarSignUpPage2> {
               "Berat Badan",
               "Berat Badan",
               (value) {
-                isBeratBadanFieldOpen = true;
-                beratBadanController.text = value;
+                setState(() {
+                  isBeratBadanOpened = true;
+                  if (value == "") {
+                    widget.calendarModel.beratBadan = 0;
+                  } else {
+                    try {
+                      widget.calendarModel.beratBadan =
+                          int.parse(value.toString());
+                      isBeratBadanValid = true;
+                    } catch (e) {
+                      isBeratBadanValid = false;
+                    }
+                  }
+                });
               },
               false,
-              isValid: beratBadanController.text.length > 0 ||
-                  !isBeratBadanFieldOpen,
-              errorText: "Perlu diisi",
+              controller: beratBadanController,
+              isValid:
+                  (beratBadanController.text.length > 0 && isBeratBadanValid) ||
+                      !isBeratBadanOpened,
+              errorText: (beratBadanController.text.length != 0)
+                  ? "Format tidak sesuai"
+                  : "Field harus diisi",
               isNumber: true,
             ),
           ],
         ),
       ),
       desc: "Lengkapi data diri Anda",
-      goTo: GoToCalendarSignUpPage3(),
-      backTo: GoToCalendarSignUpPage1(),
+      goTo: GoToCalendarSignUpPage3(widget.calendarModel),
+      backTo: GoToCalendarSignUpPage1(widget.calendarModel),
     );
   }
 

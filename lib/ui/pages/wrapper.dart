@@ -62,6 +62,7 @@ class _WrapperState extends State<Wrapper> {
     User user = Provider.of<User>(context);
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    CalendarBloc calendarBloc = BlocProvider.of<CalendarBloc>(context);
 
     // pageBloc.add(GoToRecoveryDetailPage());
     if (user == null) {
@@ -75,11 +76,13 @@ class _WrapperState extends State<Wrapper> {
       if (prevPageEvent is GoToOnboardPage) {
         prevPageEvent = GoToHomePage();
         userBloc.add(LoadUser(user.email));
+        calendarBloc.add(LoadCalendar(emailPengguna: user.email));
         pageBloc.add(GoToOnboardPage());
       }
       if (!(prevPageEvent is GoToHomePage)) {
         prevPageEvent = GoToHomePage();
         userBloc.add(LoadUser(user.email));
+        calendarBloc.add(LoadCalendar(emailPengguna: user.email));
         pageBloc.add(prevPageEvent);
       }
     }
@@ -98,7 +101,7 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnProfilePage) {
           return ProfilePage(state.pengguna);
         } else if (state is OnDonorGiverPage) {
-          return DonorGiverPage(state.pengguna);
+          return DonorGiverPage(state.pengguna, state.pemberiDonor);
         } else if (state is OnDonorReceiverPage) {
           return DonorReceiverPage(state.pengguna, state.penerimaDonor);
         } else if (state is OnInfoPage) {
@@ -108,21 +111,20 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnAddCommentPage) {
           return AddCommentPage(state.title, state.component, state.isReply);
         } else if (state is OnCalendarOnboardPage) {
-          return CalendarOnboardPage();
+          return CalendarOnboardPage(state.pengguna,
+              calendarModel: state.calendarModel);
         } else if (state is OnCalendarSignUpPage1) {
-          return CalendarSignUpPage1();
+          return CalendarSignUpPage1(state.calendarModel);
         } else if (state is OnCalendarSignUpPage2) {
-          return CalendarSignUpPage2();
+          return CalendarSignUpPage2(state.calendarModel);
         } else if (state is OnCalendarSignUpPage3) {
-          return CalendarSignUpPage3();
+          return CalendarSignUpPage3(state.calendarModel);
         } else if (state is OnCalendarSignUpPage4) {
-          return CalendarSignUpPage4();
+          return CalendarSignUpPage4(state.calendarModel);
         } else if (state is OnCalendarSignUpPage5) {
-          return CalendarSignUpPage5();
-        } else if (state is OnPlasmaPage) {
-          return PlasmaPage();
+          return CalendarSignUpPage5(state.calendarModel);
         } else if (state is OnCalendarHome) {
-          return CalendarHomePage();
+          return CalendarHomePage(state.calendarModel);
         } else if (state is OnConnectPuskesmasPage) {
           return ConnectPuskesPage();
         } else if (state is OnSuccessPage) {
@@ -137,25 +139,31 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnRecoveryDetailPage) {
           return RecoveryDetailPage();
         } else if (state is OnPlasmaPenerimaSignUp1) {
-          return PlasmaPenerimaSignUp1();
+          return PlasmaPenerimaSignUp1(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPenerimaSignUp2) {
-          return PlasmaPenerimaSignUp2();
+          return PlasmaPenerimaSignUp2(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPenerimaSignUp3) {
-          return PlasmaPenerimaSignUp3();
+          return PlasmaPenerimaSignUp3(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPenerimaSignUp4) {
-          return PlasmaPenerimaSignUp4();
+          return PlasmaPenerimaSignUp4(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPenerimaSignUp5) {
-          return PlasmaPenerimaSignUp5();
+          return PlasmaPenerimaSignUp5(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPendonorSignUp1) {
-          return PlasmaPendonorSignUp1();
+          return PlasmaPendonorSignUp1(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPendonorSignUp2) {
-          return PlasmaPendonorSignUp2();
+          return PlasmaPendonorSignUp2(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPendonorSignUp3) {
-          return PlasmaPendonorSignUp3();
+          return PlasmaPendonorSignUp3(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPendonorSignUp4) {
-          return PlasmaPendonorSignUp4();
+          return PlasmaPendonorSignUp4(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPendonorSignUp5) {
-          return PlasmaPendonorSignUp5();
+          return PlasmaPendonorSignUp5(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPage) {
+          return PlasmaPage(state.pengguna);
+        } else if (state is OnPlasmaDetailPenerima) {
+          return PlasmaDetailPenerima(state.pengguna, state.penerimaDonor);
+        } else if (state is OnPlasmaDetailPendonor) {
+          return PlasmaDetailPendonor(state.pengguna, state.penerima);
         } else {
           return Container();
         }

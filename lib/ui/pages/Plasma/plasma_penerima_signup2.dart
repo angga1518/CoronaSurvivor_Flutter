@@ -1,6 +1,10 @@
 part of '../pages.dart';
 
 class PlasmaPenerimaSignUp2 extends StatefulWidget {
+  Pengguna pengguna;
+  PenerimaDonor penerima;
+  PlasmaPenerimaSignUp2(this.pengguna, this.penerima);
+
   @override
   _PlasmaPenerimaSignUp2State createState() => _PlasmaPenerimaSignUp2State();
 }
@@ -21,6 +25,24 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
   bool isTanggalPositifValid = true;
   bool isTanggalGejalaValid = true;
 
+  void setUpController(PenerimaDonor penerima) {
+    selectedGolDarah = penerima.golonganDarah;
+    selectedRhesus = penerima.rhesus;
+    tanggalPositifController.text = penerima.tanggalPositif;
+    tanggalGejalaController.text = penerima.tanggalGejala;
+    beratBadanController.text = penerima.beratBadan.toString();
+    catatanTambahanController.text = penerima.catatanTambahan;
+    isAlreadyOpen = true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget?.penerima?.namaLengkap != null) {
+      setUpController(widget.penerima);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return PlasmaDefaultTemplate(
@@ -35,6 +57,7 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
                   setState(() {
                     isAlreadyOpen = true;
                     selectedGolDarah = value;
+                    widget.penerima.golonganDarah = value;
                   });
                 }),
             UIHelper.vertSpace(20),
@@ -46,14 +69,20 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
                   setState(() {
                     isAlreadyOpen = true;
                     selectedRhesus = value;
+                    widget.penerima.rhesus = value;
                   });
                 }),
             UIHelper.vertSpace(20),
-            TextFieldWidget("yyyy/MM/dd", "Tanggal Lahir", (value) {
+            TextFieldWidget(
+                (widget?.penerima?.tanggalPositif != null)
+                    ? widget.penerima.tanggalPositif
+                    : "yyyy/MM/dd",
+                "Tanggal Positif", (value) {
               setState(() {
                 isAlreadyOpen = true;
                 tanggalPositifController.text = value;
                 isTanggalPositifValid = tanggalValidation(value);
+                widget.penerima.tanggalPositif = value;
               });
             }, false,
                 isValid: isTanggalPositifValid,
@@ -61,11 +90,16 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
                 isDate: true,
                 suffixIcon: Icon(Icons.calendar_today)),
             UIHelper.vertSpace(5),
-            TextFieldWidget("yyyy/MM/dd", "Tanggal Lahir", (value) {
+            TextFieldWidget(
+                (widget?.penerima?.tanggalGejala != null)
+                    ? widget.penerima.tanggalGejala
+                    : "yyyy/MM/dd",
+                "Tanggal Gejala", (value) {
               setState(() {
                 isAlreadyOpen = true;
                 tanggalGejalaController.text = value;
                 isTanggalGejalaValid = tanggalValidation(value);
+                widget.penerima.tanggalGejala = value;
               });
             }, false,
                 isValid: isTanggalGejalaValid,
@@ -74,22 +108,28 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
                 suffixIcon: Icon(Icons.calendar_today)),
             UIHelper.vertSpace(5),
             TextFieldWidget(
-              "Berat Badan",
+              (widget?.penerima?.beratBadan != null)
+                  ? widget.penerima.beratBadan
+                  : "Berat Badan",
               "Berat Badan",
               (value) {
                 beratBadanController.text = value;
                 isAlreadyOpen = true;
+                widget.penerima.beratBadan = value;
               },
               false,
               isNumber: true,
             ),
             UIHelper.vertSpace(5),
             TextFieldWidget(
-              "Catatan Tambahan",
+              (widget?.penerima?.catatanTambahan != null)
+                  ? widget.penerima.catatanTambahan
+                  : "Nama Lengkap",
               "Catatan Tambahan",
               (value) {
                 catatanTambahanController.text = value;
                 isAlreadyOpen = true;
+                widget.penerima.catatanTambahan = value;
               },
               false,
             ),
@@ -99,8 +139,8 @@ class _PlasmaPenerimaSignUp2State extends State<PlasmaPenerimaSignUp2> {
       ),
       desc: "Masukkan keterangan diri Anda sebagai penerima donor ",
       header: "Daftar Menjadi Penerima",
-      goTo: GoToPlasmaPenerimaSignUp3(),
-      backTo: GoToPlasmaPenerimaSignUp1(),
+      goTo: GoToPlasmaPenerimaSignUp3(widget.pengguna, widget.penerima),
+      backTo: GoToPlasmaPenerimaSignUp1(widget.pengguna, widget.penerima),
     );
   }
 

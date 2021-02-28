@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class PlasmaPenerimaSignUp4 extends StatefulWidget {
+  Pengguna pengguna;
+  PenerimaDonor penerima;
+  PlasmaPenerimaSignUp4(this.pengguna, this.penerima);
   @override
   _PlasmaPenerimaSignUp4State createState() => _PlasmaPenerimaSignUp4State();
 }
@@ -70,8 +73,12 @@ class _PlasmaPenerimaSignUp4State extends State<PlasmaPenerimaSignUp4> {
                                     setState(() {
                                       children.removeAt(index);
                                       children.insert(index, Container());
+                                      widget.penerima.riwayatPenyakit
+                                          .remove(newGejalaController.text);
                                     });
                                   }));
+                              widget.penerima.riwayatPenyakit
+                                  .add(newGejalaController.text);
                               newGejalaController.clear();
                             });
                           },
@@ -91,8 +98,8 @@ class _PlasmaPenerimaSignUp4State extends State<PlasmaPenerimaSignUp4> {
       space: 10,
       desc: "Masukkan riwayat penyakit yang Anda miliki",
       header: "Daftar Menjadi Penerima",
-      goTo: GoToPlasmaPenerimaSignUp5(),
-      backTo: GoToPlasmaPenerimaSignUp3(),
+      goTo: GoToPlasmaPenerimaSignUp5(widget.pengguna, widget.penerima),
+      backTo: GoToPlasmaPenerimaSignUp3(widget.pengguna, widget.penerima),
     );
   }
 }

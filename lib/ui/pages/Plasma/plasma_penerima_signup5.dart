@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class PlasmaPenerimaSignUp5 extends StatefulWidget {
+  Pengguna pengguna;
+  PenerimaDonor penerima;
+  PlasmaPenerimaSignUp5(this.pengguna, this.penerima);
   @override
   _PlasmaPenerimaSignUp5State createState() => _PlasmaPenerimaSignUp5State();
 }
@@ -32,6 +35,7 @@ class _PlasmaPenerimaSignUp5State extends State<PlasmaPenerimaSignUp5> {
                   setState(() {
                     isSetuju2 = value;
                   });
+                  widget.penerima.himself = true;
                 }),
             UIHelper.vertSpace(20),
           ],
@@ -41,8 +45,29 @@ class _PlasmaPenerimaSignUp5State extends State<PlasmaPenerimaSignUp5> {
       addHeader: false,
       // desc: "Centang",
       // header: "Daftar Menjadi Penerima",
-      goTo: GoToPlasmaPenerimaSignUp5(),
-      backTo: GoToPlasmaPenerimaSignUp4(),
+      isEnabled: isSetuju1,
+      goTo: GoToPlasmaPage(widget.pengguna),
+      backTo: GoToPlasmaPenerimaSignUp4(widget.pengguna, widget.penerima),
+      onPinkButtonTap: () async {
+        showPopUp(context: context, child: PopUpLoadingChild());
+        await PenerimaDonorService.createPenerimaDonor(widget.penerima)
+            .whenComplete(() => Navigator.pop(context));
+        // showPopUp(context: context, child: PopUpLoadingChild());
+        // await Future.delayed(Duration(seconds: 1));
+        // Navigator.pop(context);
+
+        // PenerimaDonor result =
+        //     await PenerimaDonorService.createPenerimaDonor(widget.penerima);
+        // if (result == null) {
+        //   Flushbar(
+        //     animationDuration: Duration(milliseconds: 500),
+        //     duration: Duration(seconds: 4),
+        //     flushbarPosition: FlushbarPosition.TOP,
+        //     backgroundColor: UIHelper.colorGreyLight,
+        //     message: "Terjadi kesalahan",
+        //   )..show(context);
+        // }
+      },
     );
   }
 }

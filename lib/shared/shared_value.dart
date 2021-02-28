@@ -4,9 +4,11 @@ part of 'shared.dart';
 // prod_base_url = "https://coronasurvivor.azurewebsites.net/";
 // please use http instead of https
 // const String base_url = "http://coronasurvivor.azurewebsites.net/";
-const String base_url = "http://bf809bed5216.ngrok.io";
+const String base_url = "http://acf5ca5ce32b.ngrok.io/";
 
 PageEvent prevPageEvent;
+CalendarModel sharedCalendar;
+CovidIndo sharedCovidIndo;
 
 String getTanggalFormatted(String tanggal) {
   if (!tanggal.contains("T")) {

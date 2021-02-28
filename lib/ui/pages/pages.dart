@@ -58,3 +58,5 @@ part 'Plasma/plasma_pendonor_signup2.dart';
 part 'Plasma/plasma_pendonor_signup3.dart';
 part 'Plasma/plasma_pendonor_signup4.dart';
 part 'Plasma/plasma_pendonor_signup5.dart';
+part 'Plasma/plasma_detail_penerima.dart';
+part 'Plasma/plasma_detail_pendonor.dart';

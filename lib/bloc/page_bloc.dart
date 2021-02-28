@@ -29,7 +29,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToSignupPage) {
       yield OnSignupPage();
     } else if (event is GoToDonorGiverPage) {
-      yield OnDonorGiverPage(event.pengguna);
+      yield OnDonorGiverPage(event.pengguna, event.pemberiDonor);
     } else if (event is GoToDonorReceiverPage) {
       yield OnDonorReceiverPage(event.pengguna, event.penerimaDonor);
     } else if (event is GoToInfoPage) {
@@ -39,21 +39,22 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToAddCommentPage) {
       yield OnAddCommentPage(event.title, event.component, event.isReply);
     } else if (event is GoToCalendarOnboardPage) {
-      yield OnCalendarOnboardPage();
+      yield OnCalendarOnboardPage(event.calendarModel, event.pengguna);
     } else if (event is GoToCalendarSignUpPage1) {
-      yield OnCalendarSignUpPage1();
+      yield OnCalendarSignUpPage1(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage2) {
-      yield OnCalendarSignUpPage2();
+      yield OnCalendarSignUpPage2(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage3) {
-      yield OnCalendarSignUpPage3();
+      yield OnCalendarSignUpPage3(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage4) {
-      yield OnCalendarSignUpPage4();
+      yield OnCalendarSignUpPage4(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage5) {
-      yield OnCalendarSignUpPage5();
+      yield OnCalendarSignUpPage5(event.calendarModel);
     } else if (event is GoToPlasmaPage) {
-      yield OnPlasmaPage();
+      yield OnPlasmaPage(event.pengguna);
+      // yield OnCalendarSignUpPage5(event.calendarModel);
     } else if (event is GoToCalendarHome) {
-      yield OnCalendarHome();
+      yield OnCalendarHome(event.calendarModel);
     } else if (event is GoToConnectPuskesmasPage) {
       yield OnConnectPuskesmasPage();
     } else if (event is GoToSuccessPage) {
@@ -68,25 +69,29 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToRecoveryDetailPage) {
       yield OnRecoveryDetailPage();
     } else if (event is GoToPlasmaPenerimaSignUp1) {
-      yield OnPlasmaPenerimaSignUp1();
+      yield OnPlasmaPenerimaSignUp1(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPenerimaSignUp2) {
-      yield OnPlasmaPenerimaSignUp2();
+      yield OnPlasmaPenerimaSignUp2(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPenerimaSignUp3) {
-      yield OnPlasmaPenerimaSignUp3();
+      yield OnPlasmaPenerimaSignUp3(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPenerimaSignUp4) {
-      yield OnPlasmaPenerimaSignUp4();
+      yield OnPlasmaPenerimaSignUp4(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPenerimaSignUp5) {
-      yield OnPlasmaPenerimaSignUp5();
+      yield OnPlasmaPenerimaSignUp5(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPendonorSignUp1) {
-      yield OnPlasmaPendonorSignUp1();
+      yield OnPlasmaPendonorSignUp1(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPendonorSignUp2) {
-      yield OnPlasmaPendonorSignUp2();
+      yield OnPlasmaPendonorSignUp2(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPendonorSignUp3) {
-      yield OnPlasmaPendonorSignUp3();
+      yield OnPlasmaPendonorSignUp3(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPendonorSignUp4) {
-      yield OnPlasmaPendonorSignUp4();
+      yield OnPlasmaPendonorSignUp4(event.pengguna, event.penerima);
     } else if (event is GoToPlasmaPendonorSignUp5) {
-      yield OnPlasmaPendonorSignUp5();
+      yield OnPlasmaPendonorSignUp5(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaDetailPenerima) {
+      yield OnPlasmaDetailPenerima(event.pengguna, event.penerimaDonor);
+    } else if (event is GoToPlasmaDetailPendonor) {
+      yield OnPlasmaDetailPendonor(event.pengguna, event.penerima);
     }
   }
 }

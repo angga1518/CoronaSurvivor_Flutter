@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:corona_survivor_flutter/models/models.dart';
 import 'package:corona_survivor_flutter/shared/shared.dart';
@@ -14,3 +13,5 @@ part 'artikel_services.dart';
 part 'plasma_services.dart';
 part 'penerima_donor_services.dart';
 part 'pemberi_donor_services.dart';
+part 'data_covid_services.dart';
+part 'calendar_services.dart';

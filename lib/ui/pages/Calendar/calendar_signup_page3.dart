@@ -1,6 +1,8 @@
 part of '../pages.dart';
 
 class CalendarSignUpPage3 extends StatefulWidget {
+  CalendarModel calendarModel;
+  CalendarSignUpPage3(this.calendarModel);
   @override
   CalendarSignUpPage3State createState() => CalendarSignUpPage3State();
 }
@@ -22,8 +24,12 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
   bool isSaturasiKecil = false;
   bool isRadangTenggorokan = false;
   bool isMudahLelah = false;
+
+  List<String> tempListGejala;
+
   @override
   Widget build(BuildContext context) {
+    tempListGejala = [];
     return CalendarDefaultTemplate(
       SizedBox(
         child: Column(
@@ -160,11 +166,66 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
           ],
         ),
       ),
+      onPinkButtonTap: () {
+        setGejala();
+        widget.calendarModel.listGejala = tempListGejala;
+      },
       space: 10,
       desc: "Masukkan gejala yang Anda alami",
-      backTo: GoToCalendarSignUpPage2(),
-      goTo: GoToCalendarSignUpPage4(),
+      backTo: GoToCalendarSignUpPage2(widget.calendarModel),
+      goTo: GoToCalendarSignUpPage4(widget.calendarModel),
     );
+  }
+
+  void setGejala() {
+    if (isDemam == true) {
+      tempListGejala.add("Demam");
+    }
+    if (isBatuk == true) {
+      tempListGejala.add("Batuk");
+    }
+    if (isHilangPenciuman == true) {
+      tempListGejala.add("Hilang Penciuman");
+    }
+    if (isKurangPenciuman == true) {
+      tempListGejala.add("Kemampuan Penciuman Berkurang");
+    }
+    if (isHilangPengecapan == true) {
+      tempListGejala.add("Hilang Pengecapan");
+    }
+    if (isKurangPengecapan == true) {
+      tempListGejala.add("Kemampuan Pengecapan Berkurang");
+    }
+    if (isBadanPegal == true) {
+      tempListGejala.add("Badan Pegal");
+    }
+    if (isMeriang == true) {
+      tempListGejala.add("Meriang");
+    }
+    if (isPusing == true) {
+      tempListGejala.add("Pusing");
+    }
+    if (isMual == true) {
+      tempListGejala.add("Mual");
+    }
+    if (isMuntah == true) {
+      tempListGejala.add("Muntah");
+    }
+    if (isSeleraMakanBerkurang == true) {
+      tempListGejala.add("Selera Makan Berkurang");
+    }
+    if (isSesakNafas == true) {
+      tempListGejala.add("Sesak Nafa");
+    }
+    if (isSaturasiKecil == true) {
+      tempListGejala.add("Saturasi <95");
+    }
+    if (isRadangTenggorokan == true) {
+      tempListGejala.add("Radang Tenggorokan");
+    }
+    if (isMudahLelah == true) {
+      tempListGejala.add("Mudah Lelah");
+    }
   }
 }
 

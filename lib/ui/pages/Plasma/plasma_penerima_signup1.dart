@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class PlasmaPenerimaSignUp1 extends StatefulWidget {
+  Pengguna pengguna;
+  PenerimaDonor penerima;
+  PlasmaPenerimaSignUp1(this.pengguna, this.penerima);
   @override
   PlasmaPenerimaSignUp1State createState() => PlasmaPenerimaSignUp1State();
 }
@@ -20,6 +23,35 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
   String selectedGender;
   List<String> listGender = ["Laki-Laki", "Perempuan"];
 
+  void setUpController(PenerimaDonor penerima) {
+    selectedGender = penerima.jenisKelamin;
+    namaController.text = penerima.namaLengkap;
+    nikController.text = penerima.nik;
+    domisiliController.text = penerima.domisili;
+    tanggalLahirController.text = penerima.tanggalLahir;
+    noTeleponController.text = penerima.noTelepon;
+    emailController.text = penerima.email;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.penerima.emailPendaftar = widget.pengguna.email;
+    widget.penerima.tanggalSimpan =
+        widget.penerima.generateTanggalSimpan().toString();
+    if (widget?.penerima?.gejala == null) {
+      widget.penerima.gejala = new List<String>();
+    }
+
+    if (widget?.penerima?.riwayatPenyakit == null) {
+      widget.penerima.riwayatPenyakit = new List<String>();
+    }
+    if (widget?.penerima?.namaLengkap != null) {
+      this.isAlreadyOpen = true;
+      setUpController(widget.penerima);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return PlasmaDefaultTemplate(
@@ -27,40 +59,52 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
         child: Column(
           children: [
             TextFieldWidget(
-              "Nama Lengkap",
+              (widget?.penerima?.namaLengkap != null)
+                  ? widget.penerima.namaLengkap
+                  : "Nama Lengkap",
               "Nama Lengkap",
               (value) {
                 namaController.text = value;
                 isAlreadyOpen = true;
+                widget.penerima.namaLengkap = value;
               },
               false,
             ),
             UIHelper.vertSpace(5),
             TextFieldWidget(
-              "NIK",
+              (widget?.penerima?.nik != null) ? widget.penerima.nik : "NIK",
               "NIK",
               (value) {
                 nikController.text = value;
                 isAlreadyOpen = true;
+                widget.penerima.nik = value;
               },
               false,
             ),
             UIHelper.vertSpace(5),
             TextFieldWidget(
-              "Domisili",
+              (widget?.penerima?.domisili != null)
+                  ? widget.penerima.domisili
+                  : "Domisili",
               "Domisili",
               (value) {
                 domisiliController.text = value;
                 isAlreadyOpen = true;
+                widget.penerima.domisili = value;
               },
               false,
             ),
             UIHelper.vertSpace(5),
-            TextFieldWidget("yyyy/MM/dd", "Tanggal Lahir", (value) {
+            TextFieldWidget(
+                (widget?.penerima?.tanggalLahir != null)
+                    ? widget.penerima.tanggalLahir
+                    : "yyyy/MM/dd",
+                "Tanggal Lahir", (value) {
               setState(() {
                 isAlreadyOpen = true;
                 tanggalLahirController.text = value;
                 isTanggalValid = tanggalValidation(value);
+                widget.penerima.tanggalLahir = value;
               });
             }, false,
                 isValid: isTanggalValid,
@@ -76,15 +120,19 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
                   setState(() {
                     isAlreadyOpen = true;
                     selectedGender = value;
+                    widget.penerima.jenisKelamin = value;
                   });
                 }),
             UIHelper.vertSpace(20),
             TextFieldWidget(
-              "",
-              "Nomor Telepon",
+              (widget?.penerima?.noTelepon != null)
+                  ? widget.penerima.noTelepon
+                  : "No Telepon",
+              "No Telepon",
               (value) {
                 isAlreadyOpen = true;
                 noTeleponController.text = value;
+                widget.penerima.noTelepon = value;
               },
               false,
               prefixText: "+62 ",
@@ -92,7 +140,9 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
             ),
             UIHelper.vertSpace(5),
             TextFieldWidget(
-              "Email",
+              (widget?.penerima?.email != null)
+                  ? widget.penerima.email
+                  : "Email",
               "Email",
               (value) {
                 setState(() {
@@ -100,6 +150,7 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
 
                   isEmailValid = EmailValidator.validate(value);
                   emailController.text = value;
+                  widget.penerima.email = value;
                 });
               },
               false,
@@ -111,10 +162,19 @@ class PlasmaPenerimaSignUp1State extends State<PlasmaPenerimaSignUp1> {
           ],
         ),
       ),
+      isEnabled: namaController.text != ""
+      // &&
+      //     nikController.text != "" &&
+      //     domisiliController.text != "" &&
+      //     isTanggalValid &&
+      //     selectedGender != "" &&
+      //     noTeleponController.text != "" &&
+      //     emailController.text != ""
+      ,
       desc: "Lengkapi data diri Anda",
       header: "Daftar Menjadi Penerima",
-      backTo: GoToPlasmaPage(),
-      goTo: GoToPlasmaPenerimaSignUp2(),
+      backTo: GoToPlasmaPage(widget.pengguna),
+      goTo: GoToPlasmaPenerimaSignUp2(widget.pengguna, widget.penerima),
     );
   }
 

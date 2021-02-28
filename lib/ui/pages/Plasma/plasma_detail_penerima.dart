@@ -1,14 +1,14 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
-class DonorReceiverPage extends StatefulWidget {
+class PlasmaDetailPenerima extends StatefulWidget {
   final Pengguna pengguna;
   final PenerimaDonor penerimaDonor;
-  DonorReceiverPage(this.pengguna, this.penerimaDonor);
+  PlasmaDetailPenerima(this.pengguna, this.penerimaDonor);
   @override
-  _DonorReceiverPageState createState() => _DonorReceiverPageState();
+  _PlasmaDetailPenerimaState createState() => _PlasmaDetailPenerimaState();
 }
 
-class _DonorReceiverPageState extends State<DonorReceiverPage> {
+class _PlasmaDetailPenerimaState extends State<PlasmaDetailPenerima> {
   @override
   Widget build(BuildContext context) {
     PenerimaDonor pendonor = widget.penerimaDonor;
@@ -37,8 +37,8 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                               InformationContainer(
                                   "Nama Lengkap", pendonor.namaLengkap),
                               UIHelper.vertSpace(10),
-                              InformationContainer("NIK", pendonor.nik),
-                              UIHelper.vertSpace(10),
+                              // InformationContainer("NIK", pendonor.nik),
+                              // UIHelper.vertSpace(10),
                               InformationContainer(
                                   "Jenis Kelamin", pendonor.jenisKelamin),
                               UIHelper.vertSpace(10),
@@ -56,7 +56,7 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                           )),
                       UIHelper.vertSpace(18),
                       CardContainer(
-                          "Keterangan Pendonor",
+                          "Keterangan Penerima",
                           Column(
                             children: [
                               InformationContainer(
@@ -87,18 +87,13 @@ class _DonorReceiverPageState extends State<DonorReceiverPage> {
                             ],
                           )),
                       UIHelper.vertSpace(18),
-                      PinkButton("Hapus", () async {
-                        showPopUp(context: context, child: PopUpLoadingChild());
-                        await PenerimaDonorService.deletePenerimaDonorById(pendonor.idDataPenerimaDonor).whenComplete(() => Navigator.pop(context));
-                        pageBloc.add(GoToProfilePage(widget.pengguna));
-                      }),
                       UIHelper.vertSpace(20),
                     ],
                   )
                 ],
               ),
               TopBar("Penerima Donor", () {
-                pageBloc.add(GoToProfilePage(widget.pengguna));
+                pageBloc.add(GoToPlasmaPage(widget.pengguna));
               })
             ],
           ),

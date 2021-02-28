@@ -7,6 +7,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
@@ -26,96 +31,34 @@ class _HomePageState extends State<HomePage> {
                   UIHelper.vertSpace(88),
                   CardContainer(
                       "Status Covid-19 Indonesia",
-                      Wrap(
-                        spacing: 7,
-                        runSpacing: 7,
-                        children: [
-                          Container(
-                            height: UIHelper.setResHeight(75),
-                            width: UIHelper.setResWidth(135),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorSoftPink, width: 2)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("1,134,854",
-                                    style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(25),
-                                        fontWeight: FontWeight.w700)),
-                                Text("Orang Positif",
-                                    style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400)),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: UIHelper.setResHeight(75),
-                            width: UIHelper.setResWidth(135),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorSoftPink, width: 2)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("176,672",
-                                    style: UIHelper.blueFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(25),
-                                        fontWeight: FontWeight.w700)),
-                                Text("Orang Dirawat",
-                                    style: UIHelper.blueFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400)),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: UIHelper.setResHeight(75),
-                            width: UIHelper.setResWidth(135),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorSoftPink, width: 2)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("926,980",
-                                    style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(25),
-                                        fontWeight: FontWeight.w700)),
-                                Text("Orang Positif",
-                                    style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400)),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: UIHelper.setResHeight(75),
-                            width: UIHelper.setResWidth(135),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorSoftPink, width: 2)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("1,134,854",
-                                    style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(25),
-                                        fontWeight: FontWeight.w700)),
-                                Text("Orang Positif",
-                                    style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400)),
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
+                      (sharedCovidIndo == null)
+                          ? FutureBuilder(
+                              future: CovidInfoService.getInfoIndo(),
+                              builder: (_, snapshot) {
+                                // kalo null masuk ke else
+                                if (snapshot.hasData) {
+                                  CovidIndo covidIndo =
+                                      snapshot.data as CovidIndo;
+                                  sharedCovidIndo = covidIndo;
+                                  return _generateCovidIndoWidget(
+                                      covidIndo.positif,
+                                      covidIndo.dirawat,
+                                      covidIndo.sembuh,
+                                      covidIndo.meninggal);
+                                } else {
+                                  return Container(
+                                    child: Center(
+                                        child: SpinKitThreeBounce(
+                                            color: UIHelper.colorMainLightRed,
+                                            size: UIHelper.setResWidth(20))),
+                                  );
+                                }
+                              })
+                          : _generateCovidIndoWidget(
+                              sharedCovidIndo.positif,
+                              sharedCovidIndo.dirawat,
+                              sharedCovidIndo.sembuh,
+                              sharedCovidIndo.meninggal)),
                   UIHelper.vertSpace(18),
                   CardContainer(
                       "Status Covid-19 Daerah Anda",
@@ -314,9 +257,8 @@ class _HomePageState extends State<HomePage> {
                           return Container(
                             child: Center(
                                 child: SpinKitThreeBounce(
-                              color: UIHelper.colorMainLightRed,
-                              size: UIHelper.setResWidth(10)
-                            )),
+                                    color: UIHelper.colorMainLightRed,
+                                    size: UIHelper.setResWidth(10))),
                           );
                         }
                       },
@@ -327,13 +269,110 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: BottomBar(1),
-              )
+                  alignment: Alignment.bottomCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoaded) {
+                        Pengguna pengguna = state.pengguna;
+                        return BottomBar(1, pengguna);
+                      }
+                      return Container();
+                    },
+                  ))
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _generateCovidIndoWidget(
+      String positif, String dirawat, String sembuh, String meninggal) {
+    return Wrap(
+      spacing: 7,
+      runSpacing: 7,
+      children: [
+        Container(
+          height: UIHelper.setResHeight(75),
+          width: UIHelper.setResWidth(135),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: UIHelper.colorSoftPink, width: 2)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(positif,
+                  style: UIHelper.redFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(25),
+                      fontWeight: FontWeight.w700)),
+              Text("Orang Positif",
+                  style: UIHelper.redFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(12),
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
+        ),
+        Container(
+          height: UIHelper.setResHeight(75),
+          width: UIHelper.setResWidth(135),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: UIHelper.colorSoftPink, width: 2)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(dirawat,
+                  style: UIHelper.blueFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(25),
+                      fontWeight: FontWeight.w700)),
+              Text("Orang Dirawat",
+                  style: UIHelper.blueFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(12),
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
+        ),
+        Container(
+          height: UIHelper.setResHeight(75),
+          width: UIHelper.setResWidth(135),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: UIHelper.colorSoftPink, width: 2)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(sembuh,
+                  style: UIHelper.greenFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(25),
+                      fontWeight: FontWeight.w700)),
+              Text("Orang Sembuh",
+                  style: UIHelper.greenFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(12),
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
+        ),
+        Container(
+          height: UIHelper.setResHeight(75),
+          width: UIHelper.setResWidth(135),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: UIHelper.colorSoftPink, width: 2)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(meninggal,
+                  style: UIHelper.yellowFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(25),
+                      fontWeight: FontWeight.w700)),
+              Text("Orang Meninggal",
+                  style: UIHelper.yellowFont.copyWith(
+                      fontSize: UIHelper.setResFontSize(12),
+                      fontWeight: FontWeight.w400)),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
