@@ -171,7 +171,7 @@ class Calendar extends StatelessWidget {
         dateFront++;
         continue;
       }
-      component.add(generateDateContainer(context, changeMonth, dateFront));
+      component.add(generateDateContainer(context, changeMonth, dateFront, countDaysThisMonth));
       date++;
       dateFront++;
     }
@@ -201,7 +201,8 @@ class Calendar extends StatelessWidget {
   }
 
   Widget generateDateContainer(
-      BuildContext context, int changeMonth, int date) {
+      BuildContext context, int changeMonth, int date, int lastDate) {
+    int tempDateForUI = (changeMonth > 0) ? date + lastDate : date;
     return GestureDetector(
       onTap: () {
         onTap(context, changeMonth, date);
@@ -211,16 +212,16 @@ class Calendar extends StatelessWidget {
         width: UIHelper.setResWidth(32),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: (date >= startRed && date <= endRed)
+          color: (tempDateForUI >= startRed && tempDateForUI <= endRed)
               ? UIHelper.colorMainRed
-              : (date >= startYellow && date <= endYellow)
+              : (tempDateForUI >= startYellow && tempDateForUI <= endYellow)
                   ? UIHelper.colorMainYellow
                   : null,
         ),
         child: Center(
           child: Text(
             (date).toString(),
-            style: (date >= startRed && date <= endYellow)
+            style: (tempDateForUI >= startRed && tempDateForUI <= endYellow)
                 ? UIHelper.whiteFont
                     .copyWith(fontSize: UIHelper.setResFontSize(15))
                 : UIHelper.greyLightFont
