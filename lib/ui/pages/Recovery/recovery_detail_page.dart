@@ -37,7 +37,7 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "98",
+                  widget.recovery.saturasi,
                   style: UIHelper.greyLightFont.copyWith(
                       fontSize: UIHelper.setResFontSize(15),
                       fontWeight: FontWeight.w400),
@@ -50,7 +50,7 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "36.5",
+                  widget.recovery.suhuTubuh,
                   style: UIHelper.greyLightFont.copyWith(
                       fontSize: UIHelper.setResFontSize(15),
                       fontWeight: FontWeight.w400),
@@ -63,7 +63,7 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "Kalau malam saya suka gaenak badan susah tidur, tetapi suhu dan saturasi normal",
+                  widget.recovery.catatanTambahan,
                   style: UIHelper.greyLightFont.copyWith(
                       fontSize: UIHelper.setResFontSize(15),
                       fontWeight: FontWeight.w400),
@@ -74,53 +74,39 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
             UIHelper.vertSpace(15),
             borderContainer(Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Batuk",
-                  style: UIHelper.greyLightFont.copyWith(
-                      fontSize: UIHelper.setResFontSize(15),
-                      fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  "Sedang",
-                  style: UIHelper.greyLightFont.copyWith(
-                      fontSize: UIHelper.setResFontSize(15),
-                      fontWeight: FontWeight.w400),
-                ),
-                UIHelper.vertSpace(10),
-                Text(
-                  "Anosmia",
-                  style: UIHelper.greyLightFont.copyWith(
-                      fontSize: UIHelper.setResFontSize(15),
-                      fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  "Sedang",
-                  style: UIHelper.greyLightFont.copyWith(
-                      fontSize: UIHelper.setResFontSize(15),
-                      fontWeight: FontWeight.w400),
-                ),
-                UIHelper.vertSpace(10),
-              ],
+              children: generateUpdateGejalaWidget(),
             )),
             UIHelper.vertSpace(10),
           ],
         ),
       ),
-      date: "01-10-2000",
-      backTo: GoToRecoveryOnBoardPage(widget.calendar),
-      withPinkButton: true,
-      onPinkButtonTap: () {
-        // pageBloc.add(
-        //   GoToSuccessPage(
-        //       goTo: GoToCalendarHome(),
-        //       backTo: GoToCalendarHome(),
-        //       pinkButtonMessage: "Kembali ke MyCalendar",
-        //       message:
-        //           "Laporan kondisi perkembangan kamu telah berhasil dikirimkan! silahkan press salah satu tanggal di MyCalendar untuk melihat status Anda"),
-        // );
-      },
+      date: getTanggalFromDateTime(
+          getDateTimeFromStringTanggal(widget.recovery.tanggalKalender)),
+      backTo: GoToCalendarHome(widget.calendar),
+      withPinkButton: false,
+      onPinkButtonTap: null,
     );
+  }
+
+  List<Widget> generateUpdateGejalaWidget() {
+    List<Widget> children = [];
+    Recovery recovery = widget.recovery;
+    for (var i = 0; i < widget.recovery.listUpdateGejala.length; i++) {
+      children.add(Text(
+        recovery.listNamaGejala[i],
+        style: UIHelper.greyLightFont.copyWith(
+            fontSize: UIHelper.setResFontSize(15), fontWeight: FontWeight.w700),
+      ));
+      children.add(Text(
+        recovery.listUpdateGejala[i],
+        style: UIHelper.greyLightFont.copyWith(
+            fontSize: UIHelper.setResFontSize(15), fontWeight: FontWeight.w400),
+      ));
+      children.add(
+        UIHelper.vertSpace(10),
+      );
+    }
+    return children;
   }
 
   Widget infoBanner({double width = 250, @required String title}) {
