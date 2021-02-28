@@ -5,7 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
+<<<<<<< HEAD
+            "name": "Dart & Flutter",
+=======
             "name": "CoronaSurvivor_Flutter",
+>>>>>>> 5faddbe2758167722fb827b465db21965d6c5a14
             "request": "launch",
             "type": "dart"
         }

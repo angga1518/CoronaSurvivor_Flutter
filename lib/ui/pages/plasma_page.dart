@@ -106,7 +106,9 @@ class _PlasmaPageState extends State<PlasmaPage> {
               ),
               Column(
                 children: [
-                  TopBar("Plasma", () {}),
+                  TopBar("Plasma", () {
+                    pageBloc.add(GoToHomePage());
+                  }),
                   Container(
                     height: UIHelper.setResHeight(45),
                     decoration: BoxDecoration(

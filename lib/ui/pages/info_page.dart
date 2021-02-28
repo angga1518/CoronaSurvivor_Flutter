@@ -1,6 +1,17 @@
 part of 'pages.dart';
 
 class InfoPage extends StatefulWidget {
+  final Pengguna pengguna;
+  final String idArtikel;
+  final bool isLikedArtikel;
+  final Map<String, bool> mapLikedKomentar;
+
+  InfoPage(
+      {this.idArtikel,
+      this.isLikedArtikel,
+      this.mapLikedKomentar,
+      this.pengguna});
+
   @override
   _InfoPageState createState() => _InfoPageState();
 }
@@ -9,6 +20,7 @@ class _InfoPageState extends State<InfoPage> {
   int infoIndex;
   PageController pageController;
   TextEditingController textController;
+  Future<void> handleLikeandKoment;
 
   @override
   void initState() {
@@ -16,6 +28,9 @@ class _InfoPageState extends State<InfoPage> {
     infoIndex = 0;
     pageController = PageController(initialPage: infoIndex);
     textController = TextEditingController();
+    isStateLikeKomentar = "";
+    isStateLikeArtikel = "";
+    isStateSavedArtikel = "";
   }
 
   @override
@@ -36,55 +51,36 @@ class _InfoPageState extends State<InfoPage> {
               ListView(
                 children: [
                   UIHelper.vertSpace(113),
-                  BlocBuilder<UserBloc, UserState>(
-                    builder: (context, state) {
-                      if (state is UserLoaded) {
-                        Pengguna pengguna = state.pengguna;
-                        return FutureBuilder(
-                            future: Future.wait([
-                              ArtikelServices.getAllArtikel(pengguna.email),
-                              ArtikelServices.getAllSavedArtikel(pengguna.email)
-                            ]),
-                            builder: (context,
-                                AsyncSnapshot<List<dynamic>> snapshot) {
-                              if (snapshot.hasData) {
-                                var allArtikel = snapshot.data[0]; //bar
-                                var savedArtikel = snapshot.data[1];
-                                return Container(
-                                    height: UIHelper.height -
-                                        UIHelper.setResHeight(185),
-                                    child: PageView(
-                                      onPageChanged: (index) {
-                                        setState(() {
-                                          infoIndex = index;
-                                        });
-                                      },
-                                      physics: NeverScrollableScrollPhysics(),
-                                      controller: pageController,
-                                      children: [
-                                        // generateNotFound(),
-                                        generatePortal(allArtikel, pengguna),
-                                        savedArtikel != null
-                                            ? generateSaved(
-                                                savedArtikel, pengguna)
-                                            : null,
-                                      ],
-                                    ));
-                              } else {
-                                // kasih sp
-                                return Container();
-                              }
-                            });
-                      } else {
-                        return Container();
-                      }
-                    },
-                  )
+                  BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                    if (state is UserLoaded) {
+                      Pengguna pengguna = state.pengguna;
+                      return Container(
+                          height: UIHelper.height - UIHelper.setResHeight(185),
+                          child: PageView(
+                            onPageChanged: (index) {
+                              setState(() {
+                                infoIndex = index;
+                              });
+                            },
+                            physics: NeverScrollableScrollPhysics(),
+                            controller: pageController,
+                            children: [
+                              generatePortal(listSharedAllArtikel, pengguna),
+                              listSharedSavedArtikel != null
+                                  ? generateSaved(
+                                      listSharedSavedArtikel, pengguna)
+                                  : null,
+                            ],
+                          ));
+                    }
+                  })
                 ],
               ),
               Column(
                 children: [
-                  TopBar("Info", () {}),
+                  TopBar("Info", () {
+                    pageBloc.add(GoToHomePage());
+                  }),
                   Container(
                     height: UIHelper.setResHeight(45),
                     decoration: BoxDecoration(
@@ -99,6 +95,10 @@ class _InfoPageState extends State<InfoPage> {
                             child: GestureDetector(
                           onTap: () {
                             if (infoIndex == 1) {
+                              pageController.previousPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeIn);
+                            } else {
                               pageController.previousPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.easeIn);
@@ -221,7 +221,6 @@ class _InfoPageState extends State<InfoPage> {
       child: ListView(
         children: [
           UIHelper.vertSpace(15),
-          generateSearchBar(),
           UIHelper.vertSpace(15),
           CardContainer("", Column(children: children)),
           UIHelper.vertSpace(15),
@@ -307,82 +306,6 @@ class _InfoPageState extends State<InfoPage> {
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
         ),
-      ),
-    );
-  }
-
-  Widget generateNotFound() {
-    return Container(
-      child: ListView(
-        children: [
-          UIHelper.vertSpace(15),
-          generateSearchBar(),
-          UIHelper.vertSpace(15),
-          Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(22, 21, 22, 21),
-                  child: Column(
-                    children: [
-                      Center(
-                        child: Image(
-                          image: AssetImage("assets/not_found.png"),
-                          width: UIHelper.setResWidth(50),
-                          height: UIHelper.setResHeight(50),
-                        ),
-                      ),
-                      UIHelper.vertSpace(10),
-                      SizedBox(
-                        width: UIHelper.setResWidth(210),
-                        child: Text(
-                          "Tidak ada info yang ditemukan. Coba kata kunci lain.",
-                          style: UIHelper.greyFont,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            width: UIHelper.setResWidth(322),
-            margin: EdgeInsets.only(left: 19, right: 19),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
-            ),
-          ),
-          UIHelper.vertSpace(15),
-        ],
-      ),
-    );
-  }
-
-  Widget generateSearchBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(5)),
-      width: UIHelper.setResWidth(322),
-      margin: EdgeInsets.only(left: 19, right: 19),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      child: TextField(
-        style: UIHelper.greyLightFont.copyWith(
-            color: UIHelper.colorGreySuperLight,
-            fontSize: UIHelper.setResFontSize(13)),
-        controller: textController,
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              color: UIHelper.colorGreySuperLight,
-            ),
-            border: InputBorder.none,
-            hintText: "Cari Informasi ...",
-            hintStyle: UIHelper.greyLightFont.copyWith(
-                color: UIHelper.colorGreySuperLight,
-                fontSize: UIHelper.setResFontSize(13))),
       ),
     );
   }

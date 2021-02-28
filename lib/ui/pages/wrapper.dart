@@ -91,11 +91,22 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnDonorReceiverPage) {
           return DonorReceiverPage(state.pengguna, state.penerimaDonor);
         } else if (state is OnInfoPage) {
-          return InfoPage();
+          return InfoPage(
+            idArtikel: state.idArtikel,
+            mapLikedKomentar: state.mapLikedKomentar,
+            pengguna: state.pengguna,
+            isLikedArtikel: state.isLikedArtikel,
+          );
         } else if (state is OnDetailInfoPage) {
-          return DetailInfo();
+          return DetailInfo(
+            state.artikel,
+            state.pengguna,
+            state.listKomentar,
+            tempIconLikeArtikel: state.tempIconLikeArtikel,
+          );
         } else if (state is OnAddCommentPage) {
-          return AddCommentPage(state.title, state.component, state.isReply);
+          return AddCommentPage(state.artikel, state.pengguna, state.isReply,
+              state.namaReplied, state.idParentKomentar, state.listKomentar);
         } else if (state is OnCalendarOnboardPage) {
           return CalendarOnboardPage(state.pengguna,
               calendarModel: state.calendarModel);

@@ -1,11 +1,15 @@
 part of 'pages.dart';
 
 class AddCommentPage extends StatefulWidget {
-  final String title;
-  final String component;
+  final Artikel artikel;
+  final Pengguna pengguna;
   final bool isReply;
+  final String namaReplied;
+  final String idParentKomentar;
+  List<Komentar> listKomentar;
 
-  AddCommentPage(this.title, this.component, this.isReply);
+  AddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
+      this.idParentKomentar, this.listKomentar);
 
   @override
   _AddCommentPageState createState() => _AddCommentPageState();
@@ -17,6 +21,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
   void initState() {
     super.initState();
     textController = TextEditingController();
+    isLikedIconArtikel =
+        isLikedIconArtikel == null ? false : isLikedIconArtikel;
   }
 
   @override
@@ -24,7 +30,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToDetailInfoPage());
+        pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna,
+            listKomentar: widget.listKomentar,
+            tempIconLikeArtikel: isLikedIconArtikel));
         return false;
       },
       child: Scaffold(
@@ -50,7 +58,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
                               SizedBox(
                                 width: UIHelper.setResWidth(250),
                                 child: Text(
-                                  widget.title,
+                                  widget.isReply
+                                      ? "Reply to " + widget.namaReplied
+                                      : widget.artikel.judul,
                                   textAlign: TextAlign.center,
                                   style: UIHelper.darkGreyFont.copyWith(
                                       fontSize: UIHelper.setResFontSize(13),
@@ -62,7 +72,7 @@ class _AddCommentPageState extends State<AddCommentPage> {
                                   ? SizedBox(
                                       width: UIHelper.setResWidth(250),
                                       child: Text(
-                                        widget.component,
+                                        widget.artikel.judul,
                                         textAlign: TextAlign.center,
                                         style: UIHelper.darkGreyFont.copyWith(
                                             fontSize:
@@ -109,13 +119,51 @@ class _AddCommentPageState extends State<AddCommentPage> {
                 ],
               ),
               TopBar((widget.isReply) ? "Reply" : "Comment", () {
-                pageBloc.add(GoToDetailInfoPage());
+                pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna,
+                    tempIconLikeArtikel: isLikedIconArtikel));
               }),
               Positioned(
                   top: UIHelper.setResHeight(520),
                   left: UIHelper.setResWidth((360 - 252) / 2),
-                  child: PinkButton("Kirim", () {
-                    pageBloc.add(GoToDetailInfoPage());
+                  child: PinkButton("Kirim", () async {
+                    showPopUp(context: context, child: PopUpLoadingChild());
+                    if (widget.isReply) {
+                      Reply reply = new Reply(
+                          namaLengkap: widget.pengguna.namaLengkap,
+                          isi: textController.text);
+                      Reply replyResponse = await ReplyServices.saveReply(
+                              reply, widget.idParentKomentar)
+                          .whenComplete(() => Navigator.pop(context));
+                      for (var komentar in widget.listKomentar) {
+                        if (komentar.idKomentar == widget.idParentKomentar) {
+                          if (komentar.replies == null) {
+                            komentar.replies = [];
+                          }
+                          komentar.replies.add(replyResponse);
+                        }
+                      }
+                      mapIdArtikelKeKomentar[widget.artikel.idArtikel] =
+                          widget.listKomentar;
+                    } else {
+                      Komentar komentar = new Komentar(
+                          namaLengkap: widget.pengguna.namaLengkap,
+                          isi: textController.text,
+                          jumlahLike: 0);
+                      Komentar komentarResponse =
+                          await KomentarServices.saveKomentar(
+                                  komentar, widget.artikel.idArtikel)
+                              .whenComplete(() => Navigator.pop(context));
+                      if (widget.listKomentar == null) {
+                        widget.listKomentar = [];
+                      }
+                      widget.listKomentar.add(komentarResponse);
+                      mapIdArtikelKeKomentar[widget.artikel.idArtikel] =
+                          widget.listKomentar;
+                    }
+                    pageBloc.add(GoToDetailInfoPage(
+                        widget.artikel, widget.pengguna,
+                        listKomentar: widget.listKomentar,
+                        tempIconLikeArtikel: isLikedIconArtikel));
                   })),
             ],
           ),
