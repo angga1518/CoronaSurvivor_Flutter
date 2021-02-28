@@ -18,9 +18,11 @@ class _DetailInfoState extends State<DetailInfo> {
   PageBloc pageBloc;
   Map<String, bool> mapLikedKomentarForPost = {};
   bool isKomentarFinished = false;
+  bool initLikeState;
 
   @override
   void initState() {
+    initLikeState = widget.artikel.isLiked;
     isSavedIcon = widget.artikel.isSaved;
     isLikedIconArtikel = widget.tempIconLikeArtikel == null
         ? widget.artikel.isLiked
@@ -40,10 +42,13 @@ class _DetailInfoState extends State<DetailInfo> {
   Future<void> handLikedArtikelAndComment(Pengguna pengguna, String idArtikel,
       bool isLikedArtikel, Map<String, bool> mapLikeKomentar) async {
     if (pengguna != null) {
-      if (idArtikel != null && isStateLikeArtikel == "Exist") {
-        await ArtikelServices.likeArtikel(
-            new Artikel(idArtikel: idArtikel, isLiked: isLikedArtikel),
-            pengguna.email);
+      if (idArtikel != null &&
+          isStateLikeArtikel == "Exist") {
+        if (initLikeState != isLikedArtikel) {
+          await ArtikelServices.likeArtikel(
+              new Artikel(idArtikel: idArtikel, isLiked: isLikedArtikel),
+              pengguna.email);
+        }
       }
       List<Komentar> listKomentar = [];
       if (mapLikeKomentar.isNotEmpty && isStateLikeKomentar == "Exist") {
@@ -213,12 +218,8 @@ class _DetailInfoState extends State<DetailInfo> {
                                             ),
                                             UIHelper.horzSpace(5),
                                             Text(
-                                              isIncrementLikeArtikel == "Exist"
-                                                  ? (jumlahLikeArtikelFrontEnd +
-                                                          1)
-                                                      .toString()
-                                                  : (jumlahLikeArtikelFrontEnd)
-                                                      .toString(),
+                                              (jumlahLikeArtikelFrontEnd)
+                                                  .toString(),
                                               style: UIHelper.redFont.copyWith(
                                                   fontSize:
                                                       UIHelper.setResFontSize(
@@ -294,7 +295,6 @@ class _DetailInfoState extends State<DetailInfo> {
                           isLikedIconArtikel,
                           mapLikedKomentarForPost)
                       .whenComplete(() => Navigator.pop(context));
-                  ;
                   if (isStateLikeArtikel == "Exist") {
                     listSharedSavedArtikel =
                         await ArtikelServices.getAllSavedArtikel(
@@ -302,7 +302,6 @@ class _DetailInfoState extends State<DetailInfo> {
                     listSharedAllArtikel = await ArtikelServices.getAllArtikel(
                         widget.pengguna.email);
                   }
-                  ;
                 }
                 pageBloc.add(GoToInfoPage());
               })
@@ -355,9 +354,11 @@ class _DetailInfoState extends State<DetailInfo> {
             if (isLikedIconArtikel) {
               jumlahLikeArtikelFrontEnd = jumlahLikeArtikelFrontEnd - 1;
               isLikedIconArtikel = !isLikedIconArtikel;
+              widget.artikel.isLiked = false;
             } else {
               jumlahLikeArtikelFrontEnd = jumlahLikeArtikelFrontEnd + 1;
               isLikedIconArtikel = !isLikedIconArtikel;
+              widget.artikel.isLiked = true;
             }
             isStateLikeArtikel = "Exist";
           });
