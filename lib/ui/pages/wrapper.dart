@@ -25,25 +25,12 @@ class _WrapperState extends State<Wrapper> {
     _firebaseMessaging.configure(
       onMessage: (message) async {
         print("onMessage: $message");
-
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = token;
-        });
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = "New Notification Alert";
-        });
       },
       onResume: (message) async {
         print("onResume: $message");
-        setState(() {
-          messageTitle = message["data"]["title"];
-          notificationAlert = "Application opened from Notification";
-        });
       },
     );
   }
