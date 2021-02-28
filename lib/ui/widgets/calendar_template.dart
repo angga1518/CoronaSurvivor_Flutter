@@ -105,9 +105,7 @@ class CalendarDefaultTemplate extends StatelessWidget {
                               isEnabled: isEnabled,
                             )
                           : Container(),
-                      (withPinkButton)
-                          ? UIHelper.vertSpace(bottomSpace)
-                          : Container(),
+                      UIHelper.vertSpace(bottomSpace),
                     ],
                   )
                 ],

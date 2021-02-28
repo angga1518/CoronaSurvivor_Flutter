@@ -14,7 +14,8 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
     CalendarModel calendar =
         (widget.calendarModel == null) ? CalendarModel() : widget.calendarModel;
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-    TextEditingController kodePuskesmasController = TextEditingController(text: calendar.kodePuskesmas);
+    TextEditingController kodePuskesmasController =
+        TextEditingController(text: calendar.kodePuskesmas);
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToHomePage());
@@ -73,99 +74,11 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                                       Navigator.pop(context);
                                     }, () async {
                                       Navigator.pop(context);
-                                      await showPopUp(
-                                          context: context,
-                                          child: PopUpChild(
-                                            "Apakah Anda sudah berkunjung ke puskesmas terdekat?",
-                                            "Masukkan kode yang diberikan oleh pihak puskesmas. Bila Anda belum mengunjungi puskesmas, Anda dapat memasukannya nanti",
-                                            () {
-                                              Navigator.pop(context);
-                                            },
-                                            () {
-                                              Navigator.pop(context);
-                                            },
-                                            height: 290,
-                                            custom: true,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height:
-                                                      UIHelper.setResHeight(40),
-                                                  width:
-                                                      UIHelper.setResWidth(230),
-                                                  child: TextField(
-                                                    style: UIHelper
-                                                        .greyLightFont
-                                                        .copyWith(
-                                                            color: UIHelper
-                                                                .colorGreySuperLight,
-                                                            fontSize: UIHelper
-                                                                .setResFontSize(
-                                                                    15)),
-                                                    controller:
-                                                        kodePuskesmasController,
-                                                    textAlignVertical:
-                                                        TextAlignVertical
-                                                            .bottom,
-                                                    cursorColor:
-                                                        UIHelper.colorGreyLight,
-                                                    decoration: InputDecoration(
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color: UIHelper
-                                                                .colorGreyLight,
-                                                            width: 1.0),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ),
-                                                      fillColor: UIHelper
-                                                          .colorGreyLight,
-                                                      focusColor: UIHelper
-                                                          .colorGreyLight,
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ),
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ),
-                                                      labelText:
-                                                          "Kode Puskesmas",
-                                                      labelStyle: TextStyle(
-                                                          color: UIHelper
-                                                              .colorGreyLight),
-                                                      hintText:
-                                                          "Kode Puskesmas",
-                                                    ),
-                                                  ),
-                                                ),
-                                                UIHelper.vertSpace(20),
-                                                PinkButton("Lanjut", () {
-                                                  // proses input kode puskses kalau ga null
-                                                  // kasih feedback kalo salah kode
-                                                  calendar.pengguna =
-                                                      widget.pengguna;
-                                                  calendar.kodePuskesmas =
-                                                      kodePuskesmasController
-                                                          .text;
-                                                  Navigator.pop(context);
-                                                  pageBloc.add(
-                                                      GoToCalendarSignUpPage1(
-                                                          calendar));
-                                                },
-                                                    fontSize: 12,
-                                                    height: 36,
-                                                    width: 58)
-                                              ],
-                                            ),
-                                          ));
+                                      calendar.pengguna = widget.pengguna;
+                                      calendar.kodePuskesmas =
+                                          kodePuskesmasController.text;
+                                      pageBloc.add(
+                                          GoToCalendarSignUpPage1(calendar));
                                     }));
                               },
                               fontSize: UIHelper.setResFontSize(10),

@@ -12,3 +12,8 @@ class LoadCalendar extends CalendarEvent {
   LoadCalendar({@required this.emailPengguna});
 }
 
+class LoadLocalCalendar extends CalendarEvent {
+  final CalendarModel calendar;
+  LoadLocalCalendar({@required this.calendar});
+}
+

@@ -80,7 +80,10 @@ class OnCalendarHome extends PageState {
   OnCalendarHome(this.calendarModel);
 }
 
-class OnConnectPuskesmasPage extends PageState {}
+class OnConnectPuskesmasPage extends PageState {
+  final CalendarModel calendarModel;
+  OnConnectPuskesmasPage(this.calendarModel);
+}
 
 class OnSuccessPage extends PageState {
   final String message;
@@ -90,10 +93,23 @@ class OnSuccessPage extends PageState {
   OnSuccessPage(this.message, this.goTo, this.backTo, this.pinkButtonMessage);
 }
 
-class OnRecoveryOnBoardPage extends PageState {}
+class OnRecoveryOnBoardPage extends PageState {
+  final CalendarModel calendar;
+  OnRecoveryOnBoardPage(this.calendar);
+}
 
-class OnAddRecoveryPage extends PageState {}
+class OnAddRecoveryPage extends PageState {
+  final CalendarModel calendar;
+  OnAddRecoveryPage(this.calendar);
+}
 
-class OnAddNewGejalaPage extends PageState {}
+class OnAddNewGejalaPage extends PageState {
+  final CalendarModel calendar;
+  OnAddNewGejalaPage(this.calendar);
+}
 
-class OnRecoveryDetailPage extends PageState {}
+class OnRecoveryDetailPage extends PageState {
+  final CalendarModel calendar;
+  final Recovery recovery;
+  OnRecoveryDetailPage(this.calendar, this.recovery);
+}

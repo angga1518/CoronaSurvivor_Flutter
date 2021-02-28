@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class RecoveryTemplate extends StatelessWidget {
   final PageEvent backTo;
   final Function onPinkButtonTap;
-  // dd-MM-YYYY
+  // yyyy-MM-dd
   final String date;
   final bool withPinkButton;
   final double space;
@@ -22,9 +22,9 @@ class RecoveryTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
-    int year = int.parse(date.split("-")[2]);
+    int year = int.parse(date.split("-")[0]);
     int month = int.parse(date.split("-")[1]);
-    int day = int.parse(date.split("-")[0]);
+    int day = int.parse(date.split("-")[2]);
     DateTime realDate = DateTime(year, month, day);
     String hari = getHariFromIndex(realDate.weekday);
     String bulan = getBulanFromIndex(month);
@@ -155,7 +155,7 @@ class RecoveryTemplate extends StatelessWidget {
         return "Januari";
         break;
       case 2:
-        return "Februaru";
+        return "Februari";
         break;
       case 3:
         return "Maret";
