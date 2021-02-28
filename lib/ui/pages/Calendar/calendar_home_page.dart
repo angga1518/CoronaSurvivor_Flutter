@@ -15,8 +15,9 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
   int yellowDuration;
   bool alreadyConnectedWithPuskesmas;
 
+
   @override
-  void initState() {
+  Widget build(BuildContext context) {
     String tanggal = getTanggalFormatted(widget.calendarModel.tanggalStartRed);
     startDate = int.parse(tanggal.split("/")[0]);
     startMonth = int.parse(tanggal.split("/")[1]);
@@ -24,10 +25,6 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
     redDuration = widget.calendarModel.red;
     yellowDuration = widget.calendarModel.yellow;
     alreadyConnectedWithPuskesmas = widget.calendarModel.kodePuskesmas != null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return CalendarDefaultTemplate(
       SizedBox(
@@ -110,8 +107,11 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
               generateInfoContainer(
                   "Segera kontak tenaga kesehatan apabila saturasi Anda dibawah 95 atau Anda merasa sesak"),
               UIHelper.vertSpace(10),
-              generateInfoContainer(
-                  "Anda termasuk orang bergejala sedang. Menurut CDC, Anda tidak akan menular lagi setelah 10 hari isolasi mandiri.*\n\n*selama 10 hari Anda harus bebas dari demam tanpa bantuan obat demam."),
+              generateInfoContainer((widget.calendarModel.status == 1)
+                  ? "Anda termasuk Orang Tanpa Gejala. Menurut CDC, Anda tidak akan menular lagi setelah isolasi mandiri selama 10 hari.*\n\n*Apabila tidak muncul demam dan gejala lainnya"
+                  : (widget.calendarModel.status == 2)
+                      ? "Anda termasuk orang bergejala sedang. Menurut CDC, Anda tidak akan menular lagi setelah 10 hari isolasi mandiri.*\n\n*selama 10 hari Anda harus bebas dari demam tanpa bantuan obat demam."
+                      : "Anda termasuk orang bergejala parah. Menurut CDC, Anda setidaknya harus isolasi mandiri selama 20 hari.*\n\n*Kunjungi dokter dan pihak medis segera"),
               UIHelper.vertSpace(15),
               (!alreadyConnectedWithPuskesmas)
                   ? Container(
@@ -172,7 +172,10 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
                       ))
                   : Container(),
               UIHelper.vertSpace((!alreadyConnectedWithPuskesmas) ? 30 : 15),
-              BlueNavigation("Lihat acuan CDC", () {})
+              BlueNavigation("Lihat acuan CDC", () async {
+                String url = "https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/end-home-isolation.html";
+                await launch(url);
+              })
             ],
           )
         ],

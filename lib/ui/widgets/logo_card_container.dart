@@ -47,7 +47,9 @@ class LogoCardContainer extends StatelessWidget {
                         UIHelper.vertSpace(10),
                         PinkButton(
                           buttonMessage,
-                          () {},
+                          () {
+                            onMessageTap();
+                          },
                           fontSize: UIHelper.setResFontSize(10),
                           height: UIHelper.setResHeight(buttonHeight),
                           width: UIHelper.setResWidth(buttonWidth),
