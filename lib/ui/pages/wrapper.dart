@@ -123,6 +123,8 @@ class _WrapperState extends State<Wrapper> {
           return AddNewGejalaPage(state.calendar);
         } else if (state is OnRecoveryDetailPage) {
           return RecoveryDetailPage(state.calendar, state.recovery);
+        } else if (state is OnListProvinsi) {
+          return ListProvinsiPage();
         } else {
           return Container();
         }
