@@ -28,6 +28,55 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
   List<String> tempListGejala;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.calendarModel.listGejala == null) {
+      return;
+    } 
+    isDemam = widget.calendarModel.listGejala.contains("Demam") ? true : false;
+    isBatuk = widget.calendarModel.listGejala.contains("Batuk") ? true : false;
+    isHilangPenciuman =
+        widget.calendarModel.listGejala.contains("Hilang Penciuman")
+            ? true
+            : false;
+    isKurangPenciuman = widget.calendarModel.listGejala
+            .contains("Kemampuan Penciuman Berkurang")
+        ? true
+        : false;
+    isHilangPengecapan =
+        widget.calendarModel.listGejala.contains("Hilang Pengecapan")
+            ? true
+            : false;
+    isKurangPengecapan = widget.calendarModel.listGejala
+            .contains("Kemampuan Pengecapan Berkurang")
+        ? true
+        : false;
+    isBadanPegal =
+        widget.calendarModel.listGejala.contains("Badan Pegal") ? true : false;
+    isMeriang =
+        widget.calendarModel.listGejala.contains("Meriang") ? true : false;
+    isPusing =
+        widget.calendarModel.listGejala.contains("Pusing") ? true : false;
+    isMual = widget.calendarModel.listGejala.contains("Mual") ? true : false;
+    isMuntah =
+        widget.calendarModel.listGejala.contains("Muntah") ? true : false;
+    isSeleraMakanBerkurang =
+        widget.calendarModel.listGejala.contains("Selera Makan Berkurang")
+            ? true
+            : false;
+    isSesakNafas =
+        widget.calendarModel.listGejala.contains("Sesak Nafas") ? true : false;
+    isSaturasiKecil =
+        widget.calendarModel.listGejala.contains("Saturasi <95") ? true : false;
+    isRadangTenggorokan =
+        widget.calendarModel.listGejala.contains("Radang Tenggorokan")
+            ? true
+            : false;
+    isMudahLelah =
+        widget.calendarModel.listGejala.contains("Mudah Lelah") ? true : false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     tempListGejala = [];
     return CalendarDefaultTemplate(
@@ -170,6 +219,7 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
         setGejala();
         widget.calendarModel.listGejala = tempListGejala;
       },
+      bottomSpace: 70,
       space: 10,
       desc: "Masukkan gejala yang Anda alami",
       backTo: GoToCalendarSignUpPage2(widget.calendarModel),
@@ -215,7 +265,7 @@ class CalendarSignUpPage3State extends State<CalendarSignUpPage3> {
       tempListGejala.add("Selera Makan Berkurang");
     }
     if (isSesakNafas == true) {
-      tempListGejala.add("Sesak Nafa");
+      tempListGejala.add("Sesak Nafas");
     }
     if (isSaturasiKecil == true) {
       tempListGejala.add("Saturasi <95");

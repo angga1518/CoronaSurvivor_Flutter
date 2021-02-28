@@ -7,6 +7,7 @@ class Pengguna {
   String jenisKelamin;
   String domisili;
   String noTelepon;
+  String token;
   List<String> listIdArtikelDisimpan;
   List<String> listIdLikedArtikel;
   List<String> listIdLikedKomentar;
@@ -18,6 +19,7 @@ class Pengguna {
     @required this.jenisKelamin,
     @required this.domisili,
     @required this.noTelepon,
+    this.token,
     this.listIdArtikelDisimpan,
     this.listIdLikedArtikel,
     this.listIdLikedKomentar,

@@ -6,6 +6,8 @@ import 'package:corona_survivor_flutter/ui/shared/shared_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
+
 part 'button.dart';
 part 'logo.dart';
 part 'text_field.dart';

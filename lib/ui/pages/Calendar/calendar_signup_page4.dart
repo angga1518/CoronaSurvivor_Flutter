@@ -9,6 +9,7 @@ class CalendarSignUpPage4 extends StatefulWidget {
 
 class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
   List<Widget> children = [];
+  List<String> listRiwayatPenyakit = [];
   TextEditingController newGejalaController = TextEditingController();
 
   @override
@@ -71,11 +72,15 @@ class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
                                     setState(() {
                                       children.removeAt(index);
                                       children.insert(index, Container());
+                                      listRiwayatPenyakit.removeAt(index);
+                                      listRiwayatPenyakit.insert(index, "");
                                     });
                                   }));
+                              listRiwayatPenyakit.add(newGejalaController.text);
                               newGejalaController.clear();
                             });
                           },
+                          isEnabled: newGejalaController.text.length>0,
                           height: 22,
                           fontSize: 10,
                           width: 62,
@@ -89,6 +94,12 @@ class CalendarSignUpPage4State extends State<CalendarSignUpPage4> {
           ),
         ),
       ),
+      onPinkButtonTap: () {
+        List<String> fixListRiwayat = listRiwayatPenyakit;
+        fixListRiwayat.remove("");
+        widget.calendarModel.listRiwayat = fixListRiwayat;
+      },
+      isEnabled: children.length > 0,
       space: 10,
       desc: "Masukkan riwayat penyakit yang Anda miliki",
       backTo: GoToCalendarSignUpPage3(widget.calendarModel),

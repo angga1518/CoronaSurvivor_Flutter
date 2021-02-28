@@ -60,3 +60,4 @@ part 'Plasma/plasma_pendonor_signup4.dart';
 part 'Plasma/plasma_pendonor_signup5.dart';
 part 'Plasma/plasma_detail_penerima.dart';
 part 'Plasma/plasma_detail_pendonor.dart';
+part 'list_provinsi_page.dart';

@@ -77,16 +77,16 @@ class _PlasmaDetailPendonorState extends State<PlasmaDetailPendonor> {
                               InformationContainer("Riwayat Penyakit",
                                   pendonor.formattedRiwayatPenyakit()),
                               UIHelper.vertSpace(10),
-                              InformationContainer("Pernah Melahirkan",
-                                  "(${pendonor.melahirkan})"),
-                              UIHelper.vertSpace(10),
                               InformationContainer(
                                   "Berat Badan", "${pendonor.beratBadan} kg"),
                               UIHelper.vertSpace(10),
                               (pendonor.catatanTambahan != "")
                                   ? InformationContainer("Catatan Tambahan",
                                       pendonor.catatanTambahan)
-                                  : Container()
+                                  : Container(),
+                              InformationContainer("Pernah Melahirkan",
+                                  "(${pendonor.melahirkan})"),
+                              UIHelper.vertSpace(10),
                             ],
                           )),
                       UIHelper.vertSpace(18),

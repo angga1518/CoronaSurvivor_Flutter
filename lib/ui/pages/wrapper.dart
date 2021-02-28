@@ -25,34 +25,19 @@ class _WrapperState extends State<Wrapper> {
     _firebaseMessaging.configure(
       onMessage: (message) async {
         print("onMessage: $message");
-
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = token;
-        });
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = "New Notification Alert";
-        });
       },
       onResume: (message) async {
         print("onResume: $message");
-        setState(() {
-          messageTitle = message["data"]["title"];
-          notificationAlert = "Application opened from Notification";
-        });
       },
     );
   }
 
   Future<void> _checkNewToken() async {
-    // hit api cek access token yang lama
-    // bandingin
-    // kalo beda hit beda api ke backend
     token = await _firebaseMessaging.getToken();
+    tokenFCM = token;
     print("token nih: " + token);
   }
 
@@ -126,18 +111,18 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnCalendarHome) {
           return CalendarHomePage(state.calendarModel);
         } else if (state is OnConnectPuskesmasPage) {
-          return ConnectPuskesPage();
+          return ConnectPuskesPage(state.calendarModel);
         } else if (state is OnSuccessPage) {
           return SuccessPage(
               state.message, state.goTo, state.backTo, state.pinkButtonMessage);
         } else if (state is OnRecoveryOnBoardPage) {
-          return RecoveryOnboardPage();
+          return RecoveryOnboardPage(state.calendar);
         } else if (state is OnAddRecoveryPage) {
-          return AddRecoveryPage();
+          return AddRecoveryPage(state.calendar);
         } else if (state is OnAddNewGejalaPage) {
-          return AddNewGejalaPage();
+          return AddNewGejalaPage(state.calendar);
         } else if (state is OnRecoveryDetailPage) {
-          return RecoveryDetailPage();
+          return RecoveryDetailPage(state.calendar, state.recovery);
         } else if (state is OnPlasmaPenerimaSignUp1) {
           return PlasmaPenerimaSignUp1(state.pengguna, state.penerima);
         } else if (state is OnPlasmaPenerimaSignUp2) {
@@ -164,6 +149,9 @@ class _WrapperState extends State<Wrapper> {
           return PlasmaDetailPenerima(state.pengguna, state.penerimaDonor);
         } else if (state is OnPlasmaDetailPendonor) {
           return PlasmaDetailPendonor(state.pengguna, state.penerima);
+          // return RecoveryDetailPage(state.calendar, state.recovery);
+        } else if (state is OnListProvinsi) {
+          return ListProvinsiPage();
         } else {
           return Container();
         }

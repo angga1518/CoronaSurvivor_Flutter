@@ -40,11 +40,20 @@ class _HomePageState extends State<HomePage> {
                                   CovidIndo covidIndo =
                                       snapshot.data as CovidIndo;
                                   sharedCovidIndo = covidIndo;
-                                  return _generateCovidIndoWidget(
-                                      covidIndo.positif,
-                                      covidIndo.dirawat,
-                                      covidIndo.sembuh,
-                                      covidIndo.meninggal);
+                                  return Column(
+                                    children: [
+                                      _generateCovidIndoWidget(
+                                          covidIndo.positif,
+                                          covidIndo.dirawat,
+                                          covidIndo.sembuh,
+                                          covidIndo.meninggal),
+                                      UIHelper.vertSpace(10),
+                                      BlueNavigation("Lihat Statistik Provinsi",
+                                          () {
+                                        pageBloc.add(GoToListProvinsi());
+                                      }),
+                                    ],
+                                  );
                                 } else {
                                   return Container(
                                     child: Center(
@@ -54,171 +63,51 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 }
                               })
-                          : _generateCovidIndoWidget(
-                              sharedCovidIndo.positif,
-                              sharedCovidIndo.dirawat,
-                              sharedCovidIndo.sembuh,
-                              sharedCovidIndo.meninggal)),
+                          : Column(
+                              children: [
+                                _generateCovidIndoWidget(
+                                    sharedCovidIndo.positif,
+                                    sharedCovidIndo.dirawat,
+                                    sharedCovidIndo.sembuh,
+                                    sharedCovidIndo.meninggal),
+                                UIHelper.vertSpace(10),
+                                BlueNavigation("Lihat Statistik Provinsi", () {
+                                  pageBloc.add(GoToListProvinsi());
+                                }),
+                              ],
+                            )),
                   UIHelper.vertSpace(18),
-                  CardContainer(
-                      "Status Covid-19 Daerah Anda",
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: UIHelper.setResWidth(73),
-                                height: UIHelper.setResHeight(32),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: UIHelper.colorMainLightRed),
-                                child: Center(
-                                  child: Text("High",
-                                      style: UIHelper.redFont.copyWith(
-                                          fontSize: UIHelper.setResFontSize(12),
-                                          fontWeight: FontWeight.w700)),
-                                ),
-                              ),
-                              UIHelper.horzSpace(17),
-                              RichText(
-                                text: TextSpan(
-                                  text: 'Kelurahan Beji\n',
-                                  style: UIHelper.greyFont.copyWith(
-                                      fontSize: UIHelper.setResFontSize(13),
-                                      fontWeight: FontWeight.w700),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: 'Provinsi DKI Jakarta',
-                                        style: UIHelper.greyFont.copyWith(
-                                            fontSize:
-                                                UIHelper.setResFontSize(13),
-                                            fontWeight: FontWeight.w400)),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          UIHelper.vertSpace(25),
-                          Text("Provinsi DKI Jakarta",
-                              style: UIHelper.greyLightFont.copyWith(
-                                  color: UIHelper.colorGreySuperLight,
-                                  fontSize: UIHelper.setResFontSize(13),
-                                  fontWeight: FontWeight.w500)),
-                          UIHelper.vertSpace(10),
-                          Container(
-                            width: UIHelper.setResWidth(239),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorPinkSuperLight,
-                                    width: 2)),
-                            child: Row(
+                  BlocBuilder<CalendarBloc, CalendarState>(
+                    builder: (context, state) {
+                      if (state is CalendarExisted) {
+                        CalendarModel calendar = state.calendar;
+                        return CardContainer(
+                            "MyCalendar",
+                            Column(
                               children: [
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: UIHelper.setResWidth(10)),
-                                  width: UIHelper.setResWidth(140),
-                                  child: Text("289612",
-                                      style: UIHelper.redFont.copyWith(
-                                          fontSize: UIHelper.setResFontSize(25),
-                                          fontWeight: FontWeight.w700)),
+                                WarningBox(286,
+                                    "Anda belum mengisi perkembangan Anda hari ini"),
+                                UIHelper.vertSpace(14),
+                                Calendar(
+                                  calendar,
+                                  clickable: false,
                                 ),
-                                Text("Orang Positif",
-                                    style: UIHelper.redFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400))
+                                UIHelper.vertSpace(10),
+                                BlueNavigation("Lihat selengkapnya", () {
+                                  pageBloc.add(GoToCalendarHome(calendar));
+                                }),
                               ],
-                            ),
-                          ),
-                          UIHelper.vertSpace(10),
-                          Container(
-                            width: UIHelper.setResWidth(239),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorPinkSuperLight,
-                                    width: 2)),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: UIHelper.setResWidth(10)),
-                                  width: UIHelper.setResWidth(140),
-                                  child: Text("260986",
-                                      style: UIHelper.greenFont.copyWith(
-                                          fontSize: UIHelper.setResFontSize(25),
-                                          fontWeight: FontWeight.w700)),
-                                ),
-                                Text("Orang Positif",
-                                    style: UIHelper.greenFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400))
-                              ],
-                            ),
-                          ),
-                          UIHelper.vertSpace(10),
-                          Container(
-                            width: UIHelper.setResWidth(239),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: UIHelper.colorPinkSuperLight,
-                                    width: 2)),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: UIHelper.setResWidth(10)),
-                                  width: UIHelper.setResWidth(140),
-                                  child: Text("4529",
-                                      style: UIHelper.yellowFont.copyWith(
-                                          fontSize: UIHelper.setResFontSize(25),
-                                          fontWeight: FontWeight.w700)),
-                                ),
-                                Text("Orang Positif",
-                                    style: UIHelper.yellowFont.copyWith(
-                                        fontSize: UIHelper.setResFontSize(12),
-                                        fontWeight: FontWeight.w400))
-                              ],
-                            ),
-                          ),
-                          UIHelper.vertSpace(10),
-                          BlueNavigation("Lihat lokasi lainnya", () {}),
-                        ],
-                      )),
-                  UIHelper.vertSpace(18),
-                  LogoCardContainer(
-                    "Status Covid-19 Daerah Anda",
-                    "assets/pin_gps.png",
-                    "Aktifkan GPS Anda untuk melihat status Covid-19 di daerah Anda",
-                    "Aktifkan",
-                    29,
-                    62,
-                    nextMessage: "Lihat lokasi lainnya",
-                    onMessageTap: () {},
+                            ));
+                      }
+                      return LogoCardContainer(
+                          "MyCalendar",
+                          "assets/mask_myCalendar.png",
+                          "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
+                          "Buat MyCalendar",
+                          29,
+                          104);
+                    },
                   ),
-                  UIHelper.vertSpace(18),
-                  LogoCardContainer(
-                      "MyCalendar",
-                      "assets/mask_myCalendar.png",
-                      "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
-                      "Buat MyCalendar",
-                      29,
-                      104),
-                  UIHelper.vertSpace(18),
-                  CardContainer(
-                      "MyCalendar",
-                      Column(
-                        children: [
-                          WarningBox(286,
-                              "Anda belum mengisi perkembangan Anda hari ini"),
-                          UIHelper.vertSpace(14),
-                          Calendar(2, 11, 12, 14, 15),
-                          UIHelper.vertSpace(10),
-                          BlueNavigation("Lihat selengkapnya", () {}),
-                        ],
-                      )),
                   UIHelper.vertSpace(75),
                 ],
               ),

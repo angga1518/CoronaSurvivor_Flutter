@@ -158,6 +158,12 @@ class _PlasmaPendonorSignUp2State extends State<PlasmaPendonorSignUp2> {
           ],
         ),
       ),
+      isEnabled: selectedGolDarah != "" &&
+          selectedRhesus != "" &&
+          istanggalInfeksiValid &&
+          istanggalSembuhValid &&
+          beratBadanController.text != "" &&
+          selectedMelahirkan != "",
       desc: "Masukkan keterangan diri Anda sebagai penerima donor ",
       header: "Daftar Menjadi Penerima",
       goTo: GoToPlasmaPendonorSignUp3(widget.pengguna, widget.penerima),

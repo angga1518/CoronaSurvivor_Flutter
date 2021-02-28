@@ -13,6 +13,7 @@ class _PlasmaPenerimaSignUp5State extends State<PlasmaPenerimaSignUp5> {
   bool isSetuju2 = false;
   @override
   Widget build(BuildContext context) {
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return PlasmaDefaultTemplate(
       SizedBox(
         child: Column(
@@ -46,12 +47,13 @@ class _PlasmaPenerimaSignUp5State extends State<PlasmaPenerimaSignUp5> {
       // desc: "Centang",
       // header: "Daftar Menjadi Penerima",
       isEnabled: isSetuju1,
-      goTo: GoToPlasmaPage(widget.pengguna),
+      goTo: null,
       backTo: GoToPlasmaPenerimaSignUp4(widget.pengguna, widget.penerima),
       onPinkButtonTap: () async {
         showPopUp(context: context, child: PopUpLoadingChild());
         await PenerimaDonorService.createPenerimaDonor(widget.penerima)
             .whenComplete(() => Navigator.pop(context));
+        pageBloc.add(GoToPlasmaPage(widget.pengguna));
         // showPopUp(context: context, child: PopUpLoadingChild());
         // await Future.delayed(Duration(seconds: 1));
         // Navigator.pop(context);

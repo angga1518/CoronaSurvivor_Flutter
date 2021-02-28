@@ -162,15 +162,13 @@ class _PlasmaPendonorSignUp1State extends State<PlasmaPendonorSignUp1> {
           ],
         ),
       ),
-      isEnabled: namaController.text != ""
-      // &&
-      //     nikController.text != "" &&
-      //     domisiliController.text != "" &&
-      //     isTanggalValid &&
-      //     selectedGender != "" &&
-      //     noTeleponController.text != "" &&
-      //     emailController.text != ""
-      ,
+      isEnabled: namaController.text != "" &&
+          nikController.text != "" &&
+          domisiliController.text != "" &&
+          isTanggalValid &&
+          selectedGender != "" &&
+          noTeleponController.text != "" &&
+          emailController.text != "",
       desc: "Lengkapi data diri Anda",
       header: "Daftar Menjadi Pendonor",
       backTo: GoToPlasmaPage(widget.pengguna),

@@ -39,11 +39,12 @@ class BottomBar extends StatelessWidget {
       },
       () async {
         CalendarModel calendar = sharedCalendar;
-        pageBloc.add(GoToCalendarOnboardPage(pengguna));
-        // if (calendar == null) {
-        // } else {
-        // pageBloc.add(GoToCalendarHome());
-        // }
+        if (calendar == null) {
+          pageBloc.add(GoToCalendarOnboardPage(pengguna));
+        } else {
+          calendar.pengguna = pengguna;
+          pageBloc.add(GoToCalendarHome(calendar));
+        }
       },
     ];
     return Container(
