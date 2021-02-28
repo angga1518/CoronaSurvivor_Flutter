@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToOnboardPage());
+        // pageBloc.add(GoToOnboardPage());
         return false;
       },
       child: Scaffold(
