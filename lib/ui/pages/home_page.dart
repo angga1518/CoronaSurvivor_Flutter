@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToOnboardPage());
+        // pageBloc.add(GoToOnboardPage());
         return false;
       },
       child: Scaffold(
@@ -99,13 +99,30 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ));
                       }
-                      return LogoCardContainer(
-                          "MyCalendar",
-                          "assets/mask_myCalendar.png",
-                          "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
-                          "Buat MyCalendar",
-                          29,
-                          104);
+                      return BlocBuilder<UserBloc, UserState>(
+                        builder: (context, state) {
+                          if (state is UserLoaded) {
+                            return LogoCardContainer(
+                              "MyCalendar",
+                              "assets/mask_myCalendar.png",
+                              "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
+                              "Buat MyCalendar",
+                              29,
+                              104,
+                              onMessageTap: () {
+                                pageBloc.add(
+                                    GoToCalendarOnboardPage(state.pengguna));
+                              },
+                            );
+                          }
+                          return Container(
+                            child: Center(
+                                child: SpinKitThreeBounce(
+                                    color: UIHelper.colorMainLightRed,
+                                    size: UIHelper.setResWidth(10))),
+                          );
+                        },
+                      );
                     },
                   ),
                   UIHelper.vertSpace(75),

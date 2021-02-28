@@ -229,21 +229,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     ));
   }
-
-  bool tanggalValidation(String tanggal) {
-    List<String> details = tanggal.split("/");
-    if (details.length != 3) {
-      return false;
-    }
-    if (details[0].length != 4) {
-      return false;
-    }
-    if (details[1].length != 2) {
-      return false;
-    }
-    if (details[2].length != 2) {
-      return false;
-    }
-    return true;
-  }
 }

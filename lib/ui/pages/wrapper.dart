@@ -53,7 +53,8 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       // for dev
       // pageBloc.add(GoToCalendarSignUpPage1());
-      if (!(prevPageEvent is GoToSplashPage)) {
+      if (!(prevPageEvent is GoToSplashPage ||
+          prevPageEvent is GoToOnboardPage)) {
         prevPageEvent = GoToSplashPage();
         pageBloc.add(prevPageEvent);
       }
