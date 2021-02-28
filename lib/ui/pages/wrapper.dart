@@ -36,10 +36,8 @@ class _WrapperState extends State<Wrapper> {
   }
 
   Future<void> _checkNewToken() async {
-    // hit api cek access token yang lama
-    // bandingin
-    // kalo beda hit beda api ke backend
     token = await _firebaseMessaging.getToken();
+    tokenFCM = token;
     print("token nih: " + token);
   }
 
