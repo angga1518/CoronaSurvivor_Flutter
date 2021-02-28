@@ -35,14 +35,8 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
         children: [
           UIHelper.vertSpace(5),
           Calendar(
-            startDate,
-            startDate + redDuration - 1,
-            startDate + redDuration,
-            startDate + redDuration + yellowDuration - 1,
-            startDate + redDuration + yellowDuration,
+            widget.calendarModel,
             clickable: true,
-            startMonth: startMonth,
-            startYear: startYear,
           ),
           UIHelper.vertSpace(20),
           Column(
@@ -128,7 +122,8 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
                           child: InkWell(
                             splashColor: UIHelper.colorPinkLight,
                             onTap: () {
-                              pageBloc.add(GoToConnectPuskesmasPage());
+                              pageBloc.add(GoToConnectPuskesmasPage(
+                                  widget.calendarModel));
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -183,6 +178,7 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
         ],
       )),
       space: 5,
+      bottomSpace: 50,
       addHeader: false,
       backTo: GoToHomePage(),
       goTo: null,

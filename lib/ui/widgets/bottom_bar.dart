@@ -42,6 +42,7 @@ class BottomBar extends StatelessWidget {
         if (calendar == null) {
           pageBloc.add(GoToCalendarOnboardPage(pengguna));
         } else {
+          calendar.pengguna = pengguna;
           pageBloc.add(GoToCalendarHome(calendar));
         }
       },

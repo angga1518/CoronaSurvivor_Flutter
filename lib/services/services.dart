@@ -15,3 +15,4 @@ part 'pemberi_donor_services.dart';
 part 'data_covid_services.dart';
 part 'calendar_services.dart';
 part 'gejala_services.dart';
+part 'recovery_services.dart';

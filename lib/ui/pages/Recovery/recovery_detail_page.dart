@@ -1,6 +1,9 @@
 part of '../pages.dart';
 
 class RecoveryDetailPage extends StatefulWidget {
+  CalendarModel calendar;
+  Recovery recovery;
+  RecoveryDetailPage(this.calendar, this.recovery);
   @override
   _RecoveryDetailPageState createState() => _RecoveryDetailPageState();
 }
@@ -14,8 +17,15 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
       child: SizedBox(
         child: Column(
           children: [
-            infoBanner(title: "Tidak terhubung dengan puskesmas", width: 230),
-            successBanner(title: "Tidak terhubung dengan puskesmas", width: 230),
+            (widget.recovery.status != 2)
+                ? infoBanner(
+                    title: (widget.recovery.status == 0)
+                        ? "Belum terisi"
+                        : (widget.recovery.status == 1)
+                            ? "Tidak terhubung dengan puskesmas"
+                            : "Sedang menunggu feedback puskesmas",
+                    width: 230)
+                : successBanner(title: "Sudah dibalas puskesmas", width: 230),
             UIHelper.vertSpace(16),
             borderContainer(Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +108,7 @@ class _RecoveryDetailPageState extends State<RecoveryDetailPage> {
         ),
       ),
       date: "01-10-2000",
-      backTo: GoToRecoveryOnBoardPage(),
+      backTo: GoToRecoveryOnBoardPage(widget.calendar),
       withPinkButton: true,
       onPinkButtonTap: () {
         // pageBloc.add(

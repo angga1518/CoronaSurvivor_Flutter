@@ -11,6 +11,18 @@ class CalendarService {
     }
     CalendarModel calendarModel =
         await CalendarService.convertToCalendarModel(data);
+
+    // set gejalamodel
+    url = base_url + "getAllGejala/" + email;
+    response = await http.Client().get(url);
+    data = json.decode(response.body);
+    data = data['result'] as List<dynamic>;
+    List<GejalaModel> listGejala = [];
+    for (var x in data) {
+      x = x as Map<String, dynamic>;
+      listGejala.add(GejalaModel(x['uuid'], x['namaGejala']));
+    }
+    calendarModel.listObjectGejala = listGejala;
     return calendarModel;
   }
 
@@ -19,7 +31,7 @@ class CalendarService {
     http.Response response = await http.Client().get(url);
     var data = json.decode(response.body);
     int responseCode = data['status'] as int;
-    if(responseCode!=200){
+    if (responseCode != 200) {
       return false;
     }
     return true;
@@ -55,11 +67,10 @@ class CalendarService {
       String kodePuskesmas, String kodeCalendar) async {
     String url = base_url + "connect/$kodeCalendar/$kodePuskesmas";
     http.Response response = await http.Client().get(url);
-    var data = json.decode(response.body);
+    var data = response.body;
     if (data == "Success") {
       return true;
     } else {
-      print(data);
       return false;
     }
   }
@@ -84,6 +95,9 @@ class CalendarService {
       lastDate: x['lastDate'],
       listGejala:
           x['listGejala'] == null ? null : x['listGejala'].cast<String>(),
+      listNamaGejala: x['listNamaGejala'] == null
+          ? null
+          : x['listNamaGejala'].cast<String>(),
       listRecovery:
           x['listRecovery'] == null ? null : x['listRecovery'].cast<String>(),
     );

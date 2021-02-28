@@ -5,6 +5,8 @@ class CalendarModel {
   String kodePuskesmas;
   String emailPengguna;
   List<String> listGejala;
+  List<String> listNamaGejala;
+  List<GejalaModel> listObjectGejala;
   List<String> listRiwayat;
   String nik;
   int beratBadan;
@@ -20,26 +22,27 @@ class CalendarModel {
   String tanggalMunculGejala;
   String lastDate;
   Pengguna pengguna;
+  DateTime selectedDate;
 
-  CalendarModel({
-    this.nomorKalender,
-    this.kodePuskesmas,
-    this.emailPengguna,
-    this.listGejala,
-    this.listRiwayat,
-    this.nik,
-    this.beratBadan,
-    this.red,
-    this.yellow,
-    this.isDelayed,
-    this.allGejalaAwalAdded,
-    this.tanggalDibuat,
-    this.tanggalStartRed,
-    this.status,
-    this.listRecovery,
-    this.tanggalPositif,
-    this.tanggalMunculGejala,
-    this.lastDate,
-    this.pengguna
-  });
+  CalendarModel(
+      {this.nomorKalender,
+      this.kodePuskesmas,
+      this.emailPengguna,
+      this.listGejala,
+      this.listNamaGejala,
+      this.listRiwayat,
+      this.nik,
+      this.beratBadan,
+      this.red,
+      this.yellow,
+      this.isDelayed,
+      this.allGejalaAwalAdded,
+      this.tanggalDibuat,
+      this.tanggalStartRed,
+      this.status,
+      this.listRecovery,
+      this.tanggalPositif,
+      this.tanggalMunculGejala,
+      this.lastDate,
+      this.pengguna});
 }

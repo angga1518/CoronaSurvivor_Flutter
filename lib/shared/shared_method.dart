@@ -38,7 +38,47 @@ String getTanggalFormatted(String tanggal) {
     return tanggal;
   }
   String yyyyMMdd = tanggal.split("T")[0];
-  List<int> detailDate = yyyyMMdd.split("-").map((e) => int.parse(e)).toList();
+  List<int> detailDate = [];
+  if (tanggal.contains("-")) {
+    // yyyy-mm-dd
+    if (yyyyMMdd.split("-")[0].length == 4) {
+      detailDate = yyyyMMdd.split("-").map((e) => int.parse(e)).toList();
+    } else {
+      detailDate =
+          yyyyMMdd.split("-").map((e) => int.parse(e)).toList().reversed;
+    }
+  } else {
+    if (yyyyMMdd.split("/")[0].length == 4) {
+      detailDate = yyyyMMdd.split("/").map((e) => int.parse(e)).toList();
+    } else {
+      List<int> temp = yyyyMMdd.split("/").map((e) => int.parse(e)).toList(); 
+      for (int x in temp) {
+        detailDate.insert(0, x);
+      }
+    }
+  }
   DateTime date = DateTime(detailDate[0], detailDate[1], detailDate[2]);
   return DateFormat('dd/MM/yyyy').format(date);
+}
+
+// from dd/MM/yyyy
+DateTime getDateTimeFromStringTanggal(String tanggal) {
+  if (!tanggal.contains("T")) {
+    tanggal = tanggal + "T";
+  }
+  String temp = getTanggalFormatted(tanggal);
+  DateTime result = DateTime(int.parse(temp.split("/")[2]),
+      int.parse(temp.split("/")[1]), int.parse(temp.split("/")[0]));
+  return result;
+}
+
+// to yyyy-MM-dd
+String getTanggalFromDateTime(DateTime dateTime) {
+  return DateFormat('yyyy-MM-dd').format(dateTime);
+}
+
+// from yyyy-MM-dd
+String convertToDDMMYYY(String tanggal) {
+  List<String> res = tanggal.split("-");
+  return "${res[2]}-${res[1]}-${res[0]}";
 }
