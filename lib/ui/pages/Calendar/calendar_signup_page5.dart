@@ -36,12 +36,14 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
             await CalendarService.createCalendar(widget.calendarModel);
         widget.calendarModel.nomorKalender = noCalendar;
         widget.calendarModel =
-            await GejalaService.createGejala(widget.calendarModel)
+            await GejalaService.createGejala(widget.calendarModel);
+        widget.calendarModel =
+            await CalendarService.getColors(widget.calendarModel)
                 .whenComplete(() {
           Navigator.pop(context);
-          calendarBloc.add(LoadLocalCalendar(calendar: widget.calendarModel));
-          pageBloc.add(GoToCalendarHome(widget.calendarModel));
         });
+        calendarBloc.add(LoadLocalCalendar(calendar: widget.calendarModel));
+        pageBloc.add(GoToCalendarHome(widget.calendarModel));
       },
       backTo: GoToCalendarSignUpPage4(widget.calendarModel),
       goTo: null,

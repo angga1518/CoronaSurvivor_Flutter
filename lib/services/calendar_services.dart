@@ -37,6 +37,20 @@ class CalendarService {
     return true;
   }
 
+  static Future<CalendarModel> getColors(CalendarModel calendarModel) async {
+    String url = base_url + "getColors/" + calendarModel.nomorKalender;
+    http.Response response = await http.Client().get(url);
+    var data = json.decode(response.body);
+    Map<String, dynamic> x = data as Map<String, dynamic>;
+    calendarModel.red = x['red'];
+    calendarModel.yellow = x['yellow'];
+    calendarModel.tanggalStartRed = x['startDate'];
+    calendarModel.lastDate = x['lastDate'];
+    calendarModel.status = x['status'];
+    sharedCalendar = calendarModel;
+    return calendarModel;
+  }
+
   static Future<String> createCalendar(CalendarModel calendarModel) async {
     String url = base_url + "createCalendar";
     http.Response response = await http.Client().post(

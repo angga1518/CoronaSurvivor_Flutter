@@ -27,6 +27,7 @@ class GejalaService {
     calendar.tanggalStartRed = x['startDate'];
     calendar.lastDate = x['lastDate'];
     calendar.status = x['status'];
+    sharedCalendar = calendar;
     return calendar;
   }
 
