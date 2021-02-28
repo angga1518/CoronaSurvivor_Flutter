@@ -6,9 +6,10 @@ class AddCommentPage extends StatefulWidget {
   final bool isReply;
   final String namaReplied;
   final String idParentKomentar;
+  final List<Komentar> listKomentar;
 
   AddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
-      this.idParentKomentar);
+      this.idParentKomentar, this.listKomentar);
 
   @override
   _AddCommentPageState createState() => _AddCommentPageState();
@@ -27,7 +28,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna));
+        pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna,
+            listKomentar: widget.listKomentar));
         return false;
       },
       child: Scaffold(
@@ -114,8 +116,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
                 ],
               ),
               TopBar((widget.isReply) ? "Reply" : "Comment", () {
-                pageBloc
-                    .add(GoToDetailInfoPage(widget.artikel, widget.pengguna));
+                pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna,
+                    tempIconLikeArtikel: isLikedIconArtikel));
               }),
               Positioned(
                   top: UIHelper.setResHeight(520),
@@ -123,24 +125,35 @@ class _AddCommentPageState extends State<AddCommentPage> {
                   child: PinkButton("Kirim", () async {
                     showPopUp(context: context, child: PopUpLoadingChild());
                     if (widget.isReply) {
-                      print(widget.idParentKomentar);
                       Reply reply = new Reply(
                           namaLengkap: widget.pengguna.namaLengkap,
                           isi: textController.text);
-                      await ReplyServices.saveReply(
+                      Reply replyResponse = await ReplyServices.saveReply(
                               reply, widget.idParentKomentar)
                           .whenComplete(() => Navigator.pop(context));
+                      for (var komentar in widget.listKomentar) {
+                        if (komentar.idKomentar == widget.idParentKomentar) {
+                          komentar.replies.add(replyResponse);
+                        }
+                      }
+                      mapIdArtikelKeKomentar[widget.artikel.idArtikel] =
+                          widget.listKomentar;
                     } else {
                       Komentar komentar = new Komentar(
                           namaLengkap: widget.pengguna.namaLengkap,
                           isi: textController.text,
                           jumlahLike: 0);
-                      await KomentarServices.saveKomentar(
-                              komentar, widget.artikel.idArtikel)
-                          .whenComplete(() => Navigator.pop(context));
+                      Komentar komentarResponse =
+                          await KomentarServices.saveKomentar(
+                                  komentar, widget.artikel.idArtikel)
+                              .whenComplete(() => Navigator.pop(context));
+                      widget.listKomentar.add(komentarResponse);
+                      mapIdArtikelKeKomentar[widget.artikel.idArtikel] =
+                          widget.listKomentar;
                     }
-                    pageBloc.add(
-                        GoToDetailInfoPage(widget.artikel, widget.pengguna));
+                    pageBloc.add(GoToDetailInfoPage(
+                        widget.artikel, widget.pengguna,
+                        listKomentar: widget.listKomentar));
                   })),
             ],
           ),

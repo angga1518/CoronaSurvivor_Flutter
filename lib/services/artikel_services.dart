@@ -74,7 +74,7 @@ class ArtikelServices {
       int jumlahView = x['jumlahView'];
       int jumlahLike = x['jumlahLike'];
       bool isLiked = x['liked'];
-      bool isSaved = x['saved']; 
+      bool isSaved = x['saved'];
       List<dynamic> listIdkomentar = x['listIdComment'];
       Artikel artikel = new Artikel(
           listIdComment: listIdkomentar.cast<String>(),
@@ -106,6 +106,26 @@ class ArtikelServices {
         "idArtikel": artikel.idArtikel,
         "liked": artikel.isLiked.toString()
       }),
+    );
+  }
+
+  static Future<Artikel> likeArtikel(Artikel artikel, String email) async {
+    String url = base_url + "postLikedArtikel?email=" + email;
+    http.Response response = await http.Client().post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "idArtikel": artikel.idArtikel,
+        "liked": artikel.isLiked.toString(),
+      }),
+    );
+    var data = json.decode(response.body);
+    data = data['result'];
+    return new Artikel(
+      idArtikel: data["idArtikel"],
+      isLiked: data["isLiked"] == "true" ? true : false,
     );
   }
 }

@@ -3,8 +3,11 @@ part of 'pages.dart';
 class DetailInfo extends StatefulWidget {
   final Pengguna pengguna;
   final Artikel artikel;
+  List<Komentar> listKomentar;
+  bool tempIconLikeArtikel;
 
-  DetailInfo(this.artikel, this.pengguna);
+  DetailInfo(this.artikel, this.pengguna, this.listKomentar,
+      {this.tempIconLikeArtikel});
 
   @override
   _DetailInfoState createState() => _DetailInfoState();
@@ -13,10 +16,36 @@ class DetailInfo extends StatefulWidget {
 class _DetailInfoState extends State<DetailInfo> {
   bool isSavedIcon;
   PageBloc pageBloc;
+  Map<String, bool> mapLikedKomentarForPost = {};
+  bool isKomentarFinished = false;
 
   @override
   void initState() {
     isSavedIcon = widget.artikel.isSaved;
+    isLikedIconArtikel = widget.tempIconLikeArtikel == null
+        ? widget.artikel.isLiked
+        : widget.tempIconLikeArtikel;
+    jumlahLikeArtikelFrontEnd = widget.artikel.jumlahLike;
+  }
+
+  Future<void> handLikedArtikelAndComment(Pengguna pengguna, String idArtikel,
+      bool isLikedArtikel, Map<String, bool> mapLikeKomentar) async {
+    if (pengguna != null) {
+      if (idArtikel != null && isStateLikeArtikel == "Exist") {
+        await ArtikelServices.likeArtikel(
+            new Artikel(idArtikel: idArtikel, isLiked: isLikedArtikel),
+            pengguna.email);
+      }
+      List<Komentar> listKomentar = [];
+      if (mapLikeKomentar.isNotEmpty && isStateLikeKomentar == "Exist") {
+        mapLikeKomentar.forEach((key, value) {
+          Komentar komentar = new Komentar(idKomentar: key, isLiked: value);
+          listKomentar.add(komentar);
+        });
+        await KomentarServices.likeKomentar(
+            listKomentar, widget.pengguna.email);
+      }
+    }
   }
 
   @override
@@ -175,7 +204,7 @@ class _DetailInfoState extends State<DetailInfo> {
                                             ),
                                             UIHelper.horzSpace(5),
                                             Text(
-                                              widget.artikel.jumlahLike
+                                              jumlahLikeArtikelFrontEnd
                                                   .toString(),
                                               style: UIHelper.redFont.copyWith(
                                                   fontSize:
@@ -213,13 +242,13 @@ class _DetailInfoState extends State<DetailInfo> {
                           generateActionContainer(
                               "assets/like",
                               "Like",
-                              true,
+                              isLikedIconArtikel,
                               true,
                               widget.artikel.idArtikel,
                               widget.pengguna,
                               widget.artikel.judul,
                               "",
-                              "Like",
+                              "LikeArtikel",
                               ""),
                           generateActionContainer(
                               "assets/like",
@@ -242,7 +271,26 @@ class _DetailInfoState extends State<DetailInfo> {
                   )
                 ],
               ),
-              TopBar("Info", () {
+              TopBar("Info", () async {
+                if (isStateLikeArtikel == "Exist" ||
+                    isStateLikeKomentar == "Exist") {
+                  showPopUp(context: context, child: PopUpLoadingChild());
+                  await handLikedArtikelAndComment(
+                          widget.pengguna,
+                          widget.artikel.idArtikel,
+                          isLikedIconArtikel,
+                          mapLikedKomentarForPost)
+                      .whenComplete(() => Navigator.pop(context));
+                  ;
+                  if (isStateLikeArtikel == "Exist") {
+                    listSharedSavedArtikel =
+                        await ArtikelServices.getAllSavedArtikel(
+                            widget.pengguna.email);
+                    listSharedAllArtikel = await ArtikelServices.getAllArtikel(
+                        widget.pengguna.email);
+                  }
+                  ;
+                }
                 pageBloc.add(GoToInfoPage());
               })
             ],
@@ -262,23 +310,26 @@ class _DetailInfoState extends State<DetailInfo> {
       String judul,
       String repliedUser,
       String action,
-      String parentKomentar) {
+      String parentKomentar,
+      {String komentar,
+      bool isLikeKomentar = false}) {
     String inputtedAsset = (active) ? asset + "_red.png" : asset + ".png";
-    String inputtedTitle = (active) ? title + "d" : title;
+    String inputtedTitle = (active) && (!isLikeKomentar) ? title + "d" : title;
     Color backgroundColor = (active) ? UIHelper.colorPink : Colors.white;
     Color borderColor =
         (active) ? UIHelper.colorMainLightRed : UIHelper.colorMediumLightGrey;
     return GestureDetector(
       onTap: () async {
         if (action == "Comment") {
-          pageBloc.add(
-              GoToAddCommentPage(widget.artikel, pengguna, false, repliedUser));
+          pageBloc.add(GoToAddCommentPage(
+              widget.artikel, pengguna, false, repliedUser,
+              listKomentar: widget.listKomentar));
         } else if (action == "Reply") {
           pageBloc.add(GoToAddCommentPage(
               widget.artikel, pengguna, true, repliedUser,
-              idParentKomentar: parentKomentar));
+              idParentKomentar: parentKomentar,
+              listKomentar: widget.listKomentar));
         } else if (action == "Save" && active == false) {
-          print("Masuk");
           showPopUp(context: context, child: PopUpLoadingChild());
           await ArtikelServices.postSavedArtikel(
                   widget.artikel, widget.pengguna.email)
@@ -286,6 +337,34 @@ class _DetailInfoState extends State<DetailInfo> {
           setState(() {
             isSavedIcon = true;
           });
+        } else if (action == "LikeArtikel") {
+          setState(() {
+            if (isLikedIconArtikel) {
+              jumlahLikeArtikelFrontEnd = jumlahLikeArtikelFrontEnd - 1;
+              isLikedIconArtikel = !isLikedIconArtikel;
+            } else {
+              jumlahLikeArtikelFrontEnd = jumlahLikeArtikelFrontEnd + 1;
+              isLikedIconArtikel = !isLikedIconArtikel;
+            }
+            isStateLikeArtikel = "Exist";
+          });
+        } else if (action == "LikeKomentar") {
+          setState(() {
+            if (mapStatusLikedKomentar[komentar]) {
+              mapJumlahLikedKomentar[komentar] =
+                  mapJumlahLikedKomentar[komentar] - 1;
+              mapStatusLikedKomentar[komentar] =
+                  !mapStatusLikedKomentar[komentar];
+            } else {
+              mapJumlahLikedKomentar[komentar] =
+                  mapJumlahLikedKomentar[komentar] + 1;
+              mapStatusLikedKomentar[komentar] =
+                  !mapStatusLikedKomentar[komentar];
+            }
+            mapLikedKomentarForPost[komentar] =
+                mapStatusLikedKomentar[komentar];
+          });
+          isStateLikeKomentar = "Exist";
         }
       },
       child: Container(
@@ -325,9 +404,13 @@ class _DetailInfoState extends State<DetailInfo> {
   }
 
   Widget commentSection(String idArtikel, String email) {
-    if (!(mapIdArtikelKeKomentar[idArtikel].isEmpty)) {
+    if (!(mapIdArtikelKeKomentar[idArtikel] == null)) {
       List<Komentar> sharedListKomentar = mapIdArtikelKeKomentar[idArtikel];
+      widget.listKomentar = sharedListKomentar;
       List<Widget> children = convertListKomentarToWidget(sharedListKomentar);
+      setState(() {
+        isKomentarFinished = true;
+      });
       return Container(
           padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(17)),
           child: Column(children: children));
@@ -339,9 +422,11 @@ class _DetailInfoState extends State<DetailInfo> {
         builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             sharedListKomentar = snapshot.data[0];
+            widget.listKomentar = sharedListKomentar;
             mapIdArtikelKeKomentar[idArtikel] = sharedListKomentar;
             List<Widget> children =
                 convertListKomentarToWidget(sharedListKomentar);
+            isKomentarFinished = true;
             return Container(
                 padding:
                     EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(17)),
@@ -357,6 +442,10 @@ class _DetailInfoState extends State<DetailInfo> {
   List<Widget> convertListKomentarToWidget(List<dynamic> listKomentar) {
     List<Widget> children = [];
     for (var komentar in listKomentar) {
+      mapStatusLikedKomentar.putIfAbsent(
+          komentar.idKomentar, () => komentar.isLiked);
+      mapJumlahLikedKomentar.putIfAbsent(
+          komentar.idKomentar, () => komentar.jumlahLike);
       children.add(generateCommentContainer(
           komentar.namaLengkap,
           komentar.isi,
@@ -435,15 +524,17 @@ class _DetailInfoState extends State<DetailInfo> {
                       (isParent)
                           ? generateActionContainer(
                               "assets/like",
-                              likeAmount.toString(),
-                              false,
+                              mapJumlahLikedKomentar[parentKomentar].toString(),
+                              mapStatusLikedKomentar[parentKomentar],
                               false,
                               widget.artikel.idArtikel,
                               widget.pengguna,
                               widget.artikel.judul,
                               name,
-                              "Like",
-                              "")
+                              "LikeKomentar",
+                              "",
+                              komentar: parentKomentar,
+                              isLikeKomentar: true)
                           : Container()
                     ],
                   ),

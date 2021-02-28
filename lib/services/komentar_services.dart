@@ -52,7 +52,8 @@ class KomentarServices {
     return listKomentar;
   }
 
-  static Future<void> saveKomentar(Komentar komentar, String idArtikel) async {
+  static Future<Komentar> saveKomentar(
+      Komentar komentar, String idArtikel) async {
     String url = base_url + "createKomentar?idArtikel=" + idArtikel;
     http.Response response = await http.Client().post(
       url,
@@ -63,6 +64,38 @@ class KomentarServices {
         "namaLengkap": komentar.namaLengkap,
         "isi": komentar.isi,
         "jumlahLike": komentar.jumlahLike.toString(),
+      }),
+    );
+    var data = json.decode(response.body);
+    data = data['result'];
+    return new Komentar(
+        idKomentar: data['idKomentar'],
+        namaLengkap: data['namaLengkap'],
+        isLiked: data['liked'],
+        isi: data['isi'],
+        jumlahLike: data['jumlahLike'],
+        replies: data['listIdReply'],
+        tanggalPost: data['tanggalPost']);
+  }
+
+  static Future<void> likeKomentar(
+      List<Komentar> listKomentar, String email) async {
+    //localhost:8080/postLikedKomentar?email=AG@gmail.com
+    List<Map<String, dynamic>> listBody = [];
+    for (Komentar komentar in listKomentar) {
+      Map<String, dynamic> mapResponse = {};
+      mapResponse["idKomentar"] = komentar.idKomentar;
+      mapResponse["liked"] = komentar.isLiked;
+      listBody.add(mapResponse);
+    }
+    String url = base_url + "postLikedKomentar?email=" + email;
+    http.Response response = await http.Client().post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "listKomentarPayload": listBody,
       }),
     );
   }

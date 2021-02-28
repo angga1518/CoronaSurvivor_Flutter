@@ -30,13 +30,26 @@ class GoToDonorReceiverPage extends PageEvent {
   GoToDonorReceiverPage(this.pengguna, this.penerimaDonor);
 }
 
-class GoToInfoPage extends PageEvent {}
+class GoToInfoPage extends PageEvent {
+  final Pengguna pengguna;
+  final String idArtikel;
+  final bool isLikedArtikel;
+  final Map<String, bool> mapLikedKomentar;
+
+  GoToInfoPage(
+      {this.pengguna,
+      this.idArtikel,
+      this.isLikedArtikel,
+      this.mapLikedKomentar});
+}
 
 class GoToDetailInfoPage extends PageEvent {
   final Artikel artikel;
   final Pengguna pengguna;
+  final List<Komentar> listKomentar;
+  bool tempIconLikeArtikel;
 
-  GoToDetailInfoPage(this.artikel, this.pengguna);
+  GoToDetailInfoPage(this.artikel, this.pengguna, {this.listKomentar,this.tempIconLikeArtikel});
 }
 
 class GoToAddCommentPage extends PageEvent {
@@ -45,10 +58,11 @@ class GoToAddCommentPage extends PageEvent {
   final bool isReply;
   final String namaReplied;
   final String idParentKomentar;
+  final List<Komentar> listKomentar;
 
   GoToAddCommentPage(
       this.artikel, this.pengguna, this.isReply, this.namaReplied,
-      {this.idParentKomentar});
+      {this.idParentKomentar, this.listKomentar});
 }
 
 class GoToCalendarOnboardPage extends PageEvent {
