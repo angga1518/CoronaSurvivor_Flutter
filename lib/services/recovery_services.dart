@@ -35,18 +35,20 @@ class RecoveryService {
     http.Response response = await http.Client().get(url);
     var data = json.decode(response.body);
     // TODO: add updated gejala
-    data = data['recovery'];
-    Map<String, dynamic> x = data as Map<String, dynamic>;
-    Recovery recovery;
+    var tempRecovery = data['recovery'];
+    Map<String, dynamic> x = tempRecovery as Map<String, dynamic>;
+    Recovery recovery = Recovery();
     recovery.nomorRecovery = x['nomorRecovery']; 
     recovery.feedback = x['feedback'];
     recovery.catatanTambahan = x['catatanTambahan'];
     recovery.tanggalKalender = x['tanggalKalender'];
     recovery.nomorKalender = x['nomorKalender'];
     recovery.status = x['status'];
-    recovery.suhuTubuh = ""+x['suhuTubuh'];
-    recovery.saturasi = ""+x['saturasi'];
+    recovery.suhuTubuh = (x['suhuTubuh'] as double).toString();
+    recovery.saturasi = (x['saturasi'] as int).toString();
     recovery.emailPengguna = x['emailPengguna'];
+    recovery.listUpdateGejala = data['listUpdateGejala'] == null ? null : data['listUpdateGejala'].cast<String>();
+    recovery.listNamaGejala = data['listNamaGejala'] == null ? null : data['listNamaGejala'].cast<String>();
     return recovery;
   }
 
