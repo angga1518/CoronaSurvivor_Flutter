@@ -6,7 +6,7 @@ class AddCommentPage extends StatefulWidget {
   final bool isReply;
   final String namaReplied;
   final String idParentKomentar;
-  final List<Komentar> listKomentar;
+  List<Komentar> listKomentar;
 
   AddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
       this.idParentKomentar, this.listKomentar);
@@ -136,6 +136,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
                           .whenComplete(() => Navigator.pop(context));
                       for (var komentar in widget.listKomentar) {
                         if (komentar.idKomentar == widget.idParentKomentar) {
+                          if (komentar.replies == null) {
+                            komentar.replies = [];
+                          }
                           komentar.replies.add(replyResponse);
                         }
                       }
@@ -150,6 +153,9 @@ class _AddCommentPageState extends State<AddCommentPage> {
                           await KomentarServices.saveKomentar(
                                   komentar, widget.artikel.idArtikel)
                               .whenComplete(() => Navigator.pop(context));
+                      if (widget.listKomentar == null) {
+                        widget.listKomentar = [];
+                      }
                       widget.listKomentar.add(komentarResponse);
                       mapIdArtikelKeKomentar[widget.artikel.idArtikel] =
                           widget.listKomentar;

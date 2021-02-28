@@ -551,7 +551,9 @@ class _DetailInfoState extends State<DetailInfo> {
                           ? generateActionContainer(
                               "assets/like",
                               mapJumlahLikedKomentar[parentKomentar].toString(),
-                              mapStatusLikedKomentar[parentKomentar],
+                              mapStatusLikedKomentar[parentKomentar] == null
+                                  ? false
+                                  : mapStatusLikedKomentar[parentKomentar],
                               false,
                               widget.artikel.idArtikel,
                               widget.pengguna,
