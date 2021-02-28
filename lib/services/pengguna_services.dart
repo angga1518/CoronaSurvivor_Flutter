@@ -20,11 +20,19 @@ class PenggunaServices {
   }
 
   static Future<Pengguna> getPengguna(String email) async {
-    String url = base_url + "pengguna/get?email=" + email;
-    http.Response response = await http.Client().get(url);
+    String url = base_url + "pengguna/setToken";
+    http.Response response = await http.Client().post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "email": email,
+        "token": tokenFCM
+      }),
+    );
     var data = json.decode(response.body);
     data = data['result'];
-    // List<String> temp = data['listIdArtikelDisimpan'].map((e)=>""+e).toList();
     Pengguna pengguna = Pengguna(
         namaLengkap: data['namaLengkap'],
         email: data['email'],
