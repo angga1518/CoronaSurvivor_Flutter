@@ -86,12 +86,12 @@ class _CalendarOnboardPageState extends State<CalendarOnboardPage> {
                               width: UIHelper.setResWidth(150),
                             ),
                             UIHelper.vertSpace(30),
-                            BlueNavigation(
-                              "Lihat selengkapnya",
-                              () {},
-                              mainAxisAlignment: MainAxisAlignment.center,
-                            ),
-                            UIHelper.vertSpace(20),
+                            // BlueNavigation(
+                            //   "Lihat selengkapnya",
+                            //   () {},
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            // ),
+                            // UIHelper.vertSpace(20),
                           ],
                         ),
                       ),

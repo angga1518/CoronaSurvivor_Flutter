@@ -12,6 +12,7 @@ class Artikel {
   List<String> listIdComment;
   String imageUrl;
   bool isLiked;
+  bool isSaved;
 
   Artikel({
     @required this.author,
@@ -24,6 +25,7 @@ class Artikel {
     @required this.jumlahView,
     @required this.imageUrl,
     @required this.isLiked,
+    @required this.isSaved,
     this.listIdComment,
   });
 

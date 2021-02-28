@@ -1,5 +1,15 @@
 part of 'shared.dart';
 
+String getTanggalForUI(String tanggalPost) {
+  if (!tanggalPost.contains("T")) {
+    return tanggalPost;
+  }
+  String yyyyMMdd = tanggalPost.split("T")[0];
+  List<int> detailDate = yyyyMMdd.split("-").map((e) => int.parse(e)).toList();
+  DateTime date = DateTime(detailDate[0], detailDate[1], detailDate[2]);
+  return DateFormat('dd/MM/yyyy').format(date);
+}
+
 bool tanggalValidation(String tanggal) {
   List<String> details = tanggal.split("/");
   if (details.length != 3) {
@@ -51,7 +61,7 @@ String getTanggalFormatted(String tanggal) {
     if (yyyyMMdd.split("/")[0].length == 4) {
       detailDate = yyyyMMdd.split("/").map((e) => int.parse(e)).toList();
     } else {
-      List<int> temp = yyyyMMdd.split("/").map((e) => int.parse(e)).toList(); 
+      List<int> temp = yyyyMMdd.split("/").map((e) => int.parse(e)).toList();
       for (int x in temp) {
         detailDate.insert(0, x);
       }

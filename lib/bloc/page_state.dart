@@ -32,18 +32,41 @@ class OnDonorReceiverPage extends PageState {
   OnDonorReceiverPage(this.pengguna, this.penerimaDonor);
 }
 
-class OnInfoPage extends PageState {}
+class OnInfoPage extends PageState {
+  final Pengguna pengguna;
+  final String idArtikel;
+  final bool isLikedArtikel;
+  final Map<String, bool> mapLikedKomentar;
+
+  OnInfoPage(
+      {this.pengguna,
+      this.idArtikel,
+      this.isLikedArtikel,
+      this.mapLikedKomentar});
+}
+
+class OnDetailInfoPage extends PageState {
+  final Pengguna pengguna;
+  final Artikel artikel;
+  final List<Komentar> listKomentar;
+  bool tempIconLikeArtikel;
+
+  OnDetailInfoPage(this.artikel, this.pengguna,
+      {this.listKomentar, this.tempIconLikeArtikel});
+}
 
 class OnListProvinsi extends PageState {}
 
-class OnDetailInfoPage extends PageState {}
-
 class OnAddCommentPage extends PageState {
-  final String title;
-  final String component;
+  final Artikel artikel;
+  final Pengguna pengguna;
   final bool isReply;
+  final String namaReplied;
+  final String idParentKomentar;
+  final List<Komentar> listKomentar;
 
-  OnAddCommentPage(this.title, this.component, this.isReply);
+  OnAddCommentPage(this.artikel, this.pengguna, this.isReply, this.namaReplied,
+      {this.listKomentar, this.idParentKomentar});
 }
 
 class OnCalendarOnboardPage extends PageState {

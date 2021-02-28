@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:corona_survivor_flutter/bloc/blocs.dart';
 import 'package:corona_survivor_flutter/models/models.dart';
+import 'package:corona_survivor_flutter/services/services.dart';
 import 'package:corona_survivor_flutter/ui/pages/pages.dart';
 import 'package:meta/meta.dart';
 
@@ -33,11 +34,24 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToDonorReceiverPage) {
       yield OnDonorReceiverPage(event.pengguna, event.penerimaDonor);
     } else if (event is GoToInfoPage) {
-      yield OnInfoPage();
+      // KomentarServices.likeKomentar(eve, email)
+      // GoToInfoPage(savedArtikel : idArtikel???);
+      // await likeservice.likeAtikel(event.idLikedarticle);
+
+      yield OnInfoPage(
+          pengguna: event.pengguna,
+          idArtikel: event.idArtikel,
+          isLikedArtikel: event.isLikedArtikel,
+          mapLikedKomentar: event.mapLikedKomentar);
     } else if (event is GoToDetailInfoPage) {
-      yield OnDetailInfoPage();
+      yield OnDetailInfoPage(event.artikel, event.pengguna,
+          listKomentar: event.listKomentar,
+          tempIconLikeArtikel: event.tempIconLikeArtikel);
     } else if (event is GoToAddCommentPage) {
-      yield OnAddCommentPage(event.title, event.component, event.isReply);
+      yield OnAddCommentPage(
+          event.artikel, event.pengguna, event.isReply, event.namaReplied,
+          idParentKomentar: event.idParentKomentar,
+          listKomentar: event.listKomentar);
     } else if (event is GoToCalendarOnboardPage) {
       yield OnCalendarOnboardPage(event.calendarModel, event.pengguna);
     } else if (event is GoToCalendarSignUpPage1) {
