@@ -101,7 +101,10 @@ class GoToCalendarHome extends PageEvent {
   GoToCalendarHome(this.calendarModel);
 }
 
-class GoToConnectPuskesmasPage extends PageEvent {}
+class GoToConnectPuskesmasPage extends PageEvent {
+  final CalendarModel calendarModel;
+  GoToConnectPuskesmasPage(this.calendarModel);
+}
 
 class GoToSuccessPage extends PageEvent {
   final String message;
@@ -115,10 +118,23 @@ class GoToSuccessPage extends PageEvent {
       @required this.pinkButtonMessage});
 }
 
-class GoToRecoveryOnBoardPage extends PageEvent {}
+class GoToRecoveryOnBoardPage extends PageEvent {
+  final CalendarModel calendar;
+  GoToRecoveryOnBoardPage(this.calendar);
+}
 
-class GoToAddRecoveryPage extends PageEvent {}
+class GoToAddRecoveryPage extends PageEvent {
+  final CalendarModel calendar;
+  GoToAddRecoveryPage(this.calendar);
+}
 
-class GoToAddNewGejalaPage extends PageEvent {}
+class GoToAddNewGejalaPage extends PageEvent {
+  final CalendarModel calendar;
+  GoToAddNewGejalaPage(this.calendar);
+}
 
-class GoToRecoveryDetailPage extends PageEvent {}
+class GoToRecoveryDetailPage extends PageEvent {
+  final CalendarModel calendar;
+  final Recovery recovery;
+  GoToRecoveryDetailPage(this.calendar, this.recovery);
+}

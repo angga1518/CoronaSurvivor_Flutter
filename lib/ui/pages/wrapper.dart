@@ -137,18 +137,18 @@ class _WrapperState extends State<Wrapper> {
         } else if (state is OnCalendarHome) {
           return CalendarHomePage(state.calendarModel);
         } else if (state is OnConnectPuskesmasPage) {
-          return ConnectPuskesPage();
+          return ConnectPuskesPage(state.calendarModel);
         } else if (state is OnSuccessPage) {
           return SuccessPage(
               state.message, state.goTo, state.backTo, state.pinkButtonMessage);
         } else if (state is OnRecoveryOnBoardPage) {
-          return RecoveryOnboardPage();
+          return RecoveryOnboardPage(state.calendar);
         } else if (state is OnAddRecoveryPage) {
-          return AddRecoveryPage();
+          return AddRecoveryPage(state.calendar);
         } else if (state is OnAddNewGejalaPage) {
-          return AddNewGejalaPage();
+          return AddNewGejalaPage(state.calendar);
         } else if (state is OnRecoveryDetailPage) {
-          return RecoveryDetailPage();
+          return RecoveryDetailPage(state.calendar, state.recovery);
         } else {
           return Container();
         }

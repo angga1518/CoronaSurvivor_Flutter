@@ -199,26 +199,37 @@ class _HomePageState extends State<HomePage> {
                     onMessageTap: () {},
                   ),
                   UIHelper.vertSpace(18),
-                  LogoCardContainer(
-                      "MyCalendar",
-                      "assets/mask_myCalendar.png",
-                      "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
-                      "Buat MyCalendar",
-                      29,
-                      104),
-                  UIHelper.vertSpace(18),
-                  CardContainer(
-                      "MyCalendar",
-                      Column(
-                        children: [
-                          WarningBox(286,
-                              "Anda belum mengisi perkembangan Anda hari ini"),
-                          UIHelper.vertSpace(14),
-                          Calendar(2, 11, 12, 14, 15),
-                          UIHelper.vertSpace(10),
-                          BlueNavigation("Lihat selengkapnya", () {}),
-                        ],
-                      )),
+                  BlocBuilder<CalendarBloc, CalendarState>(
+                    builder: (context, state) {
+                      if (state is CalendarExisted) {
+                        CalendarModel calendar = state.calendar;
+                        return CardContainer(
+                            "MyCalendar",
+                            Column(
+                              children: [
+                                WarningBox(286,
+                                    "Anda belum mengisi perkembangan Anda hari ini"),
+                                UIHelper.vertSpace(14),
+                                Calendar(
+                                  calendar,
+                                  clickable: false,
+                                ),
+                                UIHelper.vertSpace(10),
+                                BlueNavigation("Lihat selengkapnya", () {
+                                  pageBloc.add(GoToCalendarHome(calendar));
+                                }),
+                              ],
+                            ));
+                      }
+                      return LogoCardContainer(
+                          "MyCalendar",
+                          "assets/mask_myCalendar.png",
+                          "Anda terjangkit covid-19? Gunakan MyCalendar untuk mencatat perkembangan Anda",
+                          "Buat MyCalendar",
+                          29,
+                          104);
+                    },
+                  ),
                   UIHelper.vertSpace(75),
                 ],
               ),

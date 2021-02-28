@@ -27,5 +27,9 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         yield CalendarExisted(calendar);
       }
     }
+    if (event is LoadLocalCalendar) {
+      sharedCalendar = event.calendar;
+      yield CalendarExisted(event.calendar);
+    }
   }
 }

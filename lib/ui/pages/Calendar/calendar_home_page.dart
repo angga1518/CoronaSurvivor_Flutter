@@ -8,6 +8,24 @@ class CalendarHomePage extends StatefulWidget {
 }
 
 class _CalendarHomePageState extends State<CalendarHomePage> {
+  int startDate;
+  int startYear;
+  int startMonth;
+  int redDuration;
+  int yellowDuration;
+  bool alreadyConnectedWithPuskesmas;
+
+  @override
+  void initState() {
+    String tanggal = getTanggalFormatted(widget.calendarModel.tanggalStartRed);
+    startDate = int.parse(tanggal.split("/")[0]);
+    startMonth = int.parse(tanggal.split("/")[1]);
+    startYear = int.parse(tanggal.split("/")[2]);
+    redDuration = widget.calendarModel.red;
+    yellowDuration = widget.calendarModel.yellow;
+    alreadyConnectedWithPuskesmas = widget.calendarModel.kodePuskesmas != null;
+  }
+
   @override
   Widget build(BuildContext context) {
     PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
@@ -16,7 +34,10 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
           child: Column(
         children: [
           UIHelper.vertSpace(5),
-          Calendar(23, 28, 28 + 1, 28 + 5, 28 + 6, clickable: true),
+          Calendar(
+            widget.calendarModel,
+            clickable: true,
+          ),
           UIHelper.vertSpace(20),
           Column(
             children: [
@@ -92,68 +113,74 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
               generateInfoContainer(
                   "Anda termasuk orang bergejala sedang. Menurut CDC, Anda tidak akan menular lagi setelah 10 hari isolasi mandiri.*\n\n*selama 10 hari Anda harus bebas dari demam tanpa bantuan obat demam."),
               UIHelper.vertSpace(15),
-              Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Material(
-                      color: UIHelper.colorPink,
-                      child: InkWell(
-                        splashColor: UIHelper.colorPinkLight,
-                        onTap: () {
-                          pageBloc.add(GoToConnectPuskesmasPage());
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: UIHelper.setResWidth(5)),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  child: Image(
-                                    image: AssetImage("assets/hospital.png"),
-                                    height: UIHelper.setResHeight(20),
-                                    width: UIHelper.setResWidth(20),
-                                  ),
-                                ),
-                                Text(
-                                  "Hubungkan Dengan Puskesmas",
-                                  style: UIHelper.redFont.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: UIHelper.setResFontSize(12),
-                                      color: UIHelper.colorMainRed),
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(
-                                  child: Image(
-                                    image:
-                                        AssetImage("assets/forward_pink.png"),
-                                    height: UIHelper.setResHeight(15),
-                                    width: UIHelper.setResWidth(15),
-                                  ),
-                                ),
-                              ]),
+              (!alreadyConnectedWithPuskesmas)
+                  ? Container(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Material(
+                          color: UIHelper.colorPink,
+                          child: InkWell(
+                            splashColor: UIHelper.colorPinkLight,
+                            onTap: () {
+                              pageBloc.add(GoToConnectPuskesmasPage(
+                                  widget.calendarModel));
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: UIHelper.setResWidth(5)),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      child: Image(
+                                        image:
+                                            AssetImage("assets/hospital.png"),
+                                        height: UIHelper.setResHeight(20),
+                                        width: UIHelper.setResWidth(20),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Hubungkan Dengan Puskesmas",
+                                      style: UIHelper.redFont.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: UIHelper.setResFontSize(12),
+                                          color: UIHelper.colorMainRed),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      child: Image(
+                                        image: AssetImage(
+                                            "assets/forward_pink.png"),
+                                        height: UIHelper.setResHeight(15),
+                                        width: UIHelper.setResWidth(15),
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  height: UIHelper.setResHeight(38),
-                  width: UIHelper.setResWidth(238),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(color: Colors.white.withOpacity(0.05)),
-                    ],
-                    border: Border.all(color: UIHelper.colorMainLightRed),
-                    borderRadius: BorderRadius.circular(10),
-                  )),
-              UIHelper.vertSpace(30),
+                      height: UIHelper.setResHeight(38),
+                      width: UIHelper.setResWidth(238),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: Colors.white.withOpacity(0.05)),
+                        ],
+                        border: Border.all(color: UIHelper.colorMainLightRed),
+                        borderRadius: BorderRadius.circular(10),
+                      ))
+                  : Container(),
+              UIHelper.vertSpace((!alreadyConnectedWithPuskesmas) ? 30 : 15),
               BlueNavigation("Lihat acuan CDC", () {})
             ],
           )
         ],
       )),
       space: 5,
+      bottomSpace: 50,
       addHeader: false,
-      backTo: GoToCalendarSignUpPage4(widget.calendarModel),
+      backTo: GoToHomePage(),
       goTo: null,
       withPinkButton: false,
     );

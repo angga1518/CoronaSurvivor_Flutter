@@ -11,6 +11,8 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
   bool isSetuju = false;
   @override
   Widget build(BuildContext context) {
+    PageBloc pageBloc = BlocProvider.of<PageBloc>(context);
+    CalendarBloc calendarBloc = BlocProvider.of<CalendarBloc>(context);
     return CalendarDefaultTemplate(
       SizedBox(
         child: generateCheckBox(
@@ -25,8 +27,22 @@ class CalendarSignUpPage5State extends State<CalendarSignUpPage5> {
       ),
       space: 5,
       addHeader: false,
+      onPinkButtonTap: () async {
+        showPopUp(context: context, child: PopUpLoadingChild());
+        DateTime dateTime = DateTime.now();
+        String tanggalDibuat = DateFormat('yyyy-MM-dd').format(dateTime);
+        widget.calendarModel.tanggalDibuat = tanggalDibuat;
+        String noCalendar =
+            await CalendarService.createCalendar(widget.calendarModel);
+        widget.calendarModel.nomorKalender = noCalendar;
+        widget.calendarModel =
+            await GejalaService.createGejala(widget.calendarModel)
+                .whenComplete(() => Navigator.pop(context));
+        calendarBloc.add(LoadLocalCalendar(calendar: widget.calendarModel));
+        pageBloc.add(GoToCalendarHome(widget.calendarModel));
+      },
       backTo: GoToCalendarSignUpPage4(widget.calendarModel),
-      goTo: GoToCalendarHome(widget.calendarModel),
+      goTo: null,
       isEnabled: isSetuju,
     );
   }
