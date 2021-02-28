@@ -23,7 +23,7 @@ class CalendarSignUpPage1State extends State<CalendarSignUpPage1> {
     tanggalLahirController.text = pengguna.getTanggalLahir();
     jenisKelaminController.text = pengguna.jenisKelamin;
     domisiliController.text = pengguna.domisili;
-    noTeleponController.text = pengguna.noTelepon;
+    // noTeleponController.text = pengguna.noTelepon;wi
     emailController.text = pengguna.email;
   }
 

@@ -27,3 +27,4 @@ part 'pop_up_loading_child.dart';
 part 'calendar_template.dart';
 part 'dropdown_textfield.dart';
 part 'add_recovery_template.dart';
+part 'plasma_template.dart';

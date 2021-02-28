@@ -25,34 +25,19 @@ class _WrapperState extends State<Wrapper> {
     _firebaseMessaging.configure(
       onMessage: (message) async {
         print("onMessage: $message");
-
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = token;
-        });
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        setState(() {
-          messageTitle = message["notification"]["title"];
-          notificationAlert = "New Notification Alert";
-        });
       },
       onResume: (message) async {
         print("onResume: $message");
-        setState(() {
-          messageTitle = message["data"]["title"];
-          notificationAlert = "Application opened from Notification";
-        });
       },
     );
   }
 
   Future<void> _checkNewToken() async {
-    // hit api cek access token yang lama
-    // bandingin
-    // kalo beda hit beda api ke backend
     token = await _firebaseMessaging.getToken();
+    tokenFCM = token;
     print("token nih: " + token);
   }
 
@@ -68,7 +53,8 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       // for dev
       // pageBloc.add(GoToCalendarSignUpPage1());
-      if (!(prevPageEvent is GoToSplashPage)) {
+      if (!(prevPageEvent is GoToSplashPage ||
+          prevPageEvent is GoToOnboardPage)) {
         prevPageEvent = GoToSplashPage();
         pageBloc.add(prevPageEvent);
       }
@@ -149,6 +135,35 @@ class _WrapperState extends State<Wrapper> {
           return AddNewGejalaPage(state.calendar);
         } else if (state is OnRecoveryDetailPage) {
           return RecoveryDetailPage(state.calendar, state.recovery);
+        } else if (state is OnPlasmaPenerimaSignUp1) {
+          return PlasmaPenerimaSignUp1(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPenerimaSignUp2) {
+          return PlasmaPenerimaSignUp2(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPenerimaSignUp3) {
+          return PlasmaPenerimaSignUp3(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPenerimaSignUp4) {
+          return PlasmaPenerimaSignUp4(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPenerimaSignUp5) {
+          return PlasmaPenerimaSignUp5(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPendonorSignUp1) {
+          return PlasmaPendonorSignUp1(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPendonorSignUp2) {
+          return PlasmaPendonorSignUp2(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPendonorSignUp3) {
+          return PlasmaPendonorSignUp3(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPendonorSignUp4) {
+          return PlasmaPendonorSignUp4(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPendonorSignUp5) {
+          return PlasmaPendonorSignUp5(state.pengguna, state.penerima);
+        } else if (state is OnPlasmaPage) {
+          return PlasmaPage(state.pengguna);
+        } else if (state is OnPlasmaDetailPenerima) {
+          return PlasmaDetailPenerima(state.pengguna, state.penerimaDonor);
+        } else if (state is OnPlasmaDetailPendonor) {
+          return PlasmaDetailPendonor(state.pengguna, state.penerima);
+          // return RecoveryDetailPage(state.calendar, state.recovery);
+        } else if (state is OnListProvinsi) {
+          return ListProvinsiPage();
         } else {
           return Container();
         }

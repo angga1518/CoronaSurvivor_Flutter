@@ -19,7 +19,7 @@ class PemberiDonor {
   List<String> gejala;
   List<String> riwayatPenyakit;
   bool himself;
-  bool melahirkan;
+  String melahirkan;
   String nik;
 
   PemberiDonor({
@@ -56,6 +56,7 @@ class PemberiDonor {
     }
     return res;
   }
+
   String formattedRiwayatPenyakit() {
     String res = "";
     for (var i = 0; i < riwayatPenyakit.length; i++) {
@@ -66,5 +67,69 @@ class PemberiDonor {
       res += riwayatPenyakit[i] + "\n";
     }
     return res;
+  }
+
+  String formattedGolDarah() {
+    return this.golonganDarah + "(" + this.rhesus + ")";
+  }
+
+  String formattedGender() {
+    return this.jenisKelamin.toLowerCase() == "perempuan" ? "P" : "L";
+  }
+
+  String formattedDate(String timestamp) {
+    return timestamp.substring(0, 10);
+  }
+
+  DateTime generateTanggalSimpan() {
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+  }
+
+  Map<String, dynamic> toJson() => {
+        // 'idDataPenerimaDonor': this.idDataPenerimaDonor,
+        'namaLengkap': this.namaLengkap,
+        'jenisKelamin': this.jenisKelamin,
+        'golonganDarah': this.golonganDarah,
+        'domisili': this.domisili,
+        'tanggalLahir': this.tanggalLahir.replaceAll('/', '-'),
+        'email': this.email,
+        'noTelepon': this.noTelepon,
+        'rhesus': this.rhesus,
+        'tanggalInfeksi': this.tanggalInfeksi.replaceAll('/', '-'),
+        'tanggalSembuh': this.tanggalSembuh.replaceAll('/', '-'),
+        'tanggalSimpan': generateTanggalSimpan().toString(),
+        'beratBadan': this.beratBadan.toString(),
+        'riwayatPenyakit': this.riwayatPenyakit,
+        'gejala': this.gejala,
+        'catatanTambahan': this.catatanTambahan,
+        'emailPendaftar': this.emailPendaftar,
+        'nik': this.nik,
+        'himself': this.himself,
+        'melahirkan': this.melahirkan
+      };
+
+  String hideAll(String target) {
+    int targetLength = target.length;
+    String hasilTarget = "";
+    for (int i = 0; i < targetLength; i++) {
+      hasilTarget += "*";
+    }
+    return hasilTarget;
+  }
+
+  String censor(String target) {
+    List<String> targetSplit = target.split(" ");
+    String hasil = "";
+    for (String word in targetSplit) {
+      String first = word[0];
+      int sisa = word.length - 1;
+      hasil += first;
+      for (int a = 0; a < sisa; a++) {
+        hasil += "*";
+      }
+      hasil += " ";
+    }
+    return hasil;
   }
 }

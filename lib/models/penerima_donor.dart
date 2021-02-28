@@ -13,7 +13,7 @@ class PenerimaDonor {
   String tanggalSimpan;
   String tanggalPositif;
   String tanggalGejala;
-  int beratBadan;
+  String beratBadan;
   List<String> riwayatPenyakit;
   List<String> gejala;
   String catatanTambahan;
@@ -22,26 +22,53 @@ class PenerimaDonor {
   bool himself;
 
   PenerimaDonor({
-    @required this.idDataPenerimaDonor,
-    @required this.namaLengkap,
-    @required this.jenisKelamin,
-    @required this.golonganDarah,
-    @required this.domisili,
-    @required this.tanggalLahir,
-    @required this.email,
-    @required this.noTelepon,
-    @required this.rhesus,
-    @required this.tanggalSimpan,
-    @required this.tanggalPositif,
-    @required this.tanggalGejala,
-    @required this.beratBadan,
-    @required this.riwayatPenyakit,
-    @required this.gejala,
-    @required this.catatanTambahan,
-    @required this.emailPendaftar,
-    @required this.nik,
-    @required this.himself,
+    this.idDataPenerimaDonor,
+    this.namaLengkap,
+    this.jenisKelamin,
+    this.golonganDarah,
+    this.domisili,
+    this.tanggalLahir,
+    this.email,
+    this.noTelepon,
+    this.rhesus,
+    this.tanggalSimpan,
+    this.tanggalPositif,
+    this.tanggalGejala,
+    this.beratBadan,
+    this.riwayatPenyakit,
+    this.gejala,
+    this.catatanTambahan,
+    this.emailPendaftar,
+    this.nik,
+    this.himself,
   });
+
+  Map<String, dynamic> toJson() => {
+        // 'idDataPenerimaDonor': this.idDataPenerimaDonor,
+        'namaLengkap': this.namaLengkap,
+        'jenisKelamin': this.jenisKelamin,
+        'golonganDarah': this.golonganDarah,
+        'domisili': this.domisili,
+        'tanggalLahir': this.tanggalLahir.replaceAll('/', '-'),
+        'email': this.email,
+        'noTelepon': this.noTelepon,
+        'rhesus': this.rhesus,
+        'tanggalPositif': this.tanggalPositif.replaceAll('/', '-'),
+        'tanggalGejala': this.tanggalGejala.replaceAll('/', '-'),
+        'tanggalSimpan': generateTanggalSimpan().toString(),
+        'beratBadan': this.beratBadan.toString(),
+        'riwayatPenyakit': this.riwayatPenyakit,
+        'gejala': this.gejala,
+        'catatanTambahan': this.catatanTambahan,
+        'emailPendaftar': this.emailPendaftar,
+        'nik': this.nik,
+        'himself': this.himself
+      };
+
+  DateTime generateTanggalSimpan() {
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+  }
 
   String formattedGejala() {
     String res = "";
@@ -54,6 +81,7 @@ class PenerimaDonor {
     }
     return res;
   }
+
   String formattedRiwayatPenyakit() {
     String res = "";
     for (var i = 0; i < riwayatPenyakit.length; i++) {
@@ -64,5 +92,17 @@ class PenerimaDonor {
       res += riwayatPenyakit[i] + "\n";
     }
     return res;
+  }
+
+  String formattedGolDarah() {
+    return this.golonganDarah + "(" + this.rhesus + ")";
+  }
+
+  String formattedGender() {
+    return this.jenisKelamin.toLowerCase() == "perempuan" ? "P" : "L";
+  }
+
+  String formattedDate(String timestamp) {
+    return timestamp.substring(0, 10);
   }
 }

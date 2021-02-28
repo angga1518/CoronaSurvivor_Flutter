@@ -31,8 +31,8 @@ class BottomBar extends StatelessWidget {
       () {
         pageBloc.add(GoToHomePage());
       },
-      () {
-        // pageBloc.add(GoToProfilePage());
+      () async {
+        pageBloc.add(GoToPlasmaPage(pengguna));
       },
       () {
         pageBloc.add(GoToInfoPage());

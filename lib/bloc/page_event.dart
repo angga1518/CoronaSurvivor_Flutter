@@ -96,6 +96,84 @@ class GoToCalendarSignUpPage5 extends PageEvent {
   GoToCalendarSignUpPage5(this.calendarModel);
 }
 
+class GoToPlasmaPenerimaSignUp1 extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  GoToPlasmaPenerimaSignUp1(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPenerimaSignUp2 extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  GoToPlasmaPenerimaSignUp2(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPenerimaSignUp3 extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  GoToPlasmaPenerimaSignUp3(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPenerimaSignUp4 extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  GoToPlasmaPenerimaSignUp4(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPenerimaSignUp5 extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  GoToPlasmaPenerimaSignUp5(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPendonorSignUp1 extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaPendonorSignUp1(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPendonorSignUp2 extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaPendonorSignUp2(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPendonorSignUp3 extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaPendonorSignUp3(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPendonorSignUp4 extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaPendonorSignUp4(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPendonorSignUp5 extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaPendonorSignUp5(this.pengguna, this.penerima);
+}
+
+class GoToPlasmaPage extends PageEvent {
+  final Pengguna pengguna;
+  GoToPlasmaPage(this.pengguna);
+}
+
+class GoToPlasmaDetailPenerima extends PageEvent {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  GoToPlasmaDetailPenerima(this.pengguna, this.penerimaDonor);
+}
+
+class GoToPlasmaDetailPendonor extends PageEvent {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  GoToPlasmaDetailPendonor(this.pengguna, this.penerima);
+}
+
+// class GoToCalendarHome extends PageEvent {}
 class GoToCalendarHome extends PageEvent {
   final CalendarModel calendarModel;
   GoToCalendarHome(this.calendarModel);
@@ -138,3 +216,6 @@ class GoToRecoveryDetailPage extends PageEvent {
   final Recovery recovery;
   GoToRecoveryDetailPage(this.calendar, this.recovery);
 }
+
+class GoToListProvinsi extends PageEvent {}
+

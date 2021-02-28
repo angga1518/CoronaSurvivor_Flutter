@@ -91,9 +91,7 @@ class _DonorGiverPageState extends State<DonorGiverPage> {
                                       children: [
                                         InformationContainer(
                                             "Sudah Pernah Melahirkan",
-                                            (pemberiDonor.melahirkan)
-                                                ? "Sudah"
-                                                : "Belum"),
+                                            pemberiDonor.melahirkan),
                                         UIHelper.vertSpace(10),
                                       ],
                                     ))
@@ -104,13 +102,19 @@ class _DonorGiverPageState extends State<DonorGiverPage> {
                               (pemberiDonor.catatanTambahan != "")
                                   ? InformationContainer("Catatan Tambahan",
                                       pemberiDonor.catatanTambahan)
-                                  : Container()
+                                  : Container(),
+                              UIHelper.vertSpace(10),
+                              InformationContainer("Pernah Melahirkan",
+                                  "(${pemberiDonor.melahirkan})"),
+                              UIHelper.vertSpace(10),
                             ],
                           )),
                       UIHelper.vertSpace(18),
                       PinkButton("Hapus", () async {
                         showPopUp(context: context, child: PopUpLoadingChild());
-                        await PemberiDonorService.deletePemberiDonorById(pemberiDonor.idDataPemberiDonor).whenComplete(() => Navigator.pop(context));
+                        await PemberiDonorService.deletePemberiDonorById(
+                                pemberiDonor.idDataPemberiDonor)
+                            .whenComplete(() => Navigator.pop(context));
                         pageBloc.add(GoToProfilePage(widget.pengguna));
                       }),
                       UIHelper.vertSpace(20),

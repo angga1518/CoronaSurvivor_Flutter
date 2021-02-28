@@ -14,6 +14,8 @@ class Recovery {
   String suhuTubuh;
   String saturasi;
   String emailPengguna;
+  List<String> listUpdateGejala;
+  List<String> listNamaGejala;
 
   Recovery(
     {
@@ -25,7 +27,9 @@ class Recovery {
       this.emailPengguna,
       this.feedback,
       this.nomorRecovery,
-      this.status
+      this.status,
+      this.listNamaGejala,
+      this.listUpdateGejala
     }
   );
 }

@@ -64,6 +64,9 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnCalendarSignUpPage4(event.calendarModel);
     } else if (event is GoToCalendarSignUpPage5) {
       yield OnCalendarSignUpPage5(event.calendarModel);
+    } else if (event is GoToPlasmaPage) {
+      yield OnPlasmaPage(event.pengguna);
+      // yield OnCalendarSignUpPage5(event.calendarModel);
     } else if (event is GoToCalendarHome) {
       yield OnCalendarHome(event.calendarModel);
     } else if (event is GoToConnectPuskesmasPage) {
@@ -79,6 +82,33 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnAddNewGejalaPage(event.calendar);
     } else if (event is GoToRecoveryDetailPage) {
       yield OnRecoveryDetailPage(event.calendar, event.recovery);
+    } else if (event is GoToPlasmaPenerimaSignUp1) {
+      yield OnPlasmaPenerimaSignUp1(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPenerimaSignUp2) {
+      yield OnPlasmaPenerimaSignUp2(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPenerimaSignUp3) {
+      yield OnPlasmaPenerimaSignUp3(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPenerimaSignUp4) {
+      yield OnPlasmaPenerimaSignUp4(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPenerimaSignUp5) {
+      yield OnPlasmaPenerimaSignUp5(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPendonorSignUp1) {
+      yield OnPlasmaPendonorSignUp1(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPendonorSignUp2) {
+      yield OnPlasmaPendonorSignUp2(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPendonorSignUp3) {
+      yield OnPlasmaPendonorSignUp3(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPendonorSignUp4) {
+      yield OnPlasmaPendonorSignUp4(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaPendonorSignUp5) {
+      yield OnPlasmaPendonorSignUp5(event.pengguna, event.penerima);
+    } else if (event is GoToPlasmaDetailPenerima) {
+      yield OnPlasmaDetailPenerima(event.pengguna, event.penerimaDonor);
+    } else if (event is GoToPlasmaDetailPendonor) {
+      yield OnPlasmaDetailPendonor(event.pengguna, event.penerima);
+      // yield OnRecoveryDetailPage(event.calendar, event.recovery);
+    } else if (event is GoToListProvinsi) {
+      yield OnListProvinsi();
     }
   }
 }

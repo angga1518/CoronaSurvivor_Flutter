@@ -55,6 +55,8 @@ class OnDetailInfoPage extends PageState {
       {this.listKomentar, this.tempIconLikeArtikel});
 }
 
+class OnListProvinsi extends PageState {}
+
 class OnAddCommentPage extends PageState {
   final Artikel artikel;
   final Pengguna pengguna;
@@ -98,6 +100,84 @@ class OnCalendarSignUpPage5 extends PageState {
   OnCalendarSignUpPage5(this.calendarModel);
 }
 
+class OnPlasmaPenerimaSignUp1 extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  OnPlasmaPenerimaSignUp1(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPenerimaSignUp2 extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  OnPlasmaPenerimaSignUp2(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPenerimaSignUp3 extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  OnPlasmaPenerimaSignUp3(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPenerimaSignUp4 extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  OnPlasmaPenerimaSignUp4(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPenerimaSignUp5 extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerima;
+  OnPlasmaPenerimaSignUp5(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPendonorSignUp1 extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaPendonorSignUp1(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPendonorSignUp2 extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaPendonorSignUp2(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPendonorSignUp3 extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaPendonorSignUp3(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPendonorSignUp4 extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaPendonorSignUp4(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPendonorSignUp5 extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaPendonorSignUp5(this.pengguna, this.penerima);
+}
+
+class OnPlasmaPage extends PageState {
+  final Pengguna pengguna;
+  OnPlasmaPage(this.pengguna);
+}
+
+class OnPlasmaDetailPenerima extends PageState {
+  final Pengguna pengguna;
+  final PenerimaDonor penerimaDonor;
+  OnPlasmaDetailPenerima(this.pengguna, this.penerimaDonor);
+}
+
+class OnPlasmaDetailPendonor extends PageState {
+  final Pengguna pengguna;
+  final PemberiDonor penerima;
+  OnPlasmaDetailPendonor(this.pengguna, this.penerima);
+}
+
+// class OnCalendarHome extends PageState {}
 class OnCalendarHome extends PageState {
   final CalendarModel calendarModel;
   OnCalendarHome(this.calendarModel);
