@@ -240,14 +240,14 @@ class Calendar extends StatelessWidget {
       calendar.lastDate = getTanggalFormatted(
           getTanggalFromDateTime(tanggalMunculGejala) + "T");
     }
-    String lastDateCalendar = getTanggalFormatted(calendar.lastDate);
+    String lastDateCalendar = getTanggalFormatted(calendar.lastDate + "T");
     print(lastDateCalendar);
     DateTime lastDateTime = DateTime(
         int.parse(lastDateCalendar.split("/")[2]),
         int.parse(lastDateCalendar.split("/")[1]),
         int.parse(lastDateCalendar.split("/")[0]));
 
-    DateTime nowDateTime = DateTime.now();
+    DateTime nowDateTime = DateTime.now().subtract(Duration(days: 1));
 
     DateTime tempDateTime = lastDateTime.add(Duration(days: 1));
     String lastDateCalendarPlusOne =
