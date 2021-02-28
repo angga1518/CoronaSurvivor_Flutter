@@ -57,7 +57,7 @@ class _InfoPageState extends State<InfoPage> {
                           height: UIHelper.height - UIHelper.setResHeight(185),
                           child: PageView(
                             onPageChanged: (index) {
-                              setState(() async {
+                              setState(() {
                                 infoIndex = index;
                               });
                             },
@@ -94,6 +94,10 @@ class _InfoPageState extends State<InfoPage> {
                             child: GestureDetector(
                           onTap: () {
                             if (infoIndex == 1) {
+                              pageController.previousPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeIn);
+                            } else {
                               pageController.previousPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.easeIn);
@@ -301,82 +305,6 @@ class _InfoPageState extends State<InfoPage> {
           borderRadius: BorderRadius.circular(20),
           color: Colors.white,
         ),
-      ),
-    );
-  }
-
-  Widget generateNotFound() {
-    return Container(
-      child: ListView(
-        children: [
-          UIHelper.vertSpace(15),
-          generateSearchBar(),
-          UIHelper.vertSpace(15),
-          Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(22, 21, 22, 21),
-                  child: Column(
-                    children: [
-                      Center(
-                        child: Image(
-                          image: AssetImage("assets/not_found.png"),
-                          width: UIHelper.setResWidth(50),
-                          height: UIHelper.setResHeight(50),
-                        ),
-                      ),
-                      UIHelper.vertSpace(10),
-                      SizedBox(
-                        width: UIHelper.setResWidth(210),
-                        child: Text(
-                          "Tidak ada info yang ditemukan. Coba kata kunci lain.",
-                          style: UIHelper.greyFont,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            width: UIHelper.setResWidth(322),
-            margin: EdgeInsets.only(left: 19, right: 19),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.white,
-            ),
-          ),
-          UIHelper.vertSpace(15),
-        ],
-      ),
-    );
-  }
-
-  Widget generateSearchBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: UIHelper.setResWidth(5)),
-      width: UIHelper.setResWidth(322),
-      margin: EdgeInsets.only(left: 19, right: 19),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
-      ),
-      child: TextField(
-        style: UIHelper.greyLightFont.copyWith(
-            color: UIHelper.colorGreySuperLight,
-            fontSize: UIHelper.setResFontSize(13)),
-        controller: textController,
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              color: UIHelper.colorGreySuperLight,
-            ),
-            border: InputBorder.none,
-            hintText: "Cari Informasi ...",
-            hintStyle: UIHelper.greyLightFont.copyWith(
-                color: UIHelper.colorGreySuperLight,
-                fontSize: UIHelper.setResFontSize(13))),
       ),
     );
   }
