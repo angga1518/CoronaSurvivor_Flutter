@@ -4,7 +4,7 @@ part of 'shared.dart';
 // prod_base_url = "https://coronasurvivor.azurewebsites.net/";
 // please use http instead of https
 // const String base_url = "http://coronasurvivor.azurewebsites.net/";
-const String base_url = "http://2ff2b0915f0d.ngrok.io/";
+const String base_url = "http://e9724a7082ac.ngrok.io/";
 
 PageEvent prevPageEvent;
 List<Komentar> sharedListKomentar;
@@ -18,6 +18,7 @@ String isStateLikeArtikel;
 String isStateLikeKomentar;
 List<Artikel> listSharedSavedArtikel;
 List<Artikel> listSharedAllArtikel;
+String isIncrementLikeArtikel;
 
 CalendarModel sharedCalendar;
 CovidIndo sharedCovidIndo;

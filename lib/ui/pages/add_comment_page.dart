@@ -21,6 +21,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
   void initState() {
     super.initState();
     textController = TextEditingController();
+    isLikedIconArtikel =
+        isLikedIconArtikel == null ? false : isLikedIconArtikel;
   }
 
   @override
@@ -29,7 +31,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
     return WillPopScope(
       onWillPop: () async {
         pageBloc.add(GoToDetailInfoPage(widget.artikel, widget.pengguna,
-            listKomentar: widget.listKomentar));
+            listKomentar: widget.listKomentar,
+            tempIconLikeArtikel: isLikedIconArtikel));
         return false;
       },
       child: Scaffold(
@@ -153,7 +156,8 @@ class _AddCommentPageState extends State<AddCommentPage> {
                     }
                     pageBloc.add(GoToDetailInfoPage(
                         widget.artikel, widget.pengguna,
-                        listKomentar: widget.listKomentar));
+                        listKomentar: widget.listKomentar,
+                        tempIconLikeArtikel: isLikedIconArtikel));
                   })),
             ],
           ),

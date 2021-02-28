@@ -77,7 +77,9 @@ class _InfoPageState extends State<InfoPage> {
               ),
               Column(
                 children: [
-                  TopBar("Info", () {}),
+                  TopBar("Info", () {
+                    pageBloc.add(GoToHomePage());
+                  }),
                   Container(
                     height: UIHelper.setResHeight(45),
                     decoration: BoxDecoration(

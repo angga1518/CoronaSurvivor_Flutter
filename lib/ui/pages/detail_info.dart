@@ -25,7 +25,16 @@ class _DetailInfoState extends State<DetailInfo> {
     isLikedIconArtikel = widget.tempIconLikeArtikel == null
         ? widget.artikel.isLiked
         : widget.tempIconLikeArtikel;
+    if (isLikedIconArtikel) {
+      isIncrementLikeArtikel = "Exist";
+    }
     jumlahLikeArtikelFrontEnd = widget.artikel.jumlahLike;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    isIncrementLikeArtikel = "";
   }
 
   Future<void> handLikedArtikelAndComment(Pengguna pengguna, String idArtikel,
@@ -53,7 +62,7 @@ class _DetailInfoState extends State<DetailInfo> {
     pageBloc = BlocProvider.of<PageBloc>(context);
     return WillPopScope(
       onWillPop: () async {
-        pageBloc.add(GoToHomePage());
+        pageBloc.add(GoToInfoPage());
         return false;
       },
       child: Scaffold(
@@ -204,8 +213,12 @@ class _DetailInfoState extends State<DetailInfo> {
                                             ),
                                             UIHelper.horzSpace(5),
                                             Text(
-                                              jumlahLikeArtikelFrontEnd
-                                                  .toString(),
+                                              isIncrementLikeArtikel == "Exist"
+                                                  ? (jumlahLikeArtikelFrontEnd +
+                                                          1)
+                                                      .toString()
+                                                  : (jumlahLikeArtikelFrontEnd)
+                                                      .toString(),
                                               style: UIHelper.redFont.copyWith(
                                                   fontSize:
                                                       UIHelper.setResFontSize(
