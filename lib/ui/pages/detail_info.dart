@@ -264,7 +264,7 @@ class _DetailInfoState extends State<DetailInfo> {
                               "LikeArtikel",
                               ""),
                           generateActionContainer(
-                              "assets/like",
+                              "assets/saved",
                               "Save",
                               isSavedIcon,
                               true,
@@ -286,23 +286,26 @@ class _DetailInfoState extends State<DetailInfo> {
               ),
               TopBar("Info", () async {
                 if (isStateLikeArtikel == "Exist" ||
-                    isStateLikeKomentar == "Exist") {
-                  showPopUp(context: context, child: PopUpLoadingChild());
-                  await handLikedArtikelAndComment(
-                          widget.pengguna,
-                          widget.artikel.idArtikel,
-                          isLikedIconArtikel,
-                          mapLikedKomentarForPost)
-                      .whenComplete(() => Navigator.pop(context));
-                  ;
-                  if (isStateLikeArtikel == "Exist") {
+                    isStateLikeKomentar == "Exist" ||
+                    isStateSavedArtikel == "Exist") {
+                  if (isStateLikeArtikel == "Exist" ||
+                      isStateLikeKomentar == "Exist") {
+                    showPopUp(context: context, child: PopUpLoadingChild());
+                    await handLikedArtikelAndComment(
+                            widget.pengguna,
+                            widget.artikel.idArtikel,
+                            isLikedIconArtikel,
+                            mapLikedKomentarForPost)
+                        .whenComplete(() => Navigator.pop(context));
+                  }
+                  if (isStateLikeArtikel == "Exist" ||
+                      isStateSavedArtikel == "Exist") {
                     listSharedSavedArtikel =
                         await ArtikelServices.getAllSavedArtikel(
                             widget.pengguna.email);
                     listSharedAllArtikel = await ArtikelServices.getAllArtikel(
                         widget.pengguna.email);
                   }
-                  ;
                 }
                 pageBloc.add(GoToInfoPage());
               })
@@ -347,6 +350,7 @@ class _DetailInfoState extends State<DetailInfo> {
           await ArtikelServices.postSavedArtikel(
                   widget.artikel, widget.pengguna.email)
               .whenComplete(() => Navigator.pop(context));
+          isStateSavedArtikel = "Exist";
           setState(() {
             isSavedIcon = true;
           });

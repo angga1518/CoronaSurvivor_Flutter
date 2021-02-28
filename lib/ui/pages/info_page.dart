@@ -30,6 +30,7 @@ class _InfoPageState extends State<InfoPage> {
     textController = TextEditingController();
     isStateLikeKomentar = "";
     isStateLikeArtikel = "";
+    isStateSavedArtikel = "";
   }
 
   @override
